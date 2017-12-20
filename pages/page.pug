@@ -1,0 +1,39 @@
+doctype html
+html(lang = 'en')
+    include config.pug
+    block variables
+        - var title = title || '';
+
+    head
+        meta(charset = 'utf-8')
+        meta(http-equiv = 'X-UA-Compatible', content = 'IE=edge')
+        meta(name = 'viewport', content = 'width=device-width, initial-scale=1')
+        meta(name = 'description', content = 'Minimalist online command-line calculator with variables, functions and more')
+
+        title Cl Calc: #{title}
+
+        link(href = '/favicon.ico', rel = 'shortcut icon')
+        link(href = lib.bootstrap.css.url, integrity = lib.bootstrap.css.integrity, rel = 'stylesheet', type = 'text/css', crossorigin = 'anonymous')
+        link(href = 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700', rel = 'stylesheet', type = 'text/css')
+        script(src = lib.jquery.js.url, integrity = lib.jquery.js.integrity, crossorigin = 'anonymous')
+        script(src = lib.bootstrap.js.url, integrity = lib.bootstrap.js.integrity, crossorigin = 'anonymous')
+
+        block inject_head
+            
+        link(href = '/main.css', rel = 'stylesheet', type = 'text/css')
+
+    body
+        nav.navbar.navbar-default.navbar-fixed-top
+            div.container-fluid
+                div.navbar-header
+                    a.navbar-brand(href = '/')
+                        img(alt = 'Cl Calc', src = './brand.png', width = 20, height = 20)
+                        | Cl Calc
+                div
+                    ul.nav.navbar-nav.navbar-right
+                        li(class = (page === 'help') ? 'active' : '')                            
+                            a(href = 'https://github.com/ovk/clcalc') 
+                                img(alt = 'GitHub Page', src = './github.png', width = 20, height = 20)
+                                | GitHub
+        block content
+        block scripts

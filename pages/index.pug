@@ -1,0 +1,52 @@
+extends page.pug
+block variables
+    - var title = 'Online Command-Line Calculator';
+
+block inject_head
+    link(href = lib.jqueryterminal.css.url, integrity = lib.jqueryterminal.css.integrity, rel = 'stylesheet', type = 'text/css', crossorigin = 'anonymous')
+    link(href = lib.katex.css.url, integrity = lib.katex.css.integrity, rel = 'stylesheet', type = 'text/css', crossorigin = 'anonymous')
+    
+    // Create link (expression or log) popower template
+    script(type = 'text/html', id = 'template-create-link-popover')
+        div.input-group
+            input.form-control(type = 'text', readonly = 'true', value = '{link}')
+            span.input-group-btn
+                button.btn.btn-primary.copy-link-to-clipboard(type = 'button')
+                    span.glyphicon.glyphicon-copy
+                    | &nbsp;Copy
+    
+    // Create link (expression or log) popower template without 'Copy' button
+    script(type = 'text/html', id = 'template-create-link-popover-no-copy')
+        input.form-control(type = 'text', readonly = 'true', value = '{link}')
+    
+    // Create expression link button template
+    script(type = 'text/html', id = 'template-create-expression-link-button')
+        div(style = 'float: right')
+            a.create-expression-link-button(href = 'javascript:void(0)', role = 'button')
+                span.glyphicon.glyphicon-link
+
+block content
+    div.sidebar
+        a(href = 'javascript:void(0)', id = 'generate-log-link-button')
+            div.round-button(title = 'Create link with the current calculator content', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
+                span.glyphicon.glyphicon-link
+        a(href = 'javascript:void(0)', id = 'toggle-tex-panel-button')
+            div.round-button(title = 'Toggle TeX panel', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
+                span.glyphicon.glyphicon-text-size
+        a(href = '/help.html', target = '_blank')
+            div.round-button(title = 'Open help page', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
+                span.texticon ?
+    div.content-panel
+        div.content-wrapper
+            div.console-wrapper
+                div.console-wrapper-inner
+                    div.console-panel
+            div.tex-wrapper
+                div.tex-wrapper-inner
+                    div.tex-panel
+
+block scripts
+    script(src = lib.jquerymousewheel.js.url, integrity = lib.jquerymousewheel.js.integrity, crossorigin = 'anonymous')
+    script(src = lib.jqueryterminal.js.url, integrity = lib.jqueryterminal.js.integrity, crossorigin = 'anonymous')
+    script(src = lib.mathjs.js.url, integrity = lib.mathjs.js.integrity, crossorigin = 'anonymous')
+    script(src = '/calc.js')

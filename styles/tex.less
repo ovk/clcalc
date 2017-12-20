@@ -1,0 +1,44 @@
+// Colors
+@tex-panel-bg: #f7f7f7;
+@tex-block-bg: #fdfdfd;
+@tex-block-border-color: #eeeeee;
+@tex-value-border-color: #eeeeee;
+
+.tex-panel
+{
+    position:     absolute;
+    top:          0px;
+    bottom:       0px;
+    left:         0px;
+    right:        0px;
+    padding:      0px;
+    margin:       0px;
+
+    overflow-y: auto;
+
+    background-color: @tex-panel-bg;
+
+    &>.tex-block
+    {
+        border: 1px solid @tex-block-border-color;
+        border-radius: 2px;
+        background-color: @tex-block-bg;
+        margin: 8px;
+        padding: 8px;
+        overflow-x: auto;
+
+        .tex-expression
+        {
+            margin: 8px;
+        }
+
+        .tex-value
+        {
+            margin-left: 8px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            padding-top: 8px;
+            border-top: 1px solid @tex-value-border-color;
+        }
+    }
+}

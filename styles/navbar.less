@@ -1,0 +1,59 @@
+.navbar
+{
+    margin-bottom: 0px;
+    border-radius: 0px;
+
+    @media (max-width: @max-mobile-width)
+    {
+        min-height: @navbar-thickness-mobile;
+    }
+}
+
+.navbar-header
+{
+    float: left;
+}
+
+.navbar-brand
+{
+    @media (max-width: @max-mobile-width)
+    {
+        padding: (@navbar-thickness-mobile - 20px) / 2;
+        height: @navbar-thickness-mobile;
+    }
+
+    &>img
+    {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 4px;
+    }
+}
+
+.navbar-right
+{
+    float: right;
+
+    img
+    {
+        vertical-align: top;
+        margin-right: 4px;
+        opacity: 0.7;
+    }
+}
+
+.navbar-nav
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    &>li>a
+    {
+        padding: 15px;
+
+        @media (max-width: @max-mobile-width)
+        {
+            padding: (@navbar-thickness-mobile - 20px) / 2;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+// Colors
+@plot-axis-fg: #aaaaaa;
+@plot-text-fg: #999999;
+@plot-origin-fg: #cccccc;
+@plot-graph-color: #0dc1e5;
+
+.function-plot2d-event-grab
+{
+    cursor: crosshair;
+    pointer-events: all;
+}
+
+.function-plot2d-legend
+{
+    @terminal-font();
+    font-size: 10px;
+    fill: @plot-text-fg;
+}
+
+.function-plot2d-axis-x, .function-plot2d-axis-y
+{
+    stroke: @plot-axis-fg;
+
+    text
+    {
+        fill: @plot-text-fg;
+        font-weight: normal;
+        font-size: 11px;
+        stroke-width: 0;
+    }
+}
+
+.function-plot2d-origin-x, .function-plot2d-origin-y
+{
+    stroke: @plot-origin-fg;
+}
+
+.function-plot2d-graph
+{
+    stroke: @plot-graph-color;
+}

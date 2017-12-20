@@ -1,0 +1,99 @@
+// Constants
+@sidebar-button-size: 34px;
+
+// Colors
+@sidebar-bg: #e7e7e7;
+@sidebar-border-color: #d7d7d7;
+@sidebar-fg: #777777;
+@sidebar-fg-disabled: #afafaf;
+@sidebar-button-bg: #d8d8d8;
+@sidebar-button-bg-hover: #c7c7c7;
+@sidebar-button-bg-active: #c7c7c7;
+@sidebar-button-bg-disabled: #e2e2e2;
+
+.sidebar
+{
+    position: fixed;
+    top: @navbar-thickness;
+    bottom: 0px;
+    left: 0px;
+    width: @sidebar-thickness;
+    border-right: 1px solid @sidebar-border-color;
+
+    @media (max-width: @max-mobile-width)
+    {
+        top: @navbar-thickness-mobile;
+        bottom: auto;
+        right: 0px;
+        width: auto;
+        height: @sidebar-thickness-mobile;
+        border-right: none;
+        border-bottom: 1px solid @sidebar-border-color;
+    }
+
+    background-color: @sidebar-bg;
+
+    &>a
+    {
+        color: @sidebar-fg;
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: none;
+        outline: none;
+
+        &>.round-button
+        {
+            position: relative;
+            width: @sidebar-button-size;
+            height: @sidebar-button-size;
+            margin-top: 12px;
+            margin-bottom: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 50%;
+
+            @media (max-width: @max-mobile-width)
+            {
+                display: inline-block;
+                margin-top: (@sidebar-thickness-mobile - @sidebar-button-size) / 2;
+                margin-bottom: (@sidebar-thickness-mobile - @sidebar-button-size) / 2;
+                margin-left: 4px;
+                margin-right: 0px;
+            }
+
+            transition: background-color 0.2s ease 0s;
+            background-color: @sidebar-button-bg;
+
+            &:hover
+            {
+                background-color: @sidebar-button-bg-hover;
+            }
+
+            span
+            {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                &.texticon
+                {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        &.active>.round-button
+        {
+            background-color: @sidebar-button-bg-active;
+        }
+
+        &.disabled>.round-button
+        {
+            cursor: not-allowed;
+            color: @sidebar-fg-disabled;
+            background-color: @sidebar-button-bg-disabled;
+        }
+    }
+}

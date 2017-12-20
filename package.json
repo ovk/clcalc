@@ -1,0 +1,32 @@
+{
+    "name": "clcalc",
+    "description": "Command line online calculator",
+    "version": "1.0.0",
+    "private": true,
+    "license": "MIT",
+    "scripts": {
+        "dist": "./node_modules/gulp/bin/gulp.js",
+        "dev": "./node_modules/gulp/bin/gulp.js dev",
+        "lint": "./node_modules/gulp/bin/gulp.js eslint",
+        "test": "./node_modules/karma/bin/karma start karma.conf.js"
+    },
+    "dependencies": {
+        "gulp": "^3.9.0",
+        "gulp-autoprefixer": "",
+        "gulp-clean-css": "^3.9.0",
+        "gulp-concat": "^2.6.0",
+        "gulp-connect": "^5.0.0",
+        "gulp-eslint": "^4.0.0",
+        "gulp-if": "^2.0.0",
+        "gulp-less": "^3.3.0",
+        "gulp-pug": "^3.3.0",
+        "gulp-sourcemaps": "^2.6.0",
+        "gulp-uglify": "^3.0.0",
+        "jasmine-core": "^2.8.0",
+        "karma": "^1.7.0",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-coverage": "^1.1.0",
+        "karma-firefox-launcher": "^1.1.0",
+        "karma-jasmine": "^1.1.0"
+    }
+}

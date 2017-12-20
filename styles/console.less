@@ -1,0 +1,156 @@
+// Constants
+@terminal-font:
+{
+    font-family: 'Roboto Mono', monospace;
+};
+
+// Colors
+@terminal-bg: #fdfdfd;
+@terminal-fg: #7a9983;
+@terminal-link-fg: #0f60ff;
+@terminal-output-fg: #66b734;
+@terminal-output-error-fg: #fa5050;
+@terminal-command-active-bg: #eff5ef;
+@terminal-expression-link-btn-fg: #9f9f9f;
+@terminal-expression-link-btn-fg-hover: #777777;
+@terminal-cursor-bg: #909090;
+@terminal-cursor-fg: #f0f0f0;
+@terminal-cursor-bg-blink: #cccccc;
+@terminal-cursor-fg-blink: #777777;
+
+.terminal, .cmd
+{
+    @terminal-font();
+
+    color: @terminal-fg;
+    background-color: @terminal-bg;
+}
+
+.terminal .terminal-output div div, .cmd, .cmd .prompt
+{
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.cmd
+{
+    margin-top: 4px;
+}
+
+.terminal
+{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 12px;
+    margin: 0px;
+
+    .terminal-output
+    {
+        .command
+        {
+            margin-top: 4px;
+        }
+
+        .welcome-message
+        {
+            color: @terminal-fg;
+            padding-bottom: 16px;
+            font-style: italic;
+            opacity: 0.7;
+            word-break: normal;
+        }
+    }
+
+    .terminal-output-error
+    {
+        color: @terminal-output-error-fg;
+        padding-left: 10px;
+    }
+
+    a:hover
+    {
+        background: none;
+        text-decoration: underline;
+        color: @terminal-link-fg;
+    }
+
+    .command.active
+    {
+        background-color: @terminal-command-active-bg;
+        border-radius: 4px;
+    }
+
+    .create-expression-link-button
+    {
+        color: @terminal-expression-link-btn-fg;
+        text-decoration: none;
+        outline: none;
+        transition: color 0.2s ease 0s;
+
+        &:hover
+        {
+            color: @terminal-expression-link-btn-fg-hover;
+        }
+    }
+
+    .raw
+    {
+        padding-left: 10px;
+        color: @terminal-output-fg;
+
+        div
+        {
+            word-break: break-all;
+        }
+    }
+}
+
+@keyframes terminal-blink
+{
+    0%, 100%
+    {
+        color: @terminal-cursor-fg;
+        background-color: @terminal-cursor-bg;
+    }
+    50%
+    {
+        color: @terminal-cursor-fg-blink;
+        background-color: @terminal-cursor-bg-blink;
+    }
+}
+
+.highlight-constant
+{
+    font-style: italic;
+}
+
+.highlight-keyword
+{
+    font-weight: bold;
+}
+
+.highlight-color
+{
+    font-weight: bold;
+}
+
+.terminal .terminal-output div div .color-sample
+{
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+    background: url('checkerboard.png') no-repeat left top;
+    background-size: cover;
+    cursor: pointer;
+
+    div
+    {
+        border-radius: 4px;
+    }
+}
+
+@import 'plot.less';
