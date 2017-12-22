@@ -26,8 +26,15 @@ gulp.task('assets', function ()
  */
 gulp.task('styles', function ()
 {
+    var l = less();
+    l.on('error',function (e)
+    {
+        process.stderr.write(e.toString() + '\n');
+        process.exit(1);
+    });
+
     return gulp.src('./styles/main.less')
-               .pipe(less())
+               .pipe(l)
                .pipe(autoprefixer({ 'browsers': '>= 5%', 'cascade': false }))
                .pipe(cleancss({ 'compatibility': 'ie8' }))
                .pipe(gulp.dest(OUTPUT_DIR));
