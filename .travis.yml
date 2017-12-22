@@ -6,6 +6,7 @@ addons:
     chrome: "stable"
 install:
     - npm install
+    - npm install coveralls
 before_script:
     - "export DISPLAY=:99.0"
     - "sh -e /etc/init.d/xvfb start"
@@ -13,3 +14,5 @@ script:
     - npm run-script dist
     - npm run-script lint
     - npm test
+after_script:
+    - "cat coverage/Firefox*/lcov.info | ./node_modules/coveralls/bin/coveralls.js"

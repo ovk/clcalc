@@ -16,6 +16,11 @@ module.exports = function (config)
         exclude: [],
         preprocessors: { 'js/**/*.js': 'coverage'},
         reporters: [ 'progress', 'coverage' ],
+        coverageReporter:
+        {
+            type: 'lcov',
+            dir: 'coverage'
+        },
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
