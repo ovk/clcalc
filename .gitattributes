@@ -1,0 +1,6 @@
+*.md eol=lf
+*.js eol=lf
+*.pug eol=lf
+*.less eol=lf
+*.yml eol=lf
+*.xml eol=lf
