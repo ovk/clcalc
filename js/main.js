@@ -132,7 +132,7 @@ $(document).ready(function()
         'completion':    clc.COMPLETION_KEYWORDS,
         'onEchoCommand': onEchoCommand,
         'name':          'clcalc',
-        'prompt':        prompt,
+        'prompt':        '[[;;;prompt-wrapper]' + prompt + ']',
         'exit':          false,
         'memory':        true,
         'enabled':       true,
@@ -145,6 +145,14 @@ $(document).ready(function()
             linksHandler.setLogLinkButtonEnabled(false);
             texHandler.clear();
         }
+    });
+
+    /**
+     * Intercept mousewheel events from terminal, since some events may be consumed by function graphs.
+     */
+    terminal.option('mousewheel', function (e)
+    {
+        return clc.FunctionPlot2D.isEventConsumed(e) ? false : true;
     });
 
     /**

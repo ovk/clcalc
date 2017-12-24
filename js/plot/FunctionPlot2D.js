@@ -156,6 +156,16 @@
     };
 
     /**
+     * Check if given mousescroll event will be consumed by one of the function graphs.
+     * @param  {Object} e
+     * @return {Boolean}
+     */
+    clc.FunctionPlot2D.isEventConsumed = function (e)
+    {
+        return $(e.target).closest('.function-plot2d-event-grab').length === 1;
+    };
+
+    /**
      * Generate complete SVG code for this plot in it's current state.
      * @return {String}
      */
