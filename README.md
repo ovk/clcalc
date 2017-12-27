@@ -41,13 +41,13 @@ npm install
 
 To build the production version of the Cl Calc website:
 ```
-npm run-script dist
+npm run dist
 ```
 This will create `dist` directory with generated HTML, CSS, JavaScript files and images.
 
 For development build do:
 ```
-npm run-script dev
+npm run dev
 ```
 In development build `dist` directory will also contain source maps for JavaScript files and HTML files won't be minified. In addition to that, a web server will be started hosting `dist` contents at http://localhost:8080. It watches for changes and automatically re-runs necessary tasks to regenerate HTML, CSS or JavaScript as needed.
 
