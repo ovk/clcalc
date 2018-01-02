@@ -2,7 +2,7 @@ https://clcalc.net
 
 [![Build Status](https://travis-ci.org/ovk/clcalc.svg?branch=master)](https://travis-ci.org/ovk/clcalc)
 [![Coverage Status](https://coveralls.io/repos/github/ovk/clcalc/badge.svg?branch=master)](https://coveralls.io/github/ovk/clcalc?branch=master)
-[![Maintenance](https://img.shields.io/maintenance/yes/2017.svg)]()
+[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]()
 [![license](https://img.shields.io/github/license/ovk/clcalc.svg)]()
 
 # Summary
