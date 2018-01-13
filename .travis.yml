@@ -4,6 +4,9 @@ node_js:
 addons:
     firefox: "latest"
     chrome: "stable"
+    apt:
+        sources:
+            - libstdc++6
 install:
     - npm install
     - npm install coveralls
