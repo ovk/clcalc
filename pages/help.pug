@@ -75,6 +75,8 @@ block content
                             a(href = '#function-plot') Function Plot
                         li
                             a(href = '#precision') Precision
+                        li
+                            a(href = '#aliases') Aliases
                         li 
                             a(href = '#about') About
             div.col-md-9.help-content
@@ -660,6 +662,23 @@ block content
                 +multisample('eyJjIjpbImFicygzMCEpIiwiYWJzKDMwIcKgK8KgMGkpIl0sInYiOiIxIn0=',
                     { 'expression': 'abs(30!)', 'value': '265252859812191058636308480000000' },
                     { 'expression': 'abs(30! + 0i)', 'value': '2.6525285981219107e+32' })
+
+                // Precision
+                h1(id = 'aliases') Aliases
+                
+                p For convenience, Cl Calc introduces some function aliases to built-in MathJS functions:                
+                table.table.table-striped
+                    thead
+                        tr
+                            th Alias
+                            th MathJS Function
+                    tbody
+                        tr
+                            td.code nCr
+                            td.code combinations
+                        tr
+                            td.code nPr
+                            td.code permutations
 
                 // About
                 h1(id = 'about') About

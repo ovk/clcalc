@@ -22,6 +22,8 @@
             else
                 return number.toString();
         };
+
+        this._registerAliases();
     };
 
     /**
@@ -168,6 +170,44 @@
     clc.Calculator.prototype._isValidValue = function (value)
     {
         return (typeof value !== 'undefined' && typeof value !== 'function');
+    };
+
+    /**
+     * Register aliases for MathJS functions
+     */
+    clc.Calculator.prototype._registerAliases = function ()
+    {
+        var self = this;
+
+        // nCr(n, k) -> combinations(n, k)
+        if (!this._mathJs.nCr)
+        {
+            var nCr = this._mathJs.typed('nCr', {
+                'BigNumber, BigNumber': function (n, k)
+                {
+                    return self._mathJs.combinations(n, k);
+                }
+            });
+            nCr.toTex = self._mathJs.combinations.toTex;
+            this._mathJs.import({ 'nCr': nCr });
+        }
+
+        // nPr(n) -> permutations(n)
+        // nPr(n, k) -> permutations(n, k)
+        if (!this._mathJs.nPr)
+        {
+            var nPr = this._mathJs.typed('nPr', {
+                'BigNumber': function (n)
+                {
+                    return self._mathJs.permutations(n);
+                },
+                'BigNumber, BigNumber': function (n, k)
+                {
+                    return self._mathJs.permutations(n, k);
+                }
+            });
+            this._mathJs.import({ 'nPr': nPr });
+        }
     };
 
 }(window.clc = window.clc || {}));

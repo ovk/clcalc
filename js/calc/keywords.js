@@ -114,6 +114,14 @@
     ];
 
     /**
+     * Function aliases.
+     */
+    clc.ALIASES =
+    [
+        'nCr', 'nPr'
+    ];
+
+    /**
      * List of keywords that will be autocompleted.
      */
     clc.COMPLETION_KEYWORDS =
@@ -157,5 +165,5 @@
 
         // Clear terminal
         'clear'
-    ].concat(clc.CLCALC_FUNCTIONS);
+    ].concat(clc.CLCALC_FUNCTIONS, clc.ALIASES);
 }(window.clc = window.clc || {}));
