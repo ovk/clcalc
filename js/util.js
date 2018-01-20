@@ -419,6 +419,49 @@
     };
 
     /**
+     * Add thousands separator to a given number.
+     * @param  {String} number
+     * @param  {String} separator
+     * @return {String}
+     */
+    clc.addThousandsSeparator = function (number, separator)
+    {
+        if (!number.length || !separator.length)
+            return number;
+
+        var begin = (number[0] === '-' ? 1 : 0),
+            dotIndex = number.indexOf('.'),
+            intDigits = (dotIndex === -1 ? number.length : dotIndex) - begin,
+            i, result = '';
+
+        if (begin !== 0)
+            result += number[0];
+
+        for (i = begin; i < (intDigits + begin); ++i)
+        {
+            if (((intDigits - i + begin) % 3) === 0 && i !== begin)
+                result += separator;
+                
+            result += number[i];
+        }
+
+        if (dotIndex !== -1)
+        {
+            result += '.';
+
+            for (i = dotIndex + 1; i < number.length; ++i)
+            {
+                result += number[i];
+
+                if (((i - dotIndex) % 3) === 0 && i !== (number.length - 1))
+                    result += separator;
+            }
+        }
+
+        return result;
+    };
+
+    /**
      * Test is given object is an array.
      * @param  {Object} object
      * @return {Boolean}

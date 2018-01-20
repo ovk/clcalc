@@ -26,6 +26,28 @@ block inject_head
                 span.glyphicon.glyphicon-link
 
 block content
+    div.modal.fade(id = 'settings-dialog', tabindex = '-1')
+        div.modal-dialog
+            div.modal-content
+                div.modal-header
+                    button.close(type = 'button', data-dismiss = 'modal')
+                        span &times;
+                    h4.modal-title Settings
+                div.modal-body
+                    form.form-horizontal
+                        div.form-group
+                            label.col-sm-6.control-label Thousands Separator:
+                            div.col-sm-6
+                                select.form-control
+                                    option(value = 'enabled') Enabled
+                                    option(value = 'disabled') Disabled
+                        div.form-group
+                            label.col-sm-6.control-label Precision (Significant Digits):
+                            div.col-sm-6
+                                input.form-control(type = 'text')
+                div.modal-footer
+                    button.btn.btn-default(type = 'button', data-dismiss = 'modal') Close
+                    button.btn.btn-primary(type = 'button') Apply
     div.sidebar
         a(href = 'javascript:void(0)', id = 'generate-log-link-button')
             div.round-button(title = 'Create link with the current calculator content', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
@@ -33,6 +55,9 @@ block content
         a(href = 'javascript:void(0)', id = 'toggle-tex-panel-button')
             div.round-button(title = 'Toggle TeX panel', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
                 span.glyphicon.glyphicon-text-size
+        a(href = 'javascript:void(0)', id = 'show-settings-dialog-button')
+            div.round-button(title = 'Show settings dialog', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
+                span.glyphicon.glyphicon-wrench
         a(href = '/help.html', target = '_blank')
             div.round-button(title = 'Open help page', data-toggle = 'tooltip', data-placement = 'bottom', data-container='body', data-delay='{ "show": 800, "hide": 100 }')
                 span.texticon ?

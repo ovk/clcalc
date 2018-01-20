@@ -4,26 +4,45 @@
      * Class that performs expression evaluation.
      * @constructor
      * @param  {Object} mathJs Reference to MathJS library object.
+     * @param  {Object} settings Reference to current settings.
      */
-    clc.Calculator = function (mathJs)
+    clc.Calculator = function (mathJs, settings)
     {
         var self = this;
 
-        this._precisionSignificantDigits = 64;
         this._mathJs = mathJs;
-        this._mathJs.config({ 'number': 'BigNumber', 'precision': this._precisionSignificantDigits });
+        this._mathJs.config({ 'number': 'BigNumber', 'precision': settings.precision });
         this._scope = {};
         this._extensions = [];
+        this._settings = {
+            'precision': settings.precision,
+            'enableThousandsSeparator': settings.thousandsSeparatorEnabled
+        };
+
+        this._decimalNumberRegexp = new RegExp('^[\\d\\.-]+$', '');
+        this._thousandsSeparator = '<span class="ts"></span>';
+        this._thousandsSeparatorRegexp = new RegExp('<span class="ts"><\\/span>', 'g');
 
         this._numberFormatter = function (number)
         {
-            if (number.isBigNumber)
-                return clc.dropTrailingZeroes(number.toFixed(self._precisionSignificantDigits));
-            else
-                return number.toString();
+            var n = number.isBigNumber ?
+                clc.dropTrailingZeroes(number.toFixed(self._settings.precision)) : number.toString();
+            return self._settings.enableThousandsSeparator ? self._formatNumberAddDigitGrouping(n) : n;
         };
 
         this._registerAliases();
+    };
+
+    /**
+     * Update calculator settings.
+     * @param  {Object} settings
+     */
+    clc.Calculator.prototype.setSettings = function (settings)
+    {
+        this._settings.precision = settings.precision;
+        this._settings.enableThousandsSeparator = settings.thousandsSeparatorEnabled;
+
+        this._mathJs.config({ 'number': 'BigNumber', 'precision': settings.precision });
     };
 
     /**
@@ -150,6 +169,9 @@
     {
         try
         {
+            // Remove all thousands separator tags that may have been added
+            value = value.replace(this._thousandsSeparatorRegexp, '');
+
             // FIXME: this is very ugly and inefficient way of converting value to TeX.
             // Reconsider this once https://github.com/josdejong/mathjs/issues/988 is addressed.
             var node = this._mathJs.parse(this._preprocessExpression(value));
@@ -210,4 +232,13 @@
         }
     };
 
+    /**
+     * Add digit grouping to given stringified number.
+     * @param  {String} n
+     * @return {String}
+     */
+    clc.Calculator.prototype._formatNumberAddDigitGrouping = function (n)
+    {
+        return this._decimalNumberRegexp.test(n) ? clc.addThousandsSeparator(n, this._thousandsSeparator) : n;
+    };
 }(window.clc = window.clc || {}));

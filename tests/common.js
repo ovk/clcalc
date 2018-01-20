@@ -1,11 +1,12 @@
 var settings =
 {
-    'precision': 64
+    'precision': 64,
+    'thousandsSeparatorEnabled': false
 };
 
 function createCalculatorInstance(extensions)
 {
-    var calc = new clc.Calculator(math),
+    var calc = new clc.Calculator(math, settings),
         ext = extensions || {};
 
     calc.installExtension(new clc.HexBinLiteralsExtension());

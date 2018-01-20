@@ -9,8 +9,18 @@ $(document).ready(function()
         'You can use up/down keys to navigate commands history and tab key for autocompletion. ' +
         'Check <a href="/help.html#quickstart" target="_blank">Quick Start</a> guide for some examples.</div>';
 
+    var clcalc, settingsHandler;
+
+    // Create settings handler so it can load settings before Calculator is initialized
+    function onSettingsChanged()
+    {
+        clcalc.setSettings(settingsHandler.getSettings());
+    }
+
+    settingsHandler = new clc.SettingsHandler(onSettingsChanged);
+
     // Create Calculator instance and register all extensions
-    var clcalc = new clc.Calculator(math);
+    clcalc = new clc.Calculator(math, settingsHandler.getSettings());
 
     clcalc.installExtension(new clc.HexBinLiteralsExtension());
     clcalc.installExtension(new clc.UnicodeEncodingExtension());

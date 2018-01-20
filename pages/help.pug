@@ -42,6 +42,8 @@ block content
                                     a(href = '#ui-links') Persistent Links
                                 li 
                                     a(href = '#ui-pretty-print') Pretty Printing
+                                li 
+                                    a(href = '#ui-settings') Settings
                         li 
                             a(href = '#mathjs') MathJS Overview
                             ul
@@ -195,6 +197,14 @@ block content
                 h2(id = 'ui-pretty-print') Pretty Printing
 
                 p You can view "pretty-printed" version of your calculations logs by clicking on the Toggle TeX Panel button (#[span.glyphicon.glyphicon-text-size ]). Pretty-printing can be especially useful if you work with matrices or vectors as they will be displayed in more recognizable form compared to what terminal displays.
+
+                h2(id = 'ui-settings') Settings
+                
+                p Cl Calc settings are configured through the settings dialog which can be accessed by pressing (#[span.glyphicon.glyphicon-wrench ]) button. Settings are saved in the browser local storage. So far there are two settings available: toggle thousands separator and precision.
+                
+                p Enabling thousands separator will group digits in thousands (i.e. by three digits) and use empty space as a delimiter. Selection and copying behavior is unchanged, so the delimiters won't be copied into the clipboard.
+                
+                p Precision setting allows to configure maximum number of significant digits for calculations using big numbers. It can be set in a range of 8 - 4096. Be careful with using high precision as it may decrease responsiveness of Cl Calc. See #[a(href = '#precision') Precision] for more information about precision.
 
                 // MathJS Overview
                 h1(id = 'mathjs') MathJS Overview
@@ -657,13 +667,15 @@ block content
                 // Precision
                 h1(id = 'precision') Precision
                 
-                p Cl Calc is configured to use big numbers when possible with precision of 64 significant digits (you can read more about underlying long arithmetics library on #[a(href = 'https://github.com/MikeMcl/decimal.js') Decimal.js GitHub Page]). While most of the MathJS functions and operators support big numbers, there are still some that don't and will degrade precision to 64-bit floating-point numbers. For example, complex numbers do not support long arithmetics and will degrade precision:
+                p Cl Calc is configured to use big numbers when possible with the default precision of 64 significant digits (you can read more about underlying long arithmetics library on #[a(href = 'https://github.com/MikeMcl/decimal.js') Decimal.js GitHub Page]). The precision can be adjusted in #[a(href = '#ui-settings') Settings].
+                
+                p While most of the MathJS functions and operators support big numbers, there are still some that don't and will degrade precision to 64-bit floating-point numbers. For example, complex numbers do not support long arithmetics and will degrade precision:
                 
                 +multisample('eyJjIjpbImFicygzMCEpIiwiYWJzKDMwIcKgK8KgMGkpIl0sInYiOiIxIn0=',
                     { 'expression': 'abs(30!)', 'value': '265252859812191058636308480000000' },
                     { 'expression': 'abs(30! + 0i)', 'value': '2.6525285981219107e+32' })
 
-                // Precision
+                // Aliases
                 h1(id = 'aliases') Aliases
                 
                 p For convenience, Cl Calc introduces some function aliases to built-in MathJS functions:                
