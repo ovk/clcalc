@@ -7,7 +7,7 @@
     clc.SyntaxHighlighter = function ()
     {
         this._constants = [].concat(clc.MATH_JS_CONSTANTS, [ 'true', 'false' ]);
-        this._keywords = [].concat(clc.MATH_JS_FUNCTIONS, clc.CLCALC_FUNCTIONS, clc.ALIASES);
+        this._keywords = [].concat(clc.MATH_JS_FUNCTIONS, clc.CLCALC_FUNCTIONS, clc.ALIASES, '$');
 
         this._re = {
             'identifier': new RegExp('([0-9]*)([A-Za-z_$][A-Za-z0-9_$]*)', 'g'),

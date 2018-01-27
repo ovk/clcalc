@@ -79,6 +79,8 @@ block content
                             a(href = '#precision') Precision
                         li
                             a(href = '#aliases') Aliases
+                        li
+                            a(href = '#last-evaluated-expression') Last Evaluated Expression
                         li 
                             a(href = '#about') About
             div.col-md-9.help-content
@@ -691,6 +693,18 @@ block content
                         tr
                             td.code nPr
                             td.code permutations
+
+                // Last Evaluated Expression
+                h1(id = 'last-evaluated-expression') Last Evaluated Expression
+                
+                p For convenience, Cl Calc stores value of the last evaluated expression in the built-in variable '$'. It can then be used in the same manner as a regular variable. However, it doesn't work with a function assignment.
+                
+                +multisample('eyJjIjpbIjIrMyIsIiQrMiIsIiQiXSwidiI6IjEifQ==',
+                    { 'expression': '2+3', 'value': '5' },
+                    { 'expression': '$+2', 'value': '7' },
+                    { 'expression': '$', 'value': '7' })
+                    
+                p Be extra careful with '$' variable, since its value updated after every expression evaluation. It is nothing more then just a shortcut to quickly access the value of the previous expression.
 
                 // About
                 h1(id = 'about') About

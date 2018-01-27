@@ -79,6 +79,9 @@
                 // Evaluate expression in the global scope
                 var evaluatedExpression = node.compile().eval(this._scope);
 
+                // Evaluate and store command as a last evaluated command
+                this._assignLastEvaluatedCommand(node, this._scope);
+
                 if (this._isValidValue(evaluatedExpression))
                 {
                     if (evaluatedExpression instanceof clc.CallbackResult)
@@ -240,5 +243,27 @@
     clc.Calculator.prototype._formatNumberAddDigitGrouping = function (n)
     {
         return this._decimalNumberRegexp.test(n) ? clc.addThousandsSeparator(n, this._thousandsSeparator) : n;
+    };
+
+    /**
+     * Store value of the given node into built-in '$' variable that represents last command.
+     * @param {Object} node
+     * @param {Object} scope
+     */
+    clc.Calculator.prototype._assignLastEvaluatedCommand = function (node, scope)
+    {
+        try
+        {
+            var expressionNode = node.clone(),
+                symbolNode = new this._mathJs.expression.node.SymbolNode('$'),
+                assignmentNode = new this._mathJs.expression.node.AssignmentNode(symbolNode, expressionNode);
+
+            assignmentNode.compile();
+            assignmentNode.eval(scope);
+        }
+        catch (e)
+        {
+            e;
+        }
     };
 }(window.clc = window.clc || {}));
