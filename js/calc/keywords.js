@@ -2,7 +2,7 @@
 {
     /**
      * MathJS built-in constants.
-     * As per MathJS 3.19.0.
+     * As per MathJS 3.20.1.
      * http://mathjs.org/docs/reference/constants.html
      */
     clc.MATH_JS_CONSTANTS =
@@ -20,7 +20,7 @@
 
     /**
      * MathJS built-in functions.
-     * As per MathJS 3.19.0.
+     * As per MathJS 3.20.1.
      * http://mathjs.org/docs/reference/functions.html
      */
     clc.MATH_JS_FUNCTIONS =
