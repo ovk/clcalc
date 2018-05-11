@@ -4,3 +4,5 @@
 *.less eol=lf
 *.yml eol=lf
 *.xml eol=lf
+*.less eol=lf
+
