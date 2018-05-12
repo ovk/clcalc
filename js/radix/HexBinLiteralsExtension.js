@@ -81,21 +81,21 @@
 
     /**
      * Convert a number to hex.
-     * @param  {BigNumber} number
+     * @param  {BigNumber|Number} number
      * @return {String}
      */
     clc.HexBinLiteralsExtension.prototype._functionHex = function (number)
     {
-        return number.toHex();
+        return (typeof number === 'number') ? ('0x' + number.toString(16)) : number.toHex();
     };
 
     /**
      * Convert a number to bin.
-     * @param  {BigNumber} number
+     * @param  {BigNumber|Number} number
      * @return {String}
      */
     clc.HexBinLiteralsExtension.prototype._functionBin = function (number)
     {
-        return number.toBinary();
+        return (typeof number === 'number') ? ('0b' + number.toString(2)) : number.toBinary();
     };
 }(window.clc = window.clc || {}));

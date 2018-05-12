@@ -65,6 +65,7 @@ describe ('Custom hex/bin number literals', function ()
             expect(calc.evaluate('hex([ 128 ])').result).toEqual(createResult('["0x80"]'));
             expect(calc.evaluate('hex([ 0x123abcf, -0x0ffef, 0x1f.efafbc, 0x.abc ])').result).toEqual(createResult('["0x123abcf", "-0xffef", "0x1f.efafbc", "0x0.abc"]'));
             expect(calc.evaluate('hex([ [ 0xab, -0xcd ], [ 0x0, 0x1.2 ] ])').result).toEqual(createResult('[["0xab", "-0xcd"], ["0x0", "0x1.2"]]'));
+            expect(calc.evaluate('hex(base64Decode("q80B"))').result).toEqual(createResult('["0xab", "0xcd", "0x1"]'));
         });
 
         it ('Should fail conversion to hex for unsupported types', function ()
@@ -142,6 +143,7 @@ describe ('Custom hex/bin number literals', function ()
             expect(calc.evaluate('bin([ 128 ])').result).toEqual(createResult('["0b10000000"]'));
             expect(calc.evaluate('bin([ 0b11101, -0b00111, 0b1110.10100, 0b.11101 ])').result).toEqual(createResult('["0b11101", "-0b111", "0b1110.101", "0b0.11101"]'));
             expect(calc.evaluate('bin([ [ 0b11, -0b0111 ], [ 0b0, 0b1.1 ] ])').result).toEqual(createResult('[["0b11", "-0b111"], ["0b0", "0b1.1"]]'));
+            expect(calc.evaluate('bin(base64Decode("q80B"))').result).toEqual(createResult('["0b10101011", "0b11001101", "0b1"]'));
         });
 
         it ('Should fail conversion to binary for unsupported types', function ()
