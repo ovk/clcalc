@@ -1,7 +1,7 @@
 describe ('Calculator:Sanity', function ()
 {
     beforeEach(function() { jasmine.addCustomEqualityTester(texIgnoringResultEqualityTester); });
-    
+
     describe ('Formatting', function ()
     {
         it ('Should format numbers correctly', function ()
@@ -10,16 +10,16 @@ describe ('Calculator:Sanity', function ()
 
             expect(calc.evaluate('0')).toEqual(createEvaluatedExpression('0', '0'));
             expect(calc.evaluate('-0')).toEqual(createEvaluatedExpression('-0', '0'));
-            expect(calc.evaluate('000')).toEqual(createEvaluatedExpression('000', '0'));
-            expect(calc.evaluate('0.0')).toEqual(createEvaluatedExpression('0.0', '0'));
-            expect(calc.evaluate('1.000')).toEqual(createEvaluatedExpression('1.000', '1'));
+            expect(calc.evaluate('000')).toEqual(createEvaluatedExpression('0', '0'));
+            expect(calc.evaluate('0.0')).toEqual(createEvaluatedExpression('0', '0'));
+            expect(calc.evaluate('1.000')).toEqual(createEvaluatedExpression('1', '1'));
             expect(calc.evaluate(repeatString('1', settings.precision)))
-                .toEqual(createEvaluatedExpression(repeatString('1', settings.precision), repeatString('1', settings.precision)));
+                .toEqual(createEvaluatedExpression('1.' + repeatString('1', settings.precision - 1) + '\\cdot10^{+' + (settings.precision - 1) + '}', repeatString('1', settings.precision)));
             expect(calc.evaluate(repeatString('1', settings.precision) + '.000'))
-                .toEqual(createEvaluatedExpression(repeatString('1', settings.precision) + '.000', repeatString('1', settings.precision)));
+                .toEqual(createEvaluatedExpression('1.' + repeatString('1', settings.precision - 1) + '\\cdot10^{+' + (settings.precision - 1) + '}', repeatString('1', settings.precision)));
             expect(calc.evaluate('0.' + repeatString('0', settings.precision - 1) + '1000'))
-                .toEqual(createEvaluatedExpression('0.' + repeatString('0', settings.precision - 1) + '1000', '0.' + repeatString('0', settings.precision - 1) + '1'));
-            expect(calc.evaluate('1e+2')).toEqual(createEvaluatedExpression('1\\cdot10^{+2}', '100'));
+                .toEqual(createEvaluatedExpression('1\\cdot10^{-' + settings.precision + '}', '0.' + repeatString('0', settings.precision - 1) + '1'));
+            expect(calc.evaluate('1e+2')).toEqual(createEvaluatedExpression('100', '100'));
         });
     });
 

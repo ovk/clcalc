@@ -1,7 +1,7 @@
 describe ('Custom hex/bin number literals', function ()
 {
     beforeEach(function() { jasmine.addCustomEqualityTester(texIgnoringResultEqualityTester); });
-    
+
     describe ('Hex Literals', function ()
     {
         it ('Should convert from hex to decimal correctly', function ()
@@ -51,7 +51,6 @@ describe ('Custom hex/bin number literals', function ()
             expect(calc.evaluate('hex(0)').result).toEqual(createResult('"0x0"'));
             expect(calc.evaluate('hex(NaN)').result).toEqual(createResult('"NaN"'));
             expect(calc.evaluate('hex(Infinity)').result).toEqual(createResult('"Infinity"'));
-            expect(calc.evaluate('hex(null)').result).toEqual(createResult('"0x0"'));
             expect(calc.evaluate('hex(255)').result).toEqual(createResult('"0xff"'));
             expect(calc.evaluate('hex(-1311768467294899695)').result).toEqual(createResult('"-0x1234567890abcdef"'));
             expect(calc.evaluate('hex(pi)').result).toEqual(createResult('"0x3.243f6a8885a308d313198a2e03707344a4093822299f31d0082eda2e358c7c9"'));
@@ -129,7 +128,6 @@ describe ('Custom hex/bin number literals', function ()
             expect(calc.evaluate('bin(0)').result).toEqual(createResult('"0b0"'));
             expect(calc.evaluate('bin(NaN)').result).toEqual(createResult('"NaN"'));
             expect(calc.evaluate('bin(Infinity)').result).toEqual(createResult('"Infinity"'));
-            expect(calc.evaluate('bin(null)').result).toEqual(createResult('"0b0"'));
             expect(calc.evaluate('bin(255)').result).toEqual(createResult('"0b11111111"'));
             expect(calc.evaluate('bin(-1623369211292499550)').result).toEqual(createResult('"-0b1011010000111010111011011001001011010011001010011111001011110"'));
             expect(calc.evaluate('bin(pi)').result).toEqual(createResult('"0b11.00100100001111110110101010001000100001011010001100001000110101"'));

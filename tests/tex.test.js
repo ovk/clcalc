@@ -9,7 +9,7 @@ describe ('TeX', function ()
         expect(calc.evaluate('2/3').tex).toEqual('\\frac{2}{3}');
         expect(calc.evaluate('2^2').tex).toEqual('{2}^{2}');
         expect(calc.evaluate('pi').tex).toEqual('\\pi');
-        expect(calc.evaluate('true').tex).toEqual('\\mathrm{True}');
+        expect(calc.evaluate('true').tex).toEqual('true');
         expect(calc.evaluate('"hello"').tex).toEqual('\\mathtt{"hello"}');
         expect(calc.evaluate('2+3i').tex).toEqual('2+3~ i');
         expect(calc.evaluate('0xff').tex).toEqual('255');
@@ -29,7 +29,7 @@ describe ('TeX', function ()
 
         expect(calc.evaluate('12345').result.tex).toEqual('12345');
         expect(calc.evaluate('-1/2').result.tex).toEqual('-0.5');
-        expect(calc.evaluate('true').result.tex).toEqual('\\mathrm{True}');
+        expect(calc.evaluate('true').result.tex).toEqual('true');
         expect(calc.evaluate('"hello"').result.tex).toEqual('\\mathtt{"hello"}');
         expect(calc.evaluate('2+3i').result.tex).toEqual('2+3~ i');
         expect(calc.evaluate('0xff').result.tex).toEqual('255');

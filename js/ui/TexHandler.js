@@ -16,7 +16,7 @@
             'panelWrapper':      $('.tex-wrapper')
         };
 
-        this._katexLoadUrl = 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0-alpha1/katex.min.js';
+        this._katexLoadUrl = 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.js';
         this._katexLoadInProgress = false;
 
         this._initializeUi();

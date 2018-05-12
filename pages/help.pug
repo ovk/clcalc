@@ -29,25 +29,25 @@ block content
             div.col-md-3
                 nav.help-toc
                     ul
-                        li 
+                        li
                             a(href = '#overview') Overview
-                        li 
+                        li
                             a(href = '#quickstart') Quick Start
-                        li 
+                        li
                             a(href = '#ui') User Interface
                             ul
-                                li 
+                                li
                                     a(href = '#ui-terminal') Terminal
-                                li 
+                                li
                                     a(href = '#ui-links') Persistent Links
-                                li 
+                                li
                                     a(href = '#ui-pretty-print') Pretty Printing
-                                li 
+                                li
                                     a(href = '#ui-settings') Settings
-                        li 
+                        li
                             a(href = '#mathjs') MathJS Overview
                             ul
-                                li 
+                                li
                                     a(href = '#mathjs-datatypes') Data Types
                                 li
                                     a(href = '#mathjs-constants') Built-In Constants
@@ -61,19 +61,19 @@ block content
                                     a(href = '#mathjs-functions') Functions
                                 li
                                     a(href = '#mathjs-help') Help
-                        li 
+                        li
                             a(href = '#lerp') Linear Interpolation
-                        li 
+                        li
                             a(href = '#radix') Hex/Bin Numbers
-                        li 
+                        li
                             a(href = '#unicode') Unicode
-                        li 
+                        li
                             a(href = '#base64') Base64 Encoding
-                        li 
+                        li
                             a(href = '#hash-functions') Hash Functions
-                        li 
+                        li
                             a(href = '#colors') Colors
-                        li 
+                        li
                             a(href = '#function-plot') Function Plot
                         li
                             a(href = '#precision') Precision
@@ -81,14 +81,14 @@ block content
                             a(href = '#aliases') Aliases
                         li
                             a(href = '#last-evaluated-expression') Last Evaluated Expression
-                        li 
+                        li
                             a(href = '#about') About
             div.col-md-9.help-content
                 // Overview
                 h1(id = 'overview') Overview
 
-                p Cl Calc is an open-source, lightweight, command-line style online calculator. While it has clean and simple interface, it is quite powerful due to the fact that its core is based on the #[a(href = 'mathjs.org') MathJS] library. 
-                
+                p Cl Calc is an open-source, lightweight, command-line style online calculator. While it has clean and simple interface, it is quite powerful due to the fact that its core is based on the #[a(href = 'mathjs.org') MathJS] library.
+
                 p Some of the Cl Calc features include:
                 ul
                     li High precision (long arithmetic) math expression evaluation.
@@ -98,68 +98,68 @@ block content
                     li Base64 Encoding, Unicode, hexadecimal and binary numbers support.
                     li Persistent links to store or share your calculations.
                     li Pretty-printing expressions with TeX.
-                
+
                 p Cl Calc is written purely in JavaScript and it evaluates all expressions directly in your browser. This means that your data is never sent to the server for processing or storage.
-                
+
                 p Cl Calc is completely open-source (source is available on #[a(href = 'https://github.com/ovk/clcalc') GitHub]) and licensed under MIT license. It is hosted in transparent manner through GitHub Pages.
-                
+
                 p #[strong DISCLAIMER:] Since Cl Calc uses floating-point arithmetic rounding errors and other errors that lead to precision loss are inevitable. Never use Cl Calc for scientific, financial and any other calculations that need precise results. Also remember that as any software product Cl Calc and libraries it uses may have bugs and may produce incorrect results. Always double-check your calculations using multiple tools.
-                
+
                 // Quick Start
                 h1(id = 'quickstart') Quick Start
-                
+
                 p Simply type an expression and hit enter to calculate the result:
                 +sample('(2 + 3) * 5', '17', 'eyJjIjpbIigywqArwqAzKcKgKsKgNcKgLcKgMl4zIl0sInYiOiIxIn0=')
-                
+
                 p You can use some of the built-in constants:
                 +sample('e^(i*pi)', '-1 + 1.2246467991473532e-16i', 'eyJjIjpbImVeKGkqcGkpIl0sInYiOiIxIn0=')
-                
+
                 p or you can define your own:
-                +multisample('eyJjIjpbIm1lYW5pbmdfb2ZfbGlmZcKgPcKgNDIiLCJtZWFuaW5nX29mX2xpZmXCoD7CoDAiXSwidiI6IjEifQ==', 
-                    { 'expression': 'meaning_of_life = 42', 'value': '42' }, 
+                +multisample('eyJjIjpbIm1lYW5pbmdfb2ZfbGlmZcKgPcKgNDIiLCJtZWFuaW5nX29mX2xpZmXCoD7CoDAiXSwidiI6IjEifQ==',
+                    { 'expression': 'meaning_of_life = 42', 'value': '42' },
                     { 'expression': 'meaning_of_life > 0', 'value': 'true' })
-                
+
                 p You can also use some of the built-in functions:
                 +sample('sin(pi/2) + cos(pi/2)', '1', 'eyJjIjpbInNpbihwaS8yKcKgK8KgY29zKHBpLzIpIl0sInYiOiIxIn0=')
-                
+
                 p or define your own as well
-                +multisample('eyJjIjpbInRheF9wZXJjZW50wqA9wqAxMyIsImZ1bGxfcHJpY2UocHJpY2UpwqA9wqBwcmljZcKgKsKgKDHCoCvCoHRheF9wZXJjZW50wqAvwqAxMDApIiwiZnVsbF9wcmljZSg5OS45OSkiXSwidiI6IjEifQ==', 
-                    { 'expression': 'tax_percent = 13', 'value': '13' }, 
-                    { 'expression': 'full_price(price) = price * (1 + tax_percent / 100)', 'value': '' }, 
+                +multisample('eyJjIjpbInRheF9wZXJjZW50wqA9wqAxMyIsImZ1bGxfcHJpY2UocHJpY2UpwqA9wqBwcmljZcKgKsKgKDHCoCvCoHRheF9wZXJjZW50wqAvwqAxMDApIiwiZnVsbF9wcmljZSg5OS45OSkiXSwidiI6IjEifQ==',
+                    { 'expression': 'tax_percent = 13', 'value': '13' },
+                    { 'expression': 'full_price(price) = price * (1 + tax_percent / 100)', 'value': '' },
                     { 'expression': 'full_price(99.99)', 'value': '112.9887' })
-                
+
                 p You can work with vectors (aka lists):
-                +multisample('eyJjIjpbInjCoD3CoDE6NSIsInjCoD3CoHjCoCrCoDIiLCJtZWFuKHgpIl0sInYiOiIxIn0=', 
-                    { 'expression': 'x = 1:5', 'value': '[1, 2, 3, 4, 5]' }, 
-                    { 'expression': 'x = x * 2', 'value': '[2, 4, 6, 8, 10]' }, 
+                +multisample('eyJjIjpbInjCoD3CoDE6NSIsInjCoD3CoHjCoCrCoDIiLCJtZWFuKHgpIl0sInYiOiIxIn0=',
+                    { 'expression': 'x = 1:5', 'value': '[1, 2, 3, 4, 5]' },
+                    { 'expression': 'x = x * 2', 'value': '[2, 4, 6, 8, 10]' },
                     { 'expression': 'mean(x)', 'value': '6' })
-                
+
                 p matrices:
-                +multisample('eyJjIjpbInjCoD3CoFtbMSzCoDJdLMKgWzMswqA0XV3CoCrCoGludihbWzEswqAyXSzCoFszLMKgNF1dKSIsImRldCh4KSJdLCJ2IjoiMSJ9', 
-                    { 'expression': 'x = [[1, 2], [3, 4]] * inv([[1, 2], [3, 4]])', 'value': '[[1, 0], [0, 1]]' }, 
+                +multisample('eyJjIjpbInjCoD3CoFtbMSzCoDJdLMKgWzMswqA0XV3CoCrCoGludihbWzEswqAyXSzCoFszLMKgNF1dKSIsImRldCh4KSJdLCJ2IjoiMSJ9',
+                    { 'expression': 'x = [[1, 2], [3, 4]] * inv([[1, 2], [3, 4]])', 'value': '[[1, 0], [0, 1]]' },
                     { 'expression': 'det(x)', 'value': '1' })
-                    
+
                 p units:
-                +multisample('eyJjIjpbIjkwwqBrbS9owqB0b8KgbS9zIiwiMTEwwqBWwqAqwqAyMMKgQcKgKsKgMzDCoGRheXPCoHRvwqBrV2giXSwidiI6IjEifQ==', 
-                    { 'expression': '90 km/h to m/s', 'value': '25 m / s' }, 
+                +multisample('eyJjIjpbIjkwwqBrbS9owqB0b8KgbS9zIiwiMTEwwqBWwqAqwqAyMMKgQcKgKsKgMzDCoGRheXPCoHRvwqBrV2giXSwidiI6IjEifQ==',
+                    { 'expression': '90 km/h to m/s', 'value': '25 m / s' },
                     { 'expression': '110 V * 20 A * 30 days to kWh', 'value': '1584 kWh' })
-                    
+
                 p colors:
-                +multisample('eyJjIjpbImhzbCgjZmZmZjAwMDDCoCvCoCNmZjAwMDBmZikiLCJjb2xvckhzbCgzMDAswqAxMDAswqA1MCkiXSwidiI6IjEifQ==', 
-                    { 'expression': 'hsl(#ffff0000 + #ff0000ff)', 'value': '[300, 100, 50]' }, 
+                +multisample('eyJjIjpbImhzbCgjZmZmZjAwMDDCoCvCoCNmZjAwMDBmZikiLCJjb2xvckhzbCgzMDAswqAxMDAswqA1MCkiXSwidiI6IjEifQ==',
+                    { 'expression': 'hsl(#ffff0000 + #ff0000ff)', 'value': '[300, 100, 50]' },
                     { 'expression': 'colorHsl(300, 100, 50)', 'value': '#FFFF00FF' })
-                    
+
                 p and much more!
 
                 // User Interface
                 h1(id = 'ui') User Interface
-                
+
                 p Cl Calc user interface is designed to resemble the interface of a traditional UNIX terminal. You type expression or command into the command line and press Enter key to evaluate it.
-                
+
                 h2(id = 'ui-terminal') Terminal
-                
+
                 p Terminal user interface is based on #[a(href = 'https://github.com/jcubic/jquery.terminal') jQuery Terminal] library. It supports a variety of key combinations that are described in the #[a(href = 'http://terminal.jcubic.pl/api_reference.php#shortcuts') documentation] section. Below is a brief overview of these key combinations:
-                
+
                 table.table.table-striped
                     thead
                         tr
@@ -187,13 +187,13 @@ block content
                         tr
                             td #[kbd Ctrl+E], #[kbd End]
                             td Move cursor to the end of the line.
-                            
+
                 h2(id = 'ui-links') Persistent Links
-                
+
                 p If you need to save your Cl Calc session for later use, or to share it with someone else you can click create link button (#[span.glyphicon.glyphicon-link ]) in the top left corner of the window. It will open a pop-up with the generated link that you can copy. If you open this link later, the whole content of your Cl Calc window will be restored.
-                
+
                 p Alternatively, you can create link that will only contain a single command from Cl Calc, by clicking on corresponding create expression link button (#[span.glyphicon.glyphicon-link ]) on the right side of the window. When you open this link, it will only restore its command and not the whole command log.
-                
+
                 p Please note that since Cl Calc doesn't store or send your commands to the server, all information required to restore your session is encoded directly in the link itself. This means that these links can get quite long.
 
                 h2(id = 'ui-pretty-print') Pretty Printing
@@ -201,52 +201,52 @@ block content
                 p You can view "pretty-printed" version of your calculations logs by clicking on the Toggle TeX Panel button (#[span.glyphicon.glyphicon-text-size ]). Pretty-printing can be especially useful if you work with matrices or vectors as they will be displayed in more recognizable form compared to what terminal displays.
 
                 h2(id = 'ui-settings') Settings
-                
+
                 p Cl Calc settings are configured through the settings dialog which can be accessed by pressing (#[span.glyphicon.glyphicon-wrench ]) button. Settings are saved in the browser local storage. So far there are two settings available: toggle thousands separator and precision.
-                
+
                 p Enabling thousands separator will group digits in thousands (i.e. by three digits) and use empty space as a delimiter. Selection and copying behavior is unchanged, so the delimiters won't be copied into the clipboard.
-                
+
                 p Precision setting allows to configure maximum number of significant digits for calculations using big numbers. It can be set in a range of 8 - 4096. Be careful with using high precision as it may decrease responsiveness of Cl Calc. See #[a(href = '#precision') Precision] for more information about precision.
 
                 // MathJS Overview
                 h1(id = 'mathjs') MathJS Overview
-                
+
                 p Cl Calc uses #[a(href = 'http://mathjs.org') MathJS] library for expression parsing and evaluation. It is an extensive math library for JavaScript with a rich set of features and active community. Since Cl Calc only extends MathJS with some additional features, everything that is available in MathJS is available in Cl Calc.
-                
+
                 p You can find exhaustive MathJS #[a(href = 'http://mathjs.org/docs/index.html') Documentation] and #[a(href = 'http://mathjs.org/examples/index.html') Examples] on the MathJS website. Below is just a brief overview of its main features.
-                
+
                 h2(id = 'mathjs-datatypes') Data Types
-                
+
                 p The data types suported by MathJS are:
-                
+
                 p Number/BigNumber:
                 +sample('42!', '1405006117752879898543142606244511569936384000000000', 'eyJjIjpbIjQyISJdLCJ2IjoiMSJ9')
-                
+
                 p Complex:
                 +sample('(2+3i)^2', '-5 + 12i', 'eyJjIjpbIigyKzNpKV4yIl0sInYiOiIxIn0=')
-                
+
                 p Fraction:
                 +sample('fraction("2/3") + fraction("3/4")', '17/12', 'eyJjIjpbImZyYWN0aW9uKFwiMi8zXCIpwqArwqBmcmFjdGlvbihcIjMvNFwiKSJdLCJ2IjoiMSJ9')
-                
+
                 p Boolean:
                 +sample('3 > 2 and 3 < 5', 'true', 'eyJjIjpbIjPCoD7CoDLCoGFuZMKgM8KgPMKgNSJdLCJ2IjoiMSJ9')
-                
+
                 p String:
                 +sample('concat("Hello, ", "World")', '"Hello, World"', 'eyJjIjpbImNvbmNhdChcIkhlbGxvLMKgXCIswqBcIldvcmxkXCIpIl0sInYiOiIxIn0=')
-                
+
                 p Array (vector):
                 +sample('[1, 2, 3] + 10', '[11, 12, 13]', 'eyJjIjpbIlsxLMKgMizCoDNdwqArwqAxMCJdLCJ2IjoiMSJ9')
-                
+
                 p Matrix:
                 +sample('det([[1, 0], [0, 1]])', '1', 'eyJjIjpbImRldChbWzEswqAwXSzCoFswLMKgMV1dKSJdLCJ2IjoiMSJ9')
-                
+
                 p Unit:
                 +sample('10 km to ft', '32808.3989501312335958005249343832020997375328083989501312335958 ft', 'eyJjIjpbIjEwwqBrbcKgdG/CoGZ0Il0sInYiOiIxIn0=')
-                
+
                 h2(id = 'mathjs-constants') Built-In Constants
-                
+
                 p Below are some of the built-in constants. For the complete list please refer to #[a(href = 'http://mathjs.org/docs/reference/constants.html') MathJS Documentation].
-                
+
                 table.table.table-striped
                     thead
                         tr
@@ -297,7 +297,7 @@ block content
                     tbody
                         tr
                             td.code sin, cos, tan, cot, asin, acos, atan, atan2, acot, ...
-                            td Basic trigonometry functions 
+                            td Basic trigonometry functions
                             td.code sin(pi) + cos(90 deg)
                         tr
                             td.code abs
@@ -357,9 +357,9 @@ block content
                             td.code distance([0, 0, 0], [1, 2, 3]), intersect([0, 0], [10, 10], [10, 0], [0, 10])
 
                 h2(id = 'mathjs-operators') Operators
-                
+
                 p Below are some of the MathJS operators, for the complete list please see #[a(href = 'http://mathjs.org/docs/expressions/syntax.html#operators') MathJS Documentation].
-                
+
                 table.table.table-striped
                     thead
                         tr
@@ -429,21 +429,21 @@ block content
                             td.code x = 1; y = 2
 
                 h2(id = 'mathjs-variables') Variables
-                
+
                 p Variables can be defined using assignment operator and used in the same way as constants:
-                +multisample('eyJjIjpbInjCoD3CoDQyIiwibXl2YXLCoD3CoFsxLMKgMizCoDNdIiwieMKgKsKgbXl2YXIiXSwidiI6IjEifQ==', 
+                +multisample('eyJjIjpbInjCoD3CoDQyIiwibXl2YXLCoD3CoFsxLMKgMizCoDNdIiwieMKgKsKgbXl2YXIiXSwidiI6IjEifQ==',
                     { 'expression': 'x = 42', 'value': '42' },
                     { 'expression': 'myvar = [1, 2, 3]', 'value': '[1, 2, 3]' },
                     { 'expression': 'x * myvar', 'value': '[42, 84, 126]' })
-                    
+
                 p Variable value can also be changed using the assignment operator:
-                +multisample('eyJjIjpbIm15dmFywqA9wqBcIkhlbGxvXCIiLCJteXZhcsKgPcKgXCJXb3JsZFwiIiwibXl2YXIiXSwidiI6IjEifQ==', 
+                +multisample('eyJjIjpbIm15dmFywqA9wqBcIkhlbGxvXCIiLCJteXZhcsKgPcKgXCJXb3JsZFwiIiwibXl2YXIiXSwidiI6IjEifQ==',
                     { 'expression': 'myvar = "Hello"', 'value': '"Hello"' },
                     { 'expression': 'myvar = "World"', 'value': '"World"' },
                     { 'expression': 'myvar', 'value': '"World"' })
 
                 p Please note that inside a function, function arguments take precedence over global variables:
-                +multisample('eyJjIjpbInjCoD3CoFwiZ2xvYmFsXCIiLCJmKHgpwqA9wqBjb25jYXQoXCJJwqBhbcKgXCIswqB4KSIsImYoXCJhcmd1bWVudFwiKSJdLCJ2IjoiMSJ9', 
+                +multisample('eyJjIjpbInjCoD3CoFwiZ2xvYmFsXCIiLCJmKHgpwqA9wqBjb25jYXQoXCJJwqBhbcKgXCIswqB4KSIsImYoXCJhcmd1bWVudFwiKSJdLCJ2IjoiMSJ9',
                     { 'expression': 'x = "global"', 'value': '"global"' },
                     { 'expression': 'f(x) = concat("I am ", x)', 'value': '' },
                     { 'expression': 'f("argument")', 'value': '"I am argument"' })
@@ -453,85 +453,85 @@ block content
                 p Functions can be defined using following format:
                 code
                     p name(arg1, arg2, ..., argN) = body
-                
+
                 p where
                 ul
                     li #[strong name] is the name of the function
                     li #[strong arg1, arg2, ..., argN] are the function arguments
                     li #[strong body] is an expression used to calculate the result of the function for given arguments
-                
+
                 p For example:
-                +multisample('eyJjIjpbImYoeCnCoD3CoHheMsKgK8Kgc2luKHgpIiwiZihwaSkiXSwidiI6IjEifQ==', 
+                +multisample('eyJjIjpbImYoeCnCoD3CoHheMsKgK8Kgc2luKHgpIiwiZihwaSkiXSwidiI6IjEifQ==',
                     { 'expression': 'f(x) = x^2 + sin(x)', 'value': '' },
                     { 'expression': 'f(pi)', 'value': '9.869604401089358618834490999876151135313699407240790626413349374' })
 
                 p All global variables (including user-defined variables), functions and constants can be accessed in the function body:
-                +multisample('eyJjIjpbImRlbnNpdHnCoD3CoDQyIiwic3BoZXJlX3dlaWdodChyYWRpdXMpwqA9wqBkZW5zaXR5wqAqwqAoNMKgL8KgM8KgKsKgcGnCoCrCoHJhZGl1c8KgXsKgMykiLCJzcGhlcmVfd2VpZ2h0KDUpIiwiZGVuc2l0ecKgPcKgMS41Iiwic3BoZXJlX3dlaWdodCg1KSJdLCJ2IjoiMSJ9', 
+                +multisample('eyJjIjpbImRlbnNpdHnCoD3CoDQyIiwic3BoZXJlX3dlaWdodChyYWRpdXMpwqA9wqBkZW5zaXR5wqAqwqAoNMKgL8KgM8KgKsKgcGnCoCrCoHJhZGl1c8KgXsKgMykiLCJzcGhlcmVfd2VpZ2h0KDUpIiwiZGVuc2l0ecKgPcKgMS41Iiwic3BoZXJlX3dlaWdodCg1KSJdLCJ2IjoiMSJ9',
                     { 'expression': 'density = 42', 'value': '42' },
                     { 'expression': 'sphere_weight(radius) = density * (4 / 3 * pi * radius ^ 3)', 'value': '' },
                     { 'expression': 'sphere_weight(5)', 'value': '21991.14857512855266923850368295652018938018579562574074682461214' },
                     { 'expression': 'density = 1.5', 'value': '1.5' },
                     { 'expression': 'sphere_weight(5)', 'value': '785.3981633974483096156608458198757210492923498437764552437361479' })
-                    
+
                 h2(id = 'mathjs-help') Help
-                
+
                 p You can use built-in function help(...) to get information about built-in functions and constants. For examply, try:
-                code 
+                code
                     p help(sin)
-                code 
+                code
                     p help(phi)
-                
+
                 // Linear Interpolation
                 h1(id = 'lerp') Linear Interpolation
-                
+
                 p To calculate linear interpolation between two values (a, b) for a parameter (t) in the closed unit interval [0, 1] you can use lerp(...) function:
                 code
                     p lerp(a, b, t)
-                
-                p Resulting value is calculated as 
-                code 
+
+                p Resulting value is calculated as
+                code
                     p (1 - t) * a + t * b
-                
+
                 p a, b - can be numbers or colors, while t must always be a number:
-                +multisample('eyJjIjpbImxlcnAoMSzCoDUswqAwLjI1KSIsImxlcnAoIzAwMDAwMCzCoCNmZmZmZmYswqAwLjUpIl0sInYiOiIxIn0=', 
+                +multisample('eyJjIjpbImxlcnAoMSzCoDUswqAwLjI1KSIsImxlcnAoIzAwMDAwMCzCoCNmZmZmZmYswqAwLjUpIl0sInYiOiIxIn0=',
                     { 'expression': 'lerp(1, 5, 0.25)', 'value': '2' },
                     { 'expression': 'lerp(#000000, #ffffff, 0.5)', 'value': '#FF808080' })
-                
+
                 p Please note that ARGB representation is used for colors interpolation. If this is note desirable, you can define your own color interpolation based on HSV or HSL color representation. Please refer to Colors section for more information.
 
                 // Hex/Bin Numbers
                 h1(id = 'radix') Hex/Bin Numbers
-                
+
                 p Cl Calc supports hexadecimal and binary numeric literals and provides functions to convert numbers to hexadecimal or binary representation.
-                
+
                 p Hexadecimal literals are prefixed with '0x' or '0X' and binary literals are prefixed with '0b' or '0B'. Both can include decimal point. On evaluation hex and binary literals are automatically converted to decimal numbers. For example:
                 +multisample('eyJjIjpbIjB4RkYiLCIweGFiLmNkIiwiMGIxMTAxLjExIl0sInYiOiIxIn0=',
                     { 'expression': '0xFF', 'value': '255' },
                     { 'expression': '0xab.cd', 'value': '171.80078125' },
                     { 'expression': '0b1101.11', 'value': '13.75' })
-                    
+
                 p To convert numbers to hexadecimal or binary representation you can use hex(...) and bin(...) functions respectively. These functions accept either individual numbers or lists and matrices:
                 +multisample('eyJjIjpbImhleCgyNTUpIiwiYmluKDEzLjc1KSIsImhleChbMTYswqAyMDAswqAxMjhdKSJdLCJ2IjoiMSJ9',
                     { 'expression': 'hex(255)', 'value': '"0xff"' },
                     { 'expression': 'bin(13.75)', 'value': '"0b1101.11"' },
                     { 'expression': 'hex([16, 200, 128])', 'value': '["0x10", "0xc8", "0x80"]' })
-                    
+
                 p Hexadecimal and binary numbers maintain the same precision as regular numbers (i.e. they are BigNumbers as well):
                 +multisample('eyJjIjpbImhleCg0MiHCoCvCoDAuNSkiLCJiaW4ocGkpIl0sInYiOiIxIn0=',
                     { 'expression': 'hex(42! + 0.5)', 'value': '"0x3c1581d491b28f523c23abdf35b689c908000000000.8"' },
                     { 'expression': 'bin(pi)', 'value': '"0b11.00100100001111110110101010001000100001011010001100001000110101"' })
-                
+
                 // Unicode
                 h1(id = 'unicode') Unicode
-                
+
                 p Cl Calc provides a few functions to work with Unicode encoding.
-                
+
                 p To convert a string to list of Unicode code points corresponding to each character use toCodePoints(...) function:
                 +sample('toCodePoints("I ♡ Cl Calc")', '[73, 32, 9825, 32, 67, 108, 32, 67, 97, 108, 99]', 'eyJjIjpbInRvQ29kZVBvaW50cyhcIknCoOKZocKgQ2zCoENhbGNcIikiXSwidiI6IjEifQ==')
-                
+
                 p To convert back from code points list to string use fromCodePoints(...) function:
                 +sample('fromCodePoints([73, 32, 9825, 32, 67, 108, 32, 67, 97, 108, 99])', '"I ♡ Cl Calc"', 'eyJjIjpbImZyb21Db2RlUG9pbnRzKFs3MyzCoDMyLMKgOTgyNSzCoDMyLMKgNjcswqAxMDgswqAzMizCoDY3LMKgOTcswqAxMDgswqA5OV0pIl0sInYiOiIxIn0=')
-                
+
                 p Similarly, to convert a string to UTF8 you can use toUtf8(...) function:
                 +sample('toUtf8("I ♡ Cl Calc")', '[73, 32, 226, 153, 161, 32, 67, 108, 32, 67, 97, 108, 99]', 'eyJjIjpbInRvVXRmOChcIknCoOKZocKgQ2zCoENhbGNcIikiXSwidiI6IjEifQ==')
 
@@ -540,21 +540,21 @@ block content
 
                 // Base64 Encoding
                 h1(id = 'base64') Base64 Encoding
-                
+
                 p To encode array of bytes to string using Base64 Encoding use base64Encode(...) function:
                 +sample('base64Encode([ 1, 2, 3, 4, 5 ])', '"AQIDBAU="', 'eyJjIjpbImJhc2U2NEVuY29kZShbwqAxLMKgMizCoDMswqA0LMKgNcKgXSkiXSwidiI6IjEifQ==')
-                
+
                 p To decode Base64 encoded string back to byte array use base64Decode(...) function:
                 +sample('base64Decode("AQIDBAU=")', '[1, 2, 3, 4, 5]', 'eyJjIjpbImJhc2U2NERlY29kZShcIkFRSURCQVU9XCIpIl0sInYiOiIxIn0=')
-                
+
                 p You can encode string to Base64 by encoding it to UTF8 first:
                 +multisample('eyJjIjpbImJhc2U2NEVuY29kZSh0b1V0ZjgoXCJIZWxsb8KgV29ybGRcIikpIiwiZnJvbVV0ZjgoYmFzZTY0RGVjb2RlKFwiU0dWc2JHOGdWMjl5YkdRPVwiKSkiXSwidiI6IjEifQ==',
                     { 'expression': 'base64Encode(toUtf8("Hello World"))', 'value': '"SGVsbG8gV29ybGQ="' },
                     { 'expression': 'fromUtf8(base64Decode("SGVsbG8gV29ybGQ="))', 'value': '"Hello World"' })
-                
+
                 // Hash Functions
                 h1(id = 'hash-functions') Hash Functions
-                
+
                 p Cl Calc supports the following hash functions: md5, sha1, sha224, sha256. Each hash function accepts an array of bytes as its argument and produces hash string as the result. Below are some examples:
                 +multisample('eyJjIjpbImRhdGHCoD3CoHRvVXRmOChcIkhlbGxvwqBXb3JsZFwiKSIsIm1kNShkYXRhKSIsInNoYTEoZGF0YSkiLCJzaGEyMjQoZGF0YSkiLCJzaGEyNTYoZGF0YSkiXSwidiI6IjEifQ==',
                     { 'expression': 'data = toUtf8("Hello World")', 'value': '[72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100]' },
@@ -562,19 +562,19 @@ block content
                     { 'expression': 'sha1(data)', 'value': '"0a4d55a8d778e5022fab701977c5d840bbc486d0"' },
                     { 'expression': 'sha224(data)', 'value': '"c4890faffdb0105d991a461e668e276685401b02eab1ef4372795047"' },
                     { 'expression': 'sha256(data)', 'value': '"a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e"' })
-                    
+
                 // Colors
                 h1(id = 'colors') Colors
-                
+
                 p Cl Calc supports some operations with colors by introducing Color data type, color literals and some functions that work with colors.
-                
+
                 p There are few ways to construct a Color. The easiest one is to use color literals. Color literals resemble web color format, where literal starts with hash character '#' followed by three bytes in hex representing RGB components, or four bytes in hex representing ARGB components (where A is an alpha component). If RGB format is used, alpha component is set to 255 (i.e. opaque). For example:
                 +multisample('eyJjIjpbIiNBQkNERUYiLCIjODBGRjAwRkYiXSwidiI6IjEifQ==',
                     { 'expression': '#ABCDEF', 'value': '#FFABCDEF' },
                     { 'expression': '#80FF00FF', 'value': '#80FF00FF' })
 
                 p As you may notice, when Cl Calc outputs color as a result of an expression, it is displayed as a color preview square. You can click it to see color value. Checkerboard background used to preview opacity.
-                
+
                 p You can also construct color explicitly by calling any of the following functions:
                 table.table.table-striped
                     thead
@@ -612,12 +612,12 @@ block content
                 +multisample('eyJjIjpbIiNGRjAwMDDCoCvCoCMwMEZGMDAiLCIjZmZmZmZmwqAtwqAjMDA4MGZmMDAiXSwidiI6IjEifQ==',
                     { 'expression': '#FF0000 + #00FF00', 'value': '#FFFFFF00' },
                     { 'expression': '#ffffff - #0080ff00', 'value': '#FF7F00FF' })
-                    
+
                 p You can also multiply and divide colors by a number:
                 +multisample('eyJjIjpbIiM4MDgwODDCoCrCoDIiLCIjODA4MDgwwqAvwqAyIl0sInYiOiIxIn0=',
                     { 'expression': '#808080 * 2', 'value': '#FFFFFFFF' },
                     { 'expression': '#808080 / 2', 'value': '#80404040' })
-                
+
                 p You can convert color to different representations using following functions:
                 table.table.table-striped
                     thead
@@ -649,38 +649,38 @@ block content
 
                 // Function Plot
                 h1(id = 'function-plot') Function Plot
-                
+
                 p Cl Calc can plot a two-dimensional graph of a function with plot2d(...) function.
-                code 
+                code
                     p plot2d(expression, variable, [ from, to ])
                 p where
                 ul
                     li #[strong expression] an expression of a function to plot
                     li #[strong variable] variable name that will be used as an 'x' variable (horizontal axis)
                     li #[strong from, to] numbers representing begin and end of the interval that will be plotted
-                
-                p For example:    
-                +sample('plot2d(sin(1/x), x, [-5, 5])', '', 'eyJjIjpbInBsb3QyZChzaW4oMS94KSzCoHgswqBbLTUswqA1XSkiXSwidiI6IjEifQ==')                
+
+                p For example:
+                +sample('plot2d(sin(1/x), x, [-5, 5])', '', 'eyJjIjpbInBsb3QyZChzaW4oMS94KSzCoHgswqBbLTUswqA1XSkiXSwidiI6IjEifQ==')
 
                 p You can zoom function graph with a mouse wheel and drag it by holding left mouse button.
-                
+
                 p Please note that in its current implementation plot2d function doesn't detect vertical asymptotes. If you are plotting function that has vertical asymptotes you may see vertical lines appear where the function value "jumps".
 
                 // Precision
                 h1(id = 'precision') Precision
-                
+
                 p Cl Calc is configured to use big numbers when possible with the default precision of 64 significant digits (you can read more about underlying long arithmetics library on #[a(href = 'https://github.com/MikeMcl/decimal.js') Decimal.js GitHub Page]). The precision can be adjusted in #[a(href = '#ui-settings') Settings].
-                
+
                 p While most of the MathJS functions and operators support big numbers, there are still some that don't and will degrade precision to 64-bit floating-point numbers. For example, complex numbers do not support long arithmetics and will degrade precision:
-                
+
                 +multisample('eyJjIjpbImFicygzMCEpIiwiYWJzKDMwIcKgK8KgMGkpIl0sInYiOiIxIn0=',
                     { 'expression': 'abs(30!)', 'value': '265252859812191058636308480000000' },
                     { 'expression': 'abs(30! + 0i)', 'value': '2.6525285981219107e+32' })
 
                 // Aliases
                 h1(id = 'aliases') Aliases
-                
-                p For convenience, Cl Calc introduces some function aliases to built-in MathJS functions:                
+
+                p For convenience, Cl Calc introduces some function aliases to built-in MathJS functions:
                 table.table.table-striped
                     thead
                         tr
@@ -696,39 +696,36 @@ block content
 
                 // Last Evaluated Expression
                 h1(id = 'last-evaluated-expression') Last Evaluated Expression
-                
+
                 p For convenience, Cl Calc stores value of the last evaluated expression in the built-in variable '$'. It can then be used in the same manner as a regular variable. However, it doesn't work with a function assignment.
-                
+
                 +multisample('eyJjIjpbIjIrMyIsIiQrMiIsIiQiXSwidiI6IjEifQ==',
                     { 'expression': '2+3', 'value': '5' },
                     { 'expression': '$+2', 'value': '7' },
                     { 'expression': '$', 'value': '7' })
-                    
+
                 p Be extra careful with '$' variable, since its value updated after every expression evaluation. It is nothing more then just a shortcut to quickly access the value of the previous expression.
 
                 // About
                 h1(id = 'about') About
-                
+
                 p Cl Calc is licensed under #[a(href = 'https://github.com/ovk/clcalc/blob/master/LICENSE') MIT] license and its source code is available on the #[a(href = 'https://github.com/ovk/clcalc') GitHub].
-                
+
                 p For contributing, reporting bugs or suggesting features please visit #[a(href = 'https://github.com/ovk/clcalc/issues') issues] page.
-                
+
                 p Current version: #{version}.
-                
+
                 p Third party libraries:
                 ul
                     li
-                        a(href = 'http://mathjs.org') MathJS 3.20.1
+                        a(href = 'http://mathjs.org') MathJS 4.2.2
                     li
-                        a(href = 'https://github.com/jcubic/jquery.terminal') jquery.terminal 1.11.4
+                        a(href = 'https://github.com/jcubic/jquery.terminal') jquery.terminal 1.14.0
                     li
-                        a(href = 'https://github.com/Khan/KaTeX') KaTeX 0.8.3
+                        a(href = 'https://github.com/Khan/KaTeX') KaTeX 0.9.0
                     li
-                        a(href = 'https://jquery.com/') jQuery 3.2.1
+                        a(href = 'https://jquery.com/') jQuery 3.3.1
                     li
                         a(href = 'https://getbootstrap.com') Bootstrap 3.3.7
                     li
                         a(href = 'https://github.com/jquery/jquery-mousewheel') jquery-mousewheel 3.1.13
-                    
-                        
-                        
