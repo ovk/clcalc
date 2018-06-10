@@ -3,14 +3,10 @@ image: node:8
 stages:
     - build
     - test
-    - deploy
 
 cache:
     paths:
-        - node_modules/
-
-before_script:
-
+        - node_modules
 
 build:
     stage: build
@@ -19,7 +15,7 @@ build:
         - npm run dist
     artifacts:
         paths:
-            - dist/
+            - public
 
 lint:
     stage: test
@@ -40,14 +36,3 @@ test:
         - npm test
         - lcov --summary coverage/Firefox*/lcov.info
     coverage: '/lines......:\s*(\d+.\d+\%)/'
-
-pages:
-    stage: deploy
-    script:
-        - mkdir public
-        - cp -r dist/* public
-    artifacts:
-        paths:
-            - public
-    only:
-        - master

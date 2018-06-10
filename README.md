@@ -1,12 +1,10 @@
 https://clcalc.net
 
-[![Build Status](https://travis-ci.org/ovk/clcalc.svg?branch=master)](https://travis-ci.org/ovk/clcalc)
-[![Coverage Status](https://coveralls.io/repos/github/ovk/clcalc/badge.svg?branch=master)](https://coveralls.io/github/ovk/clcalc?branch=master)
-[![Maintenance](https://img.shields.io/maintenance/yes/2018.svg)]()
-[![license](https://img.shields.io/github/license/ovk/clcalc.svg)]()
+[![pipeline status](https://gitlab.com/thealik/clcalc/badges/master/pipeline.svg)](https://gitlab.com/thealik/clcalc/commits/master)
+[![coverage report](https://gitlab.com/thealik/clcalc/badges/master/coverage.svg)](https://gitlab.com/thealik/clcalc/commits/master)
 
 # Summary
-Cl Calc is an open-source, lightweight, command-line style online calculator. It is built as fully static website and hosted through GitHub Pages (`docs` directory in the repository contains actual website). As the result of being completely static, Cl Calc performs all calculations on the client side.
+Cl Calc is an open-source, lightweight, command-line style online calculator. It is built as fully static website and hosted through GitLab Pages. As the result of being completely static, Cl Calc performs all calculations on the client side.
 
 Cl Calc uses [MathJS](http://mathjs.org) library for expression parsing and evaluation; thus, all MathJS features are available in Cl Calc.
 
@@ -28,9 +26,9 @@ If you are completely new to Cl Calc you may want to check this small [Quick Sta
 
 # Build
 
-Get the sources from the GitHub:
+Get the sources from the GitLab:
 ```
-git clone https://github.com/ovk/clcalc.git
+git clone https://gitlab.com/thealik/clcalc.git
 cd clcalc
 ```
 
@@ -43,13 +41,13 @@ To build the production version of the Cl Calc website:
 ```
 npm run dist
 ```
-This will create `dist` directory with generated HTML, CSS, JavaScript files and images.
+This will create `public` directory with generated HTML, CSS, JavaScript files and images.
 
 For development build do:
 ```
 npm run dev
 ```
-In development build `dist` directory will also contain source maps for JavaScript files and HTML files won't be minified. In addition to that, a web server will be started hosting `dist` contents at http://localhost:8080. It watches for changes and automatically re-runs necessary tasks to regenerate HTML, CSS or JavaScript as needed.
+In development build `public` directory will also contain source maps for JavaScript files and HTML files won't be minified. In addition to that, a web server will be started hosting `public` contents at http://localhost:8080. It watches for changes and automatically re-runs necessary tasks to regenerate HTML, CSS or JavaScript as needed.
 
 # Test
 
@@ -70,4 +68,4 @@ This will also generate code coverage data available under `coverage` directory.
 
 # License
 
-Cl Calc is licensed under [MIT](https://github.com/ovk/clcalc/blob/master/LICENSE) license.
+Cl Calc is licensed under [MIT](https://gitlab.com/thealik/clcalc/blob/master/LICENSE) license.

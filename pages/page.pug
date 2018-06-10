@@ -19,7 +19,7 @@ html(lang = 'en')
         script(src = lib.bootstrap.js.url, integrity = lib.bootstrap.js.integrity, crossorigin = 'anonymous')
 
         block inject_head
-            
+
         link(href = 'main.css', rel = 'stylesheet', type = 'text/css')
 
     body
@@ -31,9 +31,9 @@ html(lang = 'en')
                         | Cl Calc
                 div
                     ul.nav.navbar-nav.navbar-right
-                        li(class = (page === 'help') ? 'active' : '')                            
-                            a(href = 'https://github.com/ovk/clcalc') 
-                                img(alt = 'GitHub Page', src = './github.png', width = 20, height = 20)
-                                | GitHub
+                        li(class = (page === 'help') ? 'active' : '')
+                            a(href = 'https://gitlab.com/thealik/clcalc')
+                                img(alt = 'GitLab Page', src = './gitlab.png', width = 20, height = 20)
+                                | GitLab
         block content
         block scripts

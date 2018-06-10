@@ -10,14 +10,14 @@ var gulp            = require('gulp'),
     sourcemaps      = require('gulp-sourcemaps'),
     eslint          = require('gulp-eslint'),
     dev             = false,
-    OUTPUT_DIR      = './dist';
+    OUTPUT_DIR      = './public';
 
 /**
  * Copy static assets to the output folder.
  */
 gulp.task('assets', function ()
 {
-    return gulp.src([ './images/favicon.ico', './images/brand.png', './images/github.png', './images/checkerboard.png' ])
+    return gulp.src([ './images/favicon.ico', './images/brand.png', './images/gitlab.png', './images/checkerboard.png' ])
                .pipe(gulp.dest(OUTPUT_DIR));
 });
 
