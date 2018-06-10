@@ -15,8 +15,6 @@ build:
     script:
         - npm install
         - npm run-script dist
-    only:
-        - master
 
 lint:
     stage: test
