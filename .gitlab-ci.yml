@@ -6,19 +6,22 @@ stages:
 
 cache:
     paths:
-        - node_modules
+        - node_modules/
 
 before_script:
     - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
     - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
     - apt-get update -yqq
     - apt-get install -yqq xvfb iceweasel google-chrome-stable
+    - npm install
 
 build:
     stage: build
     script:
-        - npm install
         - npm run-script dist
+    artifacts:
+        paths:
+            - dist/
 
 lint:
     stage: test
