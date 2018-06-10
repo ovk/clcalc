@@ -9,16 +9,13 @@ cache:
         - node_modules/
 
 before_script:
-    - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
-    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-    - apt-get update -yqq
-    - apt-get install -yqq xvfb iceweasel google-chrome-stable
-    - npm install
+
 
 build:
     stage: build
     script:
-        - npm run-script dist
+        - npm install
+        - npm run dist
     artifacts:
         paths:
             - dist/
@@ -26,12 +23,17 @@ build:
 lint:
     stage: test
     script:
-        - npm run-script lint
+        - npm run lint
 
 test:
     stage: test
     before_script:
+        - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
+        - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+        - apt-get update -yqq
+        - apt-get install -yqq xvfb iceweasel google-chrome-stable
         - Xvfb :99 -ac -screen 0 1024x768x24 &
         - export DISPLAY=:99
+        - npm install
     script:
         - npm test
