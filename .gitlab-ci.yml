@@ -3,6 +3,7 @@ image: node:8
 stages:
     - build
     - test
+    - deploy
 
 cache:
     paths:
@@ -36,3 +37,8 @@ test:
         - npm test
         - lcov --summary coverage/Firefox*/lcov.info
     coverage: '/lines......:\s*(\d+.\d+\%)/'
+
+pages:
+    stage: deploy
+    only:
+        - master
