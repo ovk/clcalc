@@ -31,9 +31,10 @@ test:
         - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
         - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
         - apt-get update -yqq
-        - apt-get install -yqq xvfb iceweasel google-chrome-stable
+        - apt-get install -yqq xvfb iceweasel google-chrome-stable lcov
         - Xvfb :99 -ac -screen 0 1024x768x24 &
         - export DISPLAY=:99
         - npm install
     script:
         - npm test
+        - lcov --summary coverage/Firefox*/lcov.info
