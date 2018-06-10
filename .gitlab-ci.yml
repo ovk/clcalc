@@ -2,6 +2,13 @@ image: node:8
 
 stages:
     - build
+    - test
+
+before_script:
+    - echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | tee -a /etc/apt/sources.list
+    - wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+    - apt-get update -yqq
+    - apt-get install -yqq xvfb iceweasel google-chrome-stable
 
 build:
     stage: build
@@ -10,3 +17,16 @@ build:
         - npm run-script dist
     only:
         - master
+
+lint:
+    stage: test
+    script:
+        - npm run-script lint
+
+test:
+    stage: test
+    before_script:
+        - Xvfb :99 -ac -screen 0 1024x768x24 &
+        - export DISPLAY=:99
+    script:
+        - npm test
