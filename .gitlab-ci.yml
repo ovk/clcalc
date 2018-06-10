@@ -16,7 +16,7 @@ build:
         - npm run dist
     artifacts:
         paths:
-            - public
+            - dist
 
 lint:
     stage: test
@@ -41,6 +41,10 @@ test:
 pages:
     stage: deploy
     script:
-        - ls public
+        - mkdir public
+        - cp -r dist/* public
+    artifacts:
+        paths:
+            - public
     only:
         - master

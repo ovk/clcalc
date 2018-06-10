@@ -10,7 +10,7 @@ var gulp            = require('gulp'),
     sourcemaps      = require('gulp-sourcemaps'),
     eslint          = require('gulp-eslint'),
     dev             = false,
-    OUTPUT_DIR      = './public';
+    OUTPUT_DIR      = './dist';
 
 /**
  * Copy static assets to the output folder.
