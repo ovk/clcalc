@@ -38,3 +38,4 @@ test:
     script:
         - npm test
         - lcov --summary coverage/Firefox*/lcov.info
+    coverage: '/lines......:\s*(\d+.\d+\%)/'
