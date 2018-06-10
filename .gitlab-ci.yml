@@ -40,5 +40,7 @@ test:
 
 pages:
     stage: deploy
+    script:
+        - ls public
     only:
         - master
