@@ -17,7 +17,7 @@ var gulp            = require('gulp'),
  */
 gulp.task('assets', function ()
 {
-    return gulp.src([ './images/favicon.ico', './images/brand.png', './images/gitlab.png', './images/checkerboard.png' ])
+    return gulp.src([ './images/favicon.ico', './images/brand.png', './images/github.png', './images/checkerboard.png' ])
                .pipe(gulp.dest(OUTPUT_DIR));
 });
 
@@ -68,7 +68,7 @@ gulp.task('js', function()
  */
 gulp.task('webserver', function()
 {
-    connect.server({ 'root': OUTPUT_DIR, 'livereload': false });
+    connect.server({ 'root': OUTPUT_DIR, 'livereload': false, 'host': 'localhost', 'port': 8080 });
 });
 
 /**
