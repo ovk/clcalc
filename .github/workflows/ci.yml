@@ -25,5 +25,3 @@ jobs:
     - run: npm run lint
     - run: npm run dist
     - run: npm test
-      env:
-        DISPLAY: ":99.0"

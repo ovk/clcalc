@@ -41,7 +41,7 @@ describe ('Custom hex/bin number literals', function ()
             expect(calc.evaluate('x = 42').result).toEqual(createResult('42'));
             expect(calc.evaluate('2x+0x+1.0x+x').result).toEqual(createResult('168'));
             expect(calc.evaluate('0xf-x').result).toEqual(createResult('-27'));
-            expect(calc.evaluate('sin(0xaf)').result).toEqual(createResult('-0.8011345951780407482493667816617629408710389634041023719394833092'));
+            expect(calc.evaluate('log(0xaf)').result).toEqual(createResult('5.164785973923514054306871409895555008688287438118896632284685933'));
         });
 
         it ('Should convert to hex literals correctly', function ()
@@ -119,7 +119,7 @@ describe ('Custom hex/bin number literals', function ()
             expect(calc.evaluate('b = 42').result).toEqual(createResult('42'));
             expect(calc.evaluate('2b+0b+1.0b+b').result).toEqual(createResult('168'));
             expect(calc.evaluate('0b1101-b').result).toEqual(createResult('-29'));
-            expect(calc.evaluate('sin(0b111101)').result).toEqual(createResult('-0.9661177700083929470182879894805181517713210928364766351121838274'));
+            expect(calc.evaluate('log(0b111101)').result).toEqual(createResult('4.110873864173311248751389103425614746315681743081261062937383646'));
         });
 
         it ('Should convert to binary literals correctly', function ()
