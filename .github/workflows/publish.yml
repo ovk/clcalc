@@ -8,11 +8,20 @@ jobs:
   publish:
     runs-on: ubuntu-latest
 
-    steps:    
+    strategy:
+      matrix:
+        node-version: [ 10.x ]
+
+    steps:
     - name: SCM Checkout
       uses: actions/checkout@v2
       with:
           persist-credentials: false
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
 
     - name: Build
       run: |
@@ -25,4 +34,3 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: dist
-       
