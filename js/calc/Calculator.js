@@ -77,7 +77,7 @@
                 value.tex = this._nodeToTex(node);
 
                 // Evaluate expression in the global scope
-                var evaluatedExpression = node.compile().eval(this._scope);
+                var evaluatedExpression = node.compile().evaluate(this._scope);
 
                 // Evaluate and store command as a last evaluated command
                 this._assignLastEvaluatedCommand(node, this._scope);
@@ -263,7 +263,7 @@
         }
         catch (e)
         {
-            e;
+            clc.log('Failed to create $ node for last evaluated expression: ' + e.name + ' ' + e.message);
         }
     };
 }(window.clc = window.clc || {}));

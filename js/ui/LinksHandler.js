@@ -25,7 +25,8 @@
             this._initializeLogLinkUi();
             this._initializeExpressionLinkUi();
 
-            // FIXME: Need this workaround for Bootstrap 3.3.7
+            // FIXME: Need this workaround for Bootstrap 3.4.1
+            // Otherwise popower won't show up on click after previous one was closed
             $(document).on('hidden.bs.popover', function (e)
             {
                 $(e.target).data('bs.popover').inState.click = false;
@@ -128,6 +129,7 @@
             'html':      true,
             'title':     'Link Generated',
             'trigger':   'manual',
+            'sanitize':  false,
             'content':   function ()
             {
                 return $(self._popoverTemplateId).html().replace('{link}', self._getExpressionsLink());
@@ -186,9 +188,10 @@
             'title':     'Expression Link Generated',
             'trigger':   'click',
             'selector':  '.create-expression-link-button',
+            'sanitize':  false,
             'content':   function ()
             {
-                return $(self._popoverTemplateId).html().replace('{link}', self._getExpressionsLink($(this).parents('.command')));
+                return $(self._popoverTemplateId).html().replace('{link}', self._getExpressionsLink($(this).parents('.terminal-command')));
             }
         });
 
@@ -199,7 +202,7 @@
 
             if (target.hasClass('create-expression-link-button'))
             {
-                target.parents('.command').addClass('active');
+                target.parents('.terminal-command').addClass('active');
 
                 var id = target.attr('aria-describedby');
                 $('#' + id  + ' input').focus().select();
@@ -213,7 +216,7 @@
             var target = $(e.target);
 
             if (target.hasClass('create-expression-link-button'))
-                target.parents('.command').removeClass('active');
+                target.parents('.terminal-command').removeClass('active');
         });
 
         // Global event delegate to dismiss popovers

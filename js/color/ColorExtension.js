@@ -236,7 +236,8 @@
             }
         });
 
-        // FIXME: Need this workaround for Bootstrap 3.3.7
+        // FIXME: Need this workaround for Bootstrap 3.4.1
+        // Otherwise tooltip won't show up on click after previous tooltip was hidden
         $(document).on('hidden.bs.tooltip', function (e)
         {
             $(e.target).data('bs.tooltip').inState.click = false;

@@ -64,7 +64,7 @@ $(document).ready(function()
         {
             var commands = [];
 
-            $('.terminal-output .command').each(function (_, e)
+            $('.terminal-output .terminal-command').each(function (_, e)
             {
                 var command = getSingleExpression($(e));
                 if (!clc.isStringBlank(command))
@@ -95,7 +95,7 @@ $(document).ready(function()
      */
     function onEchoCommand(element)
     {
-        var e = element.find('div span'),
+        var e = element.find('div'),
             command = e.length ? e.text().substring(prompt.length) : '';
 
         if (!clc.isStringBlank(command))
@@ -162,7 +162,9 @@ $(document).ready(function()
      */
     terminal.option('mousewheel', function (e)
     {
-        return clc.FunctionPlot2D.isEventConsumed(e) ? false : true;
+        if (clc.FunctionPlot2D.isEventConsumed(e))
+            e.preventDefault();
+        return true;
     });
 
     /**

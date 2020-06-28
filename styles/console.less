@@ -5,33 +5,39 @@
 };
 @terminal-prompt-width: 12px;
 
-
 // Colors
 @terminal-bg: #fdfdfd;
 @terminal-fg: #7a9983;
-@terminal-link-fg: #0f60ff;
 @terminal-output-fg: #66b734;
 @terminal-output-error-fg: #fa5050;
 @terminal-command-active-bg: #eff5ef;
 @terminal-expression-link-btn-fg: #9f9f9f;
 @terminal-expression-link-btn-fg-hover: #777777;
-@terminal-cursor-bg: #909090;
-@terminal-cursor-fg: #f0f0f0;
-@terminal-cursor-bg-blink: #cccccc;
-@terminal-cursor-fg-blink: #777777;
 
-.terminal, .cmd
+.terminal
 {
-    @terminal-font();
+    --color: @terminal-fg;
+    --background: @terminal-bg;
+    --animation: terminal-bar;
 
-    color: @terminal-fg;
-    background-color: @terminal-bg;
-}
+    &, .terminal-command, .cmd
+    {
+        @terminal-font();
+    }
 
-.terminal .terminal-output div div, .cmd, .cmd .prompt
-{
-    font-size: 16px;
-    line-height: 24px;
+    &, .terminal-output div, .terminal-output div span, .cmd, .cmd div, .cmd span
+    {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    .terminal-output .terminal-command div
+    {
+        &, & > span
+        {
+            background-color: inherit !important;
+        }
+    }
 }
 
 .cmd
@@ -51,7 +57,7 @@
 
     .terminal-output
     {
-        .command
+        .terminal-command
         {
             margin-top: 4px;
         }
@@ -69,43 +75,42 @@
         {
             padding-right: 0.25em;
         }
+
+        .terminal-command a.create-expression-link-button
+        {
+            &, & > span
+            {
+                color: @terminal-expression-link-btn-fg !important;
+                text-decoration: none;
+                background-color: transparent !important;
+                line-height: 16px;
+            }
+
+            &:hover, &:hover > span
+            {
+                transition: color 0.2s ease 0s;
+                color: @terminal-expression-link-btn-fg-hover !important;
+                background-color: transparent !important;
+            }
+        }
     }
 
     .terminal-output-error
     {
-        color: @terminal-output-error-fg;
+        color: @terminal-output-error-fg !important;
         padding-left: @terminal-prompt-width;
     }
 
-    a:hover
+    .terminal-command.active
     {
-        background: none;
-        text-decoration: underline;
-        color: @terminal-link-fg;
-    }
-
-    .command.active
-    {
-        background-color: @terminal-command-active-bg;
+        background-color: @terminal-command-active-bg !important;
         border-radius: 4px;
-    }
-
-    .create-expression-link-button
-    {
-        color: @terminal-expression-link-btn-fg;
-        text-decoration: none;
-        outline: none;
-        transition: color 0.2s ease 0s;
-
-        &:hover
-        {
-            color: @terminal-expression-link-btn-fg-hover;
-        }
     }
 
     .prompt-wrapper
     {
         width: @terminal-prompt-width;
+        display: inline-block;
     }
 
     .raw
@@ -117,20 +122,6 @@
         {
             word-break: break-all;
         }
-    }
-}
-
-@keyframes terminal-blink
-{
-    0%, 100%
-    {
-        color: @terminal-cursor-fg;
-        background-color: @terminal-cursor-bg;
-    }
-    50%
-    {
-        color: @terminal-cursor-fg-blink;
-        background-color: @terminal-cursor-bg-blink;
     }
 }
 

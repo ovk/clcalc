@@ -463,7 +463,7 @@
             this._function.scope[this._function.variable] = this._mathJs.bignumber(x);
 
             // Evaluate expression value at given point
-            y = this._function.expression.eval(this._function.scope);
+            y = this._function.expression.evaluate(this._function.scope);
 
             // Check if function is defined at this point
             isDefined = !(typeof y === 'undefined' || y === null);

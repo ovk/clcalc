@@ -88,7 +88,6 @@
             {
                 var plot = self._plots[getPlotSvg(e.target).attr('id')];
                 plot.zoom(e.deltaY);
-                // FIXME: event propagation needs to be stopped here
             }
         }, '.function-plot2d-event-grab');
     };
@@ -131,7 +130,7 @@
         if (args[2].type !== 'ArrayNode' || args[2].items.length !== 2)
             throw new Error('Third argument must be an interval representing domain of a function');
 
-        result.domain = [ clc.mathJsToValidNumber(args[2].items[0].eval(scope)), clc.mathJsToValidNumber(args[2].items[1].eval(scope)) ];
+        result.domain = [ clc.mathJsToValidNumber(args[2].items[0].evaluate(scope)), clc.mathJsToValidNumber(args[2].items[1].evaluate(scope)) ];
 
         if (result.domain[0] >= result.domain[1])
             throw new Error('Domain interval must be in form [min, max] where min < max');
