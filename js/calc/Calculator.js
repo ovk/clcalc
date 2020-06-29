@@ -255,11 +255,11 @@
         try
         {
             var expressionNode = node.clone(),
-                symbolNode = new this._mathJs.expression.node.SymbolNode('$'),
-                assignmentNode = new this._mathJs.expression.node.AssignmentNode(symbolNode, expressionNode);
+                symbolNode = new this._mathJs.SymbolNode('$'),
+                assignmentNode = new this._mathJs.AssignmentNode(symbolNode, expressionNode);
 
             assignmentNode.compile();
-            assignmentNode.eval(scope);
+            assignmentNode.evaluate(scope);
         }
         catch (e)
         {
