@@ -154,7 +154,7 @@
     {
         try
         {
-            return node.toTex();
+            return node.toTex({ 'handler': this._customTexHandler });
         }
         catch (e)
         {
@@ -203,6 +203,7 @@
     clc.Calculator.prototype._registerAliases = function ()
     {
         var self = this;
+        var aliases = {};
 
         // nCr(n, k) -> combinations(n, k)
         if (!this._mathJs.nCr)
@@ -213,8 +214,9 @@
                     return self._mathJs.combinations(n, k);
                 }
             });
-            nCr.toTex = self._mathJs.combinations.toTex;
+
             this._mathJs.import({ 'nCr': nCr });
+            aliases.nCr = 'combinations';
         }
 
         // nPr(n) -> permutations(n)
@@ -231,7 +233,18 @@
                     return self._mathJs.permutations(n, k);
                 }
             });
+
             this._mathJs.import({ 'nPr': nPr });
+            aliases.nPr = 'permutations';
+        }
+
+        this._customTexHandler = function (node, options)
+        {
+            if (node.type === 'FunctionNode' && node.name in aliases)
+            {
+                var alias = new self._mathJs.FunctionNode(aliases[node.name], node.args)
+                return alias.toTex(options)
+            }
         }
     };
 
