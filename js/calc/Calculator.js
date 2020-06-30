@@ -242,10 +242,10 @@
         {
             if (node.type === 'FunctionNode' && node.name in aliases)
             {
-                var alias = new self._mathJs.FunctionNode(aliases[node.name], node.args)
-                return alias.toTex(options)
+                var alias = new self._mathJs.FunctionNode(aliases[node.name], node.args);
+                return alias.toTex(options);
             }
-        }
+        };
     };
 
     /**
