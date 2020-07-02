@@ -697,14 +697,19 @@ block content
                 // Last Evaluated Expression
                 h1(id = 'last-evaluated-expression') Last Evaluated Expression
 
-                p For convenience, Cl Calc stores value of the last evaluated expression in the built-in variable '$'. It can then be used in the same manner as a regular variable. However, it doesn't work with a function assignment.
+                p For convenience, Cl Calc stores a reference to the result of the last evaluated expression in a special built-in variable '$'. It can then be used in the same manner as a regular variable.
 
-                +multisample('eyJjIjpbIjIrMyIsIiQrMiIsIiQiXSwidiI6IjEifQ==',
+                +multisample('eyJjIjpbIjIrMyIsIiQiLCIkKzIiLCIkIl0sInYiOiIxIn0=',
                     { 'expression': '2+3', 'value': '5' },
+                    { 'expression': '$', 'value': '5' },
                     { 'expression': '$+2', 'value': '7' },
                     { 'expression': '$', 'value': '7' })
 
-                p Be extra careful with '$' variable, since its value updated after every expression evaluation. It is nothing more then just a shortcut to quickly access the value of the previous expression.
+                p While it can be useful for simple calculations, the '$' variable should be avoided in more complex calculations and especially calculations with statements. Because it holds a reference to the last result and not a copy of the result, it can observe the modifications to the value, which may sometimes appear unexpected:
+
+                +multisample('eyJjIjpbInjCoD3CoHvCoFwiYVwiOsKgMcKgfSIsInguYcKgPcKgNDI7wqAkLmEiXSwidiI6IjEifQ==',
+                    { 'expression': 'x = { "a": 1 }', 'value': '{"a": 1}' },
+                    { 'expression': 'x.a = 42; $.a', 'value': '[42]' })
 
                 // About
                 h1(id = 'about') About

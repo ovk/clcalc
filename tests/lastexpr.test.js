@@ -33,6 +33,15 @@ describe ('Last evaluated expression', function ()
 
         expect(calc.evaluate('100 m to km').result).toEqual(createResult('0.1 km'));
         expect(calc.evaluate('$').result).toEqual(createResult('0.1 km'));
+
+        expect(calc.evaluate('2 + 3i').result).toEqual(createResult('2 + 3i'));
+        expect(calc.evaluate('$').result).toEqual(createResult('2 + 3i'));
+
+        expect(calc.evaluate('f(x) = x + 3').result).toEqual(createResult(null));
+        expect(calc.evaluate('$(4)').result).toEqual(createResult('7'));
+
+        expect(calc.evaluate('#aabbccdd').result.raw).toEqual('#AABBCCDD');
+        expect(calc.evaluate('$').result.raw).toEqual('#AABBCCDD');
     });
 
     it ('Should not update $ variable untill expression evaluation complete', function ()
@@ -43,5 +52,37 @@ describe ('Last evaluated expression', function ()
         expect(calc.evaluate('$').result).toEqual(createResult('5'));
         expect(calc.evaluate('$ + 2').result).toEqual(createResult('7'));
         expect(calc.evaluate('$').result).toEqual(createResult('7'));
+    });
+
+    it ('Should not re-evaluate expression', function ()
+    {
+        var calc = createCalculatorInstance();
+
+        expect(calc.evaluate('x = 1').result).toEqual(createResult('1'));
+        expect(calc.evaluate('$').result).toEqual(createResult('1'));
+        expect(calc.evaluate('x = x + 1').result).toEqual(createResult('2'));
+        expect(calc.evaluate('$').result).toEqual(createResult('2'));
+        expect(calc.evaluate('$').result).toEqual(createResult('2'));
+    });
+
+    it ('Should be a reference', function ()
+    {
+        var calc = createCalculatorInstance();
+
+        expect(calc.evaluate('x = { "a": 1 }').result).toEqual(createResult('{"a": 1}'));
+        expect(calc.evaluate('$').result).toEqual(createResult('{"a": 1}'));
+        expect(calc.evaluate('x.a = 2; $.a').result).toEqual(createResult('[2]'));
+        expect(calc.evaluate('$').result).toEqual(createResult('[2]'));
+        expect(calc.evaluate('x').result).toEqual(createResult('{"a": 2}'));
+    });
+
+    it ('Should convert to Tex correctly', function ()
+    {
+        var calc = createCalculatorInstance();
+
+        expect(calc.evaluate('2^2').result).toEqual(createResult('4'));
+        expect(calc.evaluate('$').tex).toEqual('\\mathtt{\\$}');
+        expect(calc.evaluate('f(x) = x^2').result).toEqual(createResult(null));
+        expect(calc.evaluate('$(3)').tex).toEqual('\\mathrm{\\$}\\left(3\\right)');
     });
 });

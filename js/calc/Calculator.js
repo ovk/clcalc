@@ -30,7 +30,22 @@
             return self._settings.enableThousandsSeparator ? self._formatNumberAddDigitGrouping(n) : n;
         };
 
-        this._registerAliases();
+        // Register some function aliases
+        var functionAliases = this._registerAliases();
+
+        // Initialize additional TeX handlers
+        this._initializeCustomTexHandler(functionAliases);
+
+        // Stores a reference to last evaluated expression result (for '$' shorthand)
+        this._lastExpressionResult = undefined;
+
+        // Internal function tha provides access to the last evaluated expression result
+        this._mathJs.import({
+            '_lastResultRef': function ()
+            {
+                return self._lastExpressionResult;
+            }
+        }, { 'override': true });
     };
 
     /**
@@ -62,7 +77,7 @@
      */
     clc.Calculator.prototype.evaluate = function (expression)
     {
-        var value = new clc.EvaluatedExpression();
+        var expr = new clc.EvaluatedExpression();
 
         if (!clc.isStringBlank(expression))
         {
@@ -74,23 +89,26 @@
                 var node = this._mathJs.parse(preprocessedExpression);
 
                 // Get TeX representation of the original expression in case next commands will throw.
-                value.tex = this._nodeToTex(node);
+                expr.tex = this._nodeToTex(node);
+
+                // Apply all necessary transformations to the AST
+                node = this._transformAst(node);
 
                 // Evaluate expression in the global scope
                 var evaluatedExpression = node.compile().evaluate(this._scope);
 
-                // Evaluate and store command as a last evaluated command
-                this._assignLastEvaluatedCommand(node, this._scope);
+                // Store a reference to the result
+                this._storeLastExpressionResult(evaluatedExpression);
 
                 if (this._isValidValue(evaluatedExpression))
                 {
                     if (evaluatedExpression instanceof clc.CallbackResult)
-                        value.result.raw = evaluatedExpression;
+                        expr.result.raw = evaluatedExpression;
                     else
                     {
-                        value.result.raw = this._mathJs.format(evaluatedExpression, this._numberFormatter);
-                        value.result.postprocessed = this._postprocessValue(value.result.raw);
-                        value.result.tex = this._valueToTex(value.result.raw);
+                        expr.result.raw = this._mathJs.format(evaluatedExpression, this._numberFormatter);
+                        expr.result.postprocessed = this._postprocessValue(expr.result.raw);
+                        expr.result.tex = this._valueToTex(expr.result.raw);
                     }
                 }
             }
@@ -106,7 +124,7 @@
             }
         }
 
-        return value;
+        return expr;
     };
 
     /**
@@ -199,6 +217,7 @@
 
     /**
      * Register aliases for MathJS functions
+     * @return {Object}
      */
     clc.Calculator.prototype._registerAliases = function ()
     {
@@ -238,12 +257,31 @@
             aliases.nPr = 'permutations';
         }
 
+        return aliases;
+    };
+
+    /**
+     * Initialize custom Tex handler
+     * @param {Object} functionAliases 
+     */
+    clc.Calculator.prototype._initializeCustomTexHandler = function (functionAliases)
+    {
+        var self = this;
+
         this._customTexHandler = function (node, options)
         {
-            if (node.type === 'FunctionNode' && node.name in aliases)
+            if (node.type === 'FunctionNode' && node.name in functionAliases)
             {
-                var alias = new self._mathJs.FunctionNode(aliases[node.name], node.args);
+                var alias = new self._mathJs.FunctionNode(functionAliases[node.name], node.args);
                 return alias.toTex(options);
+            }
+            else if (node.name === '$')
+            {
+                // Custom Tex format for last evaluated expression result ('$')
+                if (node.type === 'SymbolNode')
+                    return '\\mathtt{\\$}';
+                else if (node.type === 'FunctionNode')
+                    return node.toTex().replace('$', '\\$');
             }
         };
     };
@@ -259,24 +297,30 @@
     };
 
     /**
-     * Store value of the given node into built-in '$' variable that represents last command.
-     * @param {Object} node
-     * @param {Object} scope
+     * Keep a reference to last result for '$' shorthand
+     * @param {Object} result
      */
-    clc.Calculator.prototype._assignLastEvaluatedCommand = function (node, scope)
+    clc.Calculator.prototype._storeLastExpressionResult = function (result)
     {
-        try
-        {
-            var expressionNode = node.clone(),
-                symbolNode = new this._mathJs.SymbolNode('$'),
-                assignmentNode = new this._mathJs.AssignmentNode(symbolNode, expressionNode);
+        if (typeof result === 'undefined' || result === null || result instanceof clc.CallbackResult)
+            this._lastExpressionResult = undefined;
+        else
+            this._lastExpressionResult = result;
+    };
 
-            assignmentNode.compile();
-            assignmentNode.evaluate(scope);
-        }
-        catch (e)
+    /**
+     * Transform expression AST before evaluation.
+     * For now this is only needed for the '$' shorthand.
+     * @param {Object} root 
+     * @return {Object}
+     */
+    clc.Calculator.prototype._transformAst = function (root)
+    {
+        var self = this;
+
+        return root.transform(function (node)
         {
-            clc.log('Failed to create $ node for last evaluated expression: ' + e.name + ' ' + e.message);
-        }
+            return (node.isSymbolNode && node.name === '$') ? new math.ConstantNode(self._lastExpressionResult) : node;
+        });
     };
 }(window.clc = window.clc || {}));
