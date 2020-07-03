@@ -20,7 +20,7 @@
     --background: @terminal-bg;
     --animation: terminal-bar;
 
-    &, .terminal-command, .cmd
+    &, .terminal-command, .cmd, .terminal-output>:not(.raw) span
     {
         @terminal-font();
     }
@@ -57,6 +57,11 @@
 
     .terminal-output
     {
+        span.glyphicon
+        {
+            font-family: "Glyphicons Halflings";
+        }
+
         .terminal-command
         {
             margin-top: 4px;
