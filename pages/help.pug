@@ -87,17 +87,18 @@ block content
                 // Overview
                 h1(id = 'overview') Overview
 
-                p Cl Calc is an open-source, lightweight, command-line style online calculator. While it has clean and simple interface, it is quite powerful due to the fact that its core is based on the #[a(href = 'mathjs.org') MathJS] library.
+                p Cl Calc is an open-source, lightweight, command-line style online calculator. While it has clean and simple interface, it can perform some advanced calculations because it is based on powerful #[a(href = 'mathjs.org') MathJS] library.
 
                 p Some of the Cl Calc features include:
                 ul
-                    li High precision (long arithmetic) math expression evaluation.
+                    li Arbitrary precision (long arithmetic) math expression evaluation.
                     li Variety of built-in mathematical, scientific, programming and utility functions. This includes algebra, arithmetic, combinatorics, probability, matrix, statistics, trigonometry, logical, encoding functions and more.
                     li User defined variables and functions.
                     li Many built-in datatypes, including complex numbers, fractions, vectors, matrices and colors.
                     li Base64 Encoding, Unicode, hexadecimal and binary numbers support.
                     li Persistent links to store or share your calculations.
                     li Pretty-printing expressions with TeX.
+                    li Simple 2d functions plotting.
 
                 p Cl Calc is written purely in JavaScript and it evaluates all expressions directly in your browser. This means that your data is never sent to the server for processing or storage.
 
@@ -151,6 +152,12 @@ block content
 
                 p and much more!
 
+                p To get general help inside the calculator you can use help command:
+                +sample('help', '', 'eyJjIjpbImhlbHAiXSwidiI6IjEifQ==')
+
+                p Or to get help on a specific function or constant you can use help as a function with one argument, for example:
+                +sample('help(sin)', '', 'eyJjIjpbImhlbHAoc2luKSJdLCJ2IjoiMSJ9')
+
                 // User Interface
                 h1(id = 'ui') User Interface
 
@@ -174,7 +181,16 @@ block content
                             td Navigate through command history.
                         tr
                             td #[kbd Ctrl+R]
-                            td Search in command history.
+                            td Reverse search through command history.
+                        tr
+                            td #[kbd Ctrl+G]
+                            td Cancel reverse search.
+                        tr
+                            td #[kbd Ctrl+U]
+                            td Remove the text before the cursor.
+                        tr
+                            td #[kbd Ctrl+K]
+                            td Remove the text after the cursor.
                         tr
                             td #[kbd Ctrl+L]
                             td Clear terminal. Alternatively, you can type #[kbd clear] to achieve the same result.
@@ -286,7 +302,7 @@ block content
 
                 h2(id = 'mathjs-builtin-functions') Built-In Functions
 
-                p Below are some of the most common built-in functions. For the complete list please refer to #[a(href = 'http://mathjs.org/docs/reference/functions.html') MathJS Documentation].
+                p Below are some of the more common built-in functions. For the complete list please refer to #[a(href = 'http://mathjs.org/docs/reference/functions.html') MathJS Documentation].
 
                 table.table.table-striped
                     thead
@@ -304,7 +320,7 @@ block content
                             td Calculate the absolute value of a number
                             td.code abs(-3)
                         tr
-                            td.code log
+                            td.code log, log10, log2
                             td Calculate the logarithm of a value
                             td.code log(16, 2)
                         tr
@@ -315,6 +331,10 @@ block content
                             td.code simplify
                             td Simplify an expression
                             td.code simplify("2x^2+(5-3x)*x+x-x^2")
+                        tr
+                            td.code derivative
+                            td Take the derivative of an expression
+                            td.code derivative("2x^2 + 3x + 4", "x")
                         tr
                             td.code and, or, not, xor
                             td Basic logical functions
@@ -328,6 +348,10 @@ block content
                             td Calculate inverse of a square matrix
                             td.code inv([[1, 0], [0, 1]])
                         tr
+                            td.code eigs
+                            td Calculate the eigenvalues and eigenvectors of a symmetric matrix
+                            td.code eigs([[1, 2], [2, 1]])
+                        tr
                             td.code combinations(n, k)
                             td Calculate number of ways of picking k unordered outcomes from n possibilities
                             td.code combinations(10, 2)
@@ -340,9 +364,9 @@ block content
                             td Calculate mean value of matrix or a list
                             td.code mean([1, -3, 5, 7])
                         tr
-                            td.code var
+                            td.code variance
                             td Calculate variance of a matrix or a list
-                            td.code var([1, -3, 5, 7])
+                            td.code variance([1, -3, 5, 7])
                         tr
                             td.code std
                             td Calculate standard deviation of a matrix or a list

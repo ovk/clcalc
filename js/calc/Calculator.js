@@ -3,10 +3,11 @@
     /**
      * Class that performs expression evaluation.
      * @constructor
-     * @param  {Object} mathJs Reference to MathJS library object.
-     * @param  {Object} settings Reference to current settings.
+     * @param {Object} mathJs Reference to MathJS library object.
+     * @param {Object} settings Reference to current settings.
+     * @param {String} helpMessage Help message (output of 'help' command)
      */
-    clc.Calculator = function (mathJs, settings)
+    clc.Calculator = function (mathJs, settings, helpMessage)
     {
         var self = this;
 
@@ -39,11 +40,22 @@
         // Stores a reference to last evaluated expression result (for '$' shorthand)
         this._lastExpressionResult = undefined;
 
-        // Internal function tha provides access to the last evaluated expression result
+        // Import some internal functions
         this._mathJs.import({
             '_lastResultRef': function ()
             {
                 return self._lastExpressionResult;
+            },
+            '_printHelp': function ()
+            {
+                return {
+                    type: 'Help',
+                    toString: function ()
+                    {
+                        return this.message; 
+                    },
+                    message: helpMessage
+                };
             }
         }, { 'override': true });
     };
@@ -107,8 +119,8 @@
                     else
                     {
                         expr.result.raw = this._mathJs.format(evaluatedExpression, this._numberFormatter);
-                        expr.result.postprocessed = this._postprocessValue(expr.result.raw);
-                        expr.result.tex = this._valueToTex(expr.result.raw);
+                        expr.result.postprocessed = this._postprocessValue(expr.result.raw, evaluatedExpression);
+                        expr.result.tex = this._valueToTex(expr.result.raw, evaluatedExpression);
                     }
                 }
             }
@@ -147,20 +159,29 @@
 
     /**
      * Postprocess evaluated epression value through registered extensions.
-     * @param  {Object} value
+     * @param  {Object} formattedValue
+     * @param  {Object} originalValue
      * @return {String}
      */
-    clc.Calculator.prototype._postprocessValue = function (value)
+    clc.Calculator.prototype._postprocessValue = function (formattedValue, originalValue)
     {
-        for (var i = 0; i < this._extensions.length; ++i)
+        if (typeof originalValue === 'object' && originalValue.type === 'Help')
         {
-            var extension = this._extensions[i];
+            // Special case for formatting help output (e.g. from 'help(sin)')
+            return '<pre>' + formattedValue + '</pre>';
+        }
+        else
+        {
+            for (var i = 0; i < this._extensions.length; ++i)
+            {
+                var extension = this._extensions[i];
 
-            if (extension.postprocess)
-                value = extension.postprocess(value);
+                if (extension.postprocess)
+                    formattedValue = extension.postprocess(formattedValue);
+            }
         }
 
-        return value;
+        return formattedValue;
     };
 
     /**
@@ -183,11 +204,18 @@
 
     /**
      * Convert expression value to TeX.
-     * @param  {String} value
+     * @param  {String} value - postprocessed result value.
+     * @param  {Object} originalValue - original value, before formatting and postprocessing.
      * @return {String}
      */
-    clc.Calculator.prototype._valueToTex = function (value)
+    clc.Calculator.prototype._valueToTex = function (value, originalValue)
     {
+        // Don't try to convert help output to Tex
+        if (typeof originalValue === 'object' && originalValue.type === 'Help')
+        {
+            return undefined;
+        }
+
         try
         {
             // Remove all thousands separator tags that may have been added
@@ -262,7 +290,7 @@
 
     /**
      * Initialize custom Tex handler
-     * @param {Object} functionAliases 
+     * @param {Object} functionAliases
      */
     clc.Calculator.prototype._initializeCustomTexHandler = function (functionAliases)
     {
@@ -309,15 +337,21 @@
     };
 
     /**
-     * Transform expression AST before evaluation.
-     * For now this is only needed for the '$' shorthand.
-     * @param {Object} root 
+     * Apply necessary transformations to the expression AST before evaluation.
+     * @param {Object} root
      * @return {Object}
      */
     clc.Calculator.prototype._transformAst = function (root)
     {
         var self = this;
 
+        // Special case to print help message on 'help' command
+        if (root.type === 'SymbolNode' && root.name === 'help')
+        {
+            return new math.FunctionNode('_printHelp', []);
+        }
+
+        // Transform the $ node into the constant referencing previous expression result
         return root.transform(function (node)
         {
             return (node.isSymbolNode && node.name === '$') ? new math.ConstantNode(self._lastExpressionResult) : node;

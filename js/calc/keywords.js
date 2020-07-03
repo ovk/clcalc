@@ -2,7 +2,7 @@
 {
     /**
      * MathJS built-in constants.
-     * As per MathJS 3.20.1.
+     * As per MathJS 7.0.2.
      * http://mathjs.org/docs/reference/constants.html
      */
     clc.MATH_JS_CONSTANTS =
@@ -14,13 +14,12 @@
         'phi',
         'pi', 'PI', 'tau',
         'SQRT1_2', 'SQRT2',
-        'uninitialized',
         'version'
     ];
 
     /**
      * MathJS built-in functions.
-     * As per MathJS 3.20.1.
+     * As per MathJS 7.0.2.
      * http://mathjs.org/docs/reference/functions.html
      */
     clc.MATH_JS_FUNCTIONS =
@@ -29,14 +28,15 @@
         'bignumber', 'boolean', 'chain', 'complex', 'createUnit', 'fraction', 'index', 'matrix', 'number', 'sparse', 'splitUnit', 'string', 'unit',
 
         // Expression Functions
-        'compile', 'eval', 'help', 'parse', 'parser',
+        'compile', 'evaluate', 'help', 'parse', 'parser',
 
         // Algebra Functions
         'derivative', 'lsolve', 'lup', 'lusolve', 'qr', 'simplify', 'slu', 'usolve', 'rationalize',
 
         // Arithmetic Functions
-        'abs', 'add', 'cbrt', 'ceil', 'cube', 'divide', 'dotDivide', 'dotMultiply', 'dotPow', 'exp', 'fix', 'floor', 'gcd', 'hypot',
-        'lcm', 'log', 'log10', 'mod', 'multiply', 'norm', 'nthRoot', 'pow', 'round', 'sign', 'sqrt', 'square', 'subtract', 'unaryMinus', 'unaryPlus', 'xgcd',
+        'abs', 'add', 'cbrt', 'ceil', 'cube', 'divide', 'dotDivide', 'dotMultiply', 'dotPow', 'exp', 'expm1', 'fix', 'floor', 'gcd', 'hypot',
+        'lcm', 'log', 'log10', 'log1p', 'log2', 'mod', 'multiply', 'norm', 'nthRoot', 'nthRoots', 'pow', 'round', 'sign', 'sqrt', 'square', 'subtract',
+        'unaryMinus', 'unaryPlus', 'xgcd',
 
         // Bitwise Functions
         'bitAnd', 'bitNot', 'bitOr', 'bitXor', 'leftShift', 'rightArithShift', 'rightLogShift',
@@ -54,23 +54,25 @@
         'and', 'not', 'or', 'xor',
 
         // Matrix Functions
-        'concat', 'cross', 'det', 'diag', 'dot', 'eye', 'filter', 'flatten', 'forEach', 'inv', 'kron', 'map', 'ones', 'partitionSelect',
-        'range', 'reshape', 'resize', 'size', 'sort', 'squeeze', 'subset', 'trace', 'transpose', 'zeros',
+        'column', 'concat', 'cross', 'ctranspose', 'det', 'diag', 'dot', 'eigs', 'expm', 'filter', 'flatten', 'forEach', 'getMatrixDataType',
+        'identity', 'inv', 'kron', 'map', 'ones', 'partitionSelect', 'range', 'reshape', 'resize', 'row', 'size', 'sort', 'sqrtm',
+        'squeeze', 'subset', 'trace', 'transpose', 'zeros',
 
         // Probability Functions
-        'combinations', 'factorial', 'gamma', 'kldivergence', 'multinomial', 'permutations', 'pickRandom', 'random', 'randomInt',
+        'combinations', 'combinationsWithRep', 'factorial', 'gamma', 'kldivergence', 'multinomial', 'permutations', 'pickRandom', 'random', 'randomInt',
 
         // Relational Functions
-        'compare', 'compareNatural', 'deepEqual', 'equal', 'larger', 'largerEq', 'smaller', 'smallerEq', 'unequal',
+        'compare', 'compareNatural', 'compareText', 'deepEqual', 'equal', 'equalText', 'larger', 'largerEq', 'smaller', 'smallerEq', 'unequal',
 
         // Set Functions
-        'setCartesian', 'setDifference', 'setDistinct', 'setIntersect', 'setIsSubset', 'setMultiplicity', 'setPowerset', 'setSize', 'setSymDifference', 'setUnion',
+        'setCartesian', 'setDifference', 'setDistinct', 'setIntersect', 'setIsSubset', 'setMultiplicity', 'setPowerset', 'setSize',
+        'setSymDifference', 'setUnion',
 
         // Special Functions
         'erf',
 
         // Statistics Functions
-        'mad', 'max', 'mean', 'median', 'min', 'mode', 'prod', 'quantileSeq', 'std', 'sum', 'var',
+        'mad', 'max', 'mean', 'median', 'min', 'mode', 'prod', 'quantileSeq', 'std', 'sum', 'variance',
 
         // String Functions
         'format', 'print',
@@ -83,7 +85,7 @@
         'to',
 
         // Utils Functions
-        'clone', 'isInteger', 'isNaN', 'isNegative', 'isNumeric', 'isPositive', 'isPrime', 'isZero', 'typeof'
+        'clone', 'hasNumericValue', 'isInteger', 'isNaN', 'isNegative', 'isNumeric', 'isPositive', 'isPrime', 'isZero', 'numeric', 'typeOf'
     ];
 
     /**
@@ -122,48 +124,15 @@
     ];
 
     /**
+     * JQuery Terminal commands
+     */
+    clc.TERMINAL_COMMANDS = 
+    [
+        'clear'
+    ];
+
+    /**
      * List of keywords that will be autocompleted.
      */
-    clc.COMPLETION_KEYWORDS =
-    [
-        // Constants
-        'Infinity', 'NaN', 'null', 'LN2', 'LN10', 'LOG2E', 'LOG10E', 'phi', 'pi', 'PI', 'tau', 'SQRT1_2', 'SQRT2',
-
-        // List of functions that make sense to be autocompleted
-        'fraction',
-
-        'derivative', 'lsolve', 'lup', 'lusolve', 'qr', 'simplify', 'slu', 'usolve', 'rationalize',
-
-        'abs', 'cbrt', 'ceil', 'cube', 'dotDivide', 'dotMultiply', 'dotPow', 'exp', 'fix', 'floor', 'gcd', 'hypot',
-        'lcm', 'log', 'log10', 'mod', 'norm', 'nthRoot', 'round', 'sign', 'sqrt', 'square', 'subtract', 'xgcd',
-
-        'bellNumbers', 'catalan', 'composition', 'stirlingS2',
-
-        'arg', 'conj', 'im', 're',
-
-        'distance', 'intersect',
-
-        'and', 'not', 'or', 'xor',
-
-        'concat', 'cross', 'det', 'diag', 'dot', 'eye', 'filter', 'flatten', 'forEach', 'inv', 'kron', 'map', 'ones', 'partitionSelect',
-        'range', 'reshape', 'resize', 'size', 'sort', 'squeeze', 'subset', 'trace', 'transpose', 'zeros',
-
-        'combinations', 'factorial', 'gamma', 'kldivergence', 'multinomial', 'permutations', 'pickRandom', 'random', 'randomInt',
-
-        'setCartesian', 'setDifference', 'setDistinct', 'setIntersect', 'setIsSubset', 'setMultiplicity', 'setPowerset', 'setSize', 'setSymDifference', 'setUnion',
-
-        'erf',
-
-        'mad', 'max', 'mean', 'median', 'min', 'mode', 'prod', 'quantileSeq', 'std', 'sum', 'var',
-
-        'acos', 'acosh', 'acot', 'acoth', 'acsc', 'acsch', 'asec', 'asech', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
-        'cos', 'cosh', 'cot', 'coth', 'csc', 'csch', 'sec', 'sech', 'sin', 'sinh', 'tan', 'tanh',
-
-        'to',
-
-        'help',
-
-        // Clear terminal
-        'clear'
-    ].concat(clc.CLCALC_FUNCTIONS, clc.ALIASES);
+    clc.COMPLETION_KEYWORDS = [].concat(clc.MATH_JS_CONSTANTS, clc.MATH_JS_FUNCTIONS, clc.CLCALC_FUNCTIONS, clc.ALIASES, clc.TERMINAL_COMMANDS);
 }(window.clc = window.clc || {}));

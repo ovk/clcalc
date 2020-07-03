@@ -4,9 +4,11 @@ var settings =
     'thousandsSeparatorEnabled': false
 };
 
+var testHelpMessage = 'Test help';
+
 function createCalculatorInstance(extensions)
 {
-    var calc = new clc.Calculator(math, settings),
+    var calc = new clc.Calculator(math, settings, testHelpMessage),
         ext = extensions || {};
 
     calc.installExtension(new clc.HexBinLiteralsExtension());

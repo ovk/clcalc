@@ -7,7 +7,25 @@ $(document).ready(function()
     var welcomeMessage =
         '<div class="welcome-message">Type math expression and press enter to calculate the result. ' +
         'You can use up/down keys to navigate commands history and tab key for autocompletion. ' +
-        'Check <a href="/help.html#quickstart" target="_blank">Quick Start</a> guide for some examples.</div>';
+        'Check <a href="/help.html#quickstart" target="_blank">Quick Start</a> guide or type <strong>help</strong> for help.</div>';
+
+    // Help string that is printed as output of 'help' command
+    var helpMessage =
+        'Simply type an expression (for example: \'sin(pi)^2 + cos(pi)^2\') in the calculator and press enter to see the result.\n\n' +
+
+        'You can use up/down arrow keys for navigating the command history and tab key for autocompletion ' +
+        '(double tap tab to see all completion suggestions).\n' +
+        'Other typical terminal key combinations such as Ctrl+k/Ctrl+u or Ctrl+r are also available (see full list on the help page).\n\n' +
+
+        'On the left panel (or top panel for small screen devices) there are buttons to open help page, ' +
+        'configure calculator\'s precision and display options, open TeX panel and get shareable link to your calculations.\n' +
+        'Additionally, you can get shareable link to any specific expression by clicking on the "link" icon on the right side of any expression.\n\n' +
+
+        'To get help for any built-in function or constant, use the \'help()\' function with an argument, for example, ' +
+        'try \'help(pi)\', \'help(sin)\' or \'help(derivative)\'.\n' +
+        'To see the list of available functions or constant double tap the tab key.\n\n' +
+
+        'To see detailed help for all calculator features go to the help page.';
 
     var clcalc, settingsHandler;
 
@@ -20,7 +38,7 @@ $(document).ready(function()
     settingsHandler = new clc.SettingsHandler(onSettingsChanged);
 
     // Create Calculator instance and register all extensions
-    clcalc = new clc.Calculator(math, settingsHandler.getSettings());
+    clcalc = new clc.Calculator(math, settingsHandler.getSettings(), helpMessage);
 
     clcalc.installExtension(new clc.HexBinLiteralsExtension());
     clcalc.installExtension(new clc.UnicodeEncodingExtension());
@@ -131,6 +149,9 @@ $(document).ready(function()
         }
         catch (error)
         {
+            if (error.message && error.message.indexOf('No documentation found on') === 0)
+               error.message += '. If you believe the documentation is missing please open an issue at github.com/ovk/clcalc/issues.';
+
             this.echo('[[;;;terminal-output-error;]' + error.name + ': ' + error.message + ']');
         }
     }
