@@ -150,7 +150,7 @@ $(document).ready(function()
         catch (error)
         {
             if (error.message && error.message.indexOf('No documentation found on') === 0)
-               error.message += '. If you believe the documentation is missing please open an issue at github.com/ovk/clcalc/issues.';
+                error.message += '. If you believe the documentation is missing please open an issue at github.com/ovk/clcalc/issues.';
 
             this.echo('[[;;;terminal-output-error;]' + error.name + ': ' + error.message + ']');
         }
