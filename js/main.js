@@ -157,10 +157,60 @@ $(document).ready(function()
     }
 
     /**
+     * Completion suggestions handler.
+     */
+    function onCompletion()
+    {
+        var expr = this.before_cursor();
+
+        if (!expr.length)
+            return clc.COMPLETION_KEYWORDS;
+        else
+        {
+            var i = expr.length;
+            var identifierChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_';
+
+            for (; i > 0 && identifierChars.indexOf(expr[i - 1]) !== -1; --i)
+            {
+                // Intentionally empty
+            }
+
+            var prefix = expr.substr(i);
+
+            var candidates = prefix.length ? clc.COMPLETION_KEYWORDS.filter(function (keyword)
+            {
+                return keyword.indexOf(prefix) === 0;
+            }) : clc.COMPLETION_KEYWORDS;
+
+            return candidates.map(function (candidate)
+            {
+                var fullCandidate = new String(expr + candidate.substr(prefix.length));
+                fullCandidate.token = candidate;
+                return fullCandidate;
+            });
+        }
+    }
+
+    /**
+     * Double tap completion suggestions handler.
+     * @param {String} string
+     * @param {Array} matches
+     * @param {Function} echoCommand
+     */
+    function onCompletionDoubleTap(string, matches, echoCommand)
+    {
+        echoCommand();
+
+        this.echo(matches.map(function (candidate)
+        {
+            return candidate.token || candidate;
+        }));
+    }
+
+    /**
      * Initialize jquery.terminal
      */
     var terminal = $('.console-panel').terminal(onCommand, {
-        'completion':    clc.COMPLETION_KEYWORDS,
         'onEchoCommand': onEchoCommand,
         'name':          'clcalc',
         'prompt':        '[[;;;prompt-wrapper]' + prompt + ']',
@@ -175,7 +225,11 @@ $(document).ready(function()
         {
             linksHandler.setLogLinkButtonEnabled(false);
             texHandler.clear();
-        }
+        },
+        'completionEscape': false,
+        'wordAutocomplete': false,
+        'doubleTab': onCompletionDoubleTap,
+        'completion': onCompletion
     });
 
     /**
