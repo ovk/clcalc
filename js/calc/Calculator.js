@@ -198,7 +198,7 @@
         catch (e)
         {
             clc.log(e.name + ', ' + e.message);
-            return 'Failed to convert expression to TeX';
+            return '-';
         }
     };
 

@@ -441,7 +441,7 @@
         {
             if (((intDigits - i + begin) % 3) === 0 && i !== begin)
                 result += separator;
-                
+
             result += number[i];
         }
 
