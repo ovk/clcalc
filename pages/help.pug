@@ -18,7 +18,7 @@ mixin multisample(hash, ...items)
                 span.value= item.value
 
 block variables
-    - var title = 'Help';
+    - var title = 'Online Command-Line Calculator: Help';
 
 block inject_head
     link(href = 'https://fonts.googleapis.com/css?family=Lato:400,700', rel = 'stylesheet', type = 'text/css')
@@ -420,21 +420,21 @@ block content
                             td Bitwise operations: and, or, not, xor
                             td.code (7 & ~5) | 8 ^| 1
                         tr
-                            td.code <<, >>
+                            td.code #{'<<'}, #{'>>'}
                             td Arithmetic shifts: left, right
-                            td.code 8 >> 2
+                            td.code 8 #{'>>'} 2
                         tr
-                            td.code >>>
+                            td.code #{'>>>'}
                             td Logical shift right
-                            td.code -1 >>> 1
+                            td.code -1 #{'>>>'} 1
                         tr
                             td.code and, or, not, xor
                             td Logical operators
                             td.code true and not false
                         tr
-                            td.code ==, !=, <, <=, >, >=
+                            td.code ==, !=, #{'<'}, #{'<='}, #{'>'}, #{'>='}
                             td Comparison operators
-                            td.code 1 > 2
+                            td.code 1 #{'>'} 2
                         tr
                             td.code to, in
                             td Unit conversion operators
@@ -446,7 +446,7 @@ block content
                         tr
                             td.code ? :
                             td Ternary operator (conditional expression)
-                            td.code 1 > 2 ? 0 : -1
+                            td.code 1 #{'>'} 2 ? 0 : -1
                         tr
                             td.code ;
                             td Statement separator
@@ -475,8 +475,7 @@ block content
                 h2(id = 'mathjs-functions') Functions
 
                 p Functions can be defined using following format:
-                code
-                    p name(arg1, arg2, ..., argN) = body
+                code name(arg1, arg2, ..., argN) = body
 
                 p where
                 ul
@@ -500,21 +499,17 @@ block content
                 h2(id = 'mathjs-help') Help
 
                 p You can use built-in function help(...) to get information about built-in functions and constants. For examply, try:
-                code
-                    p help(sin)
-                code
-                    p help(phi)
+                +sample('help(sin)', '', 'eyJjIjpbImhlbHAoc2luKSJdLCJ2IjoiMSJ9')
+                +sample('help(phi)', '', 'eyJjIjpbImhlbHAocGhpKSJdLCJ2IjoiMSJ9')
 
                 // Linear Interpolation
                 h1(id = 'lerp') Linear Interpolation
 
                 p To calculate linear interpolation between two values (a, b) for a parameter (t) in the closed unit interval [0, 1] you can use lerp(...) function:
-                code
-                    p lerp(a, b, t)
+                code lerp(a, b, t)
 
                 p Resulting value is calculated as
-                code
-                    p (1 - t) * a + t * b
+                code (1 - t) * a + t * b
 
                 p a, b - can be numbers or colors, while t must always be a number:
                 +multisample('eyJjIjpbImxlcnAoMSzCoDUswqAwLjI1KSIsImxlcnAoIzAwMDAwMCzCoCNmZmZmZmYswqAwLjUpIl0sInYiOiIxIn0=',
@@ -675,8 +670,7 @@ block content
                 h1(id = 'function-plot') Function Plot
 
                 p Cl Calc can plot a two-dimensional graph of a function with plot2d(...) function.
-                code
-                    p plot2d(expression, variable, [ from, to ])
+                code plot2d(expression, variable, [ from, to ])
                 p where
                 ul
                     li #[strong expression] an expression of a function to plot
