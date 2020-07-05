@@ -1,4 +1,6 @@
-Website: https://clcalc.net
+### Use CL Calc at: [clcalc.net](https://clcalc.net)
+### Detailed CL Calc Help: [clcalc.net/help.html](https://clcalc.net/help.html)
+---
 
 # Summary
 Cl Calc is an open-source, lightweight, command-line style web-based calculator. It is built as a fully static website and hosted through GitHub Pages. As the result of being completely static, Cl Calc performs all calculations on the client side.
