@@ -486,7 +486,7 @@
         {
             for (var key in attributes)
             {
-                if (attributes.hasOwnProperty(key))
+                if (Object.prototype.hasOwnProperty.call(attributes, key))
                     html += ' ' + key + '="' + attributes[key] + '"';
             }
         }
@@ -515,7 +515,7 @@
         {
             for (var key in attributes)
             {
-                if (attributes.hasOwnProperty(key))
+                if (Object.prototype.hasOwnProperty.call(attributes, key))
                     element.setAttribute(key, attributes[key]);
             }
         }

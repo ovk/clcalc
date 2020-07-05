@@ -100,8 +100,8 @@
      */
     clc.PlotExtension.prototype._functionPlot2D = function (args, scope)
     {
-        var arguments = this._getPlot2dArguments(args, scope),
-            plot = new clc.FunctionPlot2D(arguments.expression, arguments.variable, arguments.domain, scope, this._defaultPlotParameters, this._mathJs);
+        var plotArguments = this._getPlot2dArguments(args, scope),
+            plot = new clc.FunctionPlot2D(plotArguments.expression, plotArguments.variable, plotArguments.domain, scope, this._defaultPlotParameters, this._mathJs);
 
         this._plots[plot.id] = plot;
 

@@ -250,7 +250,10 @@
     clc.Calculator.prototype._registerAliases = function ()
     {
         var self = this;
-        var aliases = {};
+        var aliases = {
+            'nCr': 'combinations',
+            'nPr': 'permutations'
+        };
 
         // nCr(n, k) -> combinations(n, k)
         if (!this._mathJs.nCr)
@@ -263,7 +266,6 @@
             });
 
             this._mathJs.import({ 'nCr': nCr });
-            aliases.nCr = 'combinations';
         }
 
         // nPr(n) -> permutations(n)
@@ -282,7 +284,6 @@
             });
 
             this._mathJs.import({ 'nPr': nPr });
-            aliases.nPr = 'permutations';
         }
 
         return aliases;
@@ -298,7 +299,7 @@
 
         this._customTexHandler = function (node, options)
         {
-            if (node.type === 'FunctionNode' && node.name in functionAliases)
+            if (node.type === 'FunctionNode' && node.name && node.name in functionAliases)
             {
                 var alias = new self._mathJs.FunctionNode(functionAliases[node.name], node.args);
                 return alias.toTex(options);

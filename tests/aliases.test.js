@@ -22,7 +22,7 @@ describe ('Aliases', function ()
         expect(calc.evaluate('nPr(0, 0)').result).toEqual(createResult('1'));
         expect(calc.evaluate('nPr(5, 3)').result).toEqual(createResult('60'));
         expect(calc.evaluate('nPr(10)').result).toEqual(createResult('3628800'));
-        expect(calc.evaluate('nPr(7, 2)').tex).toEqual('\\mathrm{nPr}\\left(7,2\\right)');
+        expect(calc.evaluate('nPr(7, 2)').tex).toEqual('\\mathrm{permutations}\\left(7,2\\right)');
         expect(calc.evaluate('permutations(7, 2)').tex).toEqual('\\mathrm{permutations}\\left(7,2\\right)');
         expect(function () { calc.evaluate('nPr(1, 2)'); }).toThrowError(TypeError);
         expect(function () { calc.evaluate('nPr()'); }).toThrowError(TypeError);
