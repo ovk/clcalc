@@ -1,8 +1,50 @@
 // Colors
-@tex-panel-bg: #f7f7f7;
-@tex-block-bg: #fdfdfd;
-@tex-block-border-color: #eeeeee;
-@tex-value-border-color: #eeeeee;
+#tex
+{
+    .colors(light)
+    {
+        panel-bg: #f7f7f7;
+        block-bg: #fdfdfd;
+        block-border-color: #eeeeee;
+        value-border-color: #eeeeee;
+    }
+
+    .colors(dark)
+    {
+        panel-bg: #183f48;
+        block-bg: #1e434a;
+        block-border-color: #073642;
+        value-border-color: #073642;
+    }
+}
+
+.tex-colors(@mode)
+{
+    .tex-panel
+    {
+        @colors: #tex.colors(@mode);
+
+        background-color: @colors[panel-bg];
+
+        &>.tex-block
+        {
+            border-color: @colors[block-border-color];
+            background-color: @colors[block-bg];
+
+            .tex-value
+            {
+                border-color: @colors[value-border-color];
+            }
+        }
+    }
+}
+
+body.dark
+{
+    .tex-colors(dark);
+}
+
+.tex-colors(light);
 
 .tex-panel
 {
@@ -16,13 +58,11 @@
 
     overflow-y: auto;
 
-    background-color: @tex-panel-bg;
-
     &>.tex-block
     {
-        border: 1px solid @tex-block-border-color;
+        border-width: 1px;
+        border-style: solid;
         border-radius: 2px;
-        background-color: @tex-block-bg;
         margin: 8px;
         padding: 8px;
         overflow-x: auto;
@@ -38,7 +78,8 @@
             margin-right: 8px;
             margin-bottom: 8px;
             padding-top: 8px;
-            border-top: 1px solid @tex-value-border-color;
+            border-top-width: 1px;
+            border-top-style: solid;
         }
     }
 }

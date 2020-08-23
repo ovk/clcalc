@@ -6,18 +6,87 @@
 @terminal-prompt-width: 12px;
 
 // Colors
-@terminal-bg: #fdfdfd;
-@terminal-fg: #7a9983;
-@terminal-output-fg: #66b734;
-@terminal-output-error-fg: #fa5050;
-@terminal-command-active-bg: #eff5ef;
-@terminal-expression-link-btn-fg: #9f9f9f;
-@terminal-expression-link-btn-fg-hover: #777777;
+#terminal
+{
+    .colors(light)
+    {
+        bg: #fdfdfd;
+        fg: #7a9983;
+        output-fg: #66b734;
+        output-error-fg: #fa5050;
+        command-active-bg: #eff5ef;
+        expression-link-btn-fg: #9f9f9f;
+        expression-link-btn-fg-hover: #777777;
+    }
+
+    .colors(dark)
+    {
+        bg: #1e434a;
+        fg: #7a9983;
+        output-fg: #66b734;
+        output-error-fg: #fa5050;
+        command-active-bg: #183f48;
+        expression-link-btn-fg: #9f9f9f;
+        expression-link-btn-fg-hover: #777777;
+    }
+}
+
+.terminal-colors(@mode)
+{
+    .terminal
+    {
+        @colors: #terminal.colors(@mode);
+
+        --color: @colors[fg];
+        --background: @colors[bg];
+
+        .terminal-output
+        {
+            .welcome-message
+            {
+                color: @colors[fg];
+            }
+
+            .terminal-command a.create-expression-link-button
+            {
+                &, & > span
+                {
+                    color: @colors[expression-link-btn-fg] !important;
+                }
+
+                &:hover, &:hover > span
+                {
+                    color: @colors[expression-link-btn-fg-hover] !important;
+                }
+            }
+        }
+
+        .terminal-output-error
+        {
+            color: @colors[output-error-fg] !important;
+        }
+
+        .terminal-command.active
+        {
+            background-color: @colors[command-active-bg] !important;
+        }
+
+        .raw
+        {
+            color: @colors[output-fg];
+        }
+    }
+}
+
+body.dark
+{
+    .terminal-colors(dark);
+}
+
+.terminal-colors(light);
 
 .terminal
 {
-    --color: @terminal-fg;
-    --background: @terminal-bg;
     --animation: terminal-bar;
 
     &, .terminal-command, .cmd, .cmd span, .terminal-output>:not(.raw) span
@@ -69,7 +138,6 @@
 
         .welcome-message
         {
-            color: @terminal-fg;
             padding-bottom: 16px;
             font-style: italic;
             font-size: 14px;
@@ -86,16 +154,13 @@
         {
             &, & > span
             {
-                color: @terminal-expression-link-btn-fg !important;
                 text-decoration: none;
-                background-color: transparent !important;
                 line-height: 16px;
             }
 
             &:hover, &:hover > span
             {
                 transition: color 0.2s ease 0s;
-                color: @terminal-expression-link-btn-fg-hover !important;
                 background-color: transparent !important;
             }
         }
@@ -103,13 +168,11 @@
 
     .terminal-output-error
     {
-        color: @terminal-output-error-fg !important;
         padding-left: @terminal-prompt-width;
     }
 
     .terminal-command.active
     {
-        background-color: @terminal-command-active-bg !important;
         border-radius: 4px;
     }
 
@@ -122,7 +185,6 @@
     .raw
     {
         padding-left: @terminal-prompt-width;
-        color: @terminal-output-fg;
 
         div
         {

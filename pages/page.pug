@@ -23,6 +23,11 @@ html(lang = 'en')
         link(href = 'main.css', rel = 'stylesheet', type = 'text/css')
 
     body
+        script.
+            if (typeof window.localStorage !== 'undefined') {
+                $('body').toggleClass('dark', localStorage.getItem('colorTheme') === 'dark');
+            }
+
         nav.navbar.navbar-default.navbar-fixed-top
             div.container-fluid
                 div.navbar-header

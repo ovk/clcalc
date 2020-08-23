@@ -5,13 +5,76 @@
 };
 
 // Colors
-@help-h1-fg: #0e83cd;
-@help-h1-border-color: #dddddd;
-@help-sample-bg: #f5f5f5;
-@help-sample-fg: @terminal-fg;
-@help-tryit-fg: #fefefe;
-@help-tryit-bg: #337ab7;
-@help-tryit-bg-hover: #286090;
+#help
+{
+    .colors(light)
+    {
+        h1-fg: #0e83cd;
+        h1-border-color: #dddddd;
+        sample-bg: #f5f5f5;
+        tryit-fg: #fefefe;
+        tryit-bg: #337ab7;
+        tryit-bg-hover: #286090;
+    }
+
+    .colors(dark)
+    {
+        h1-fg: #839496;
+        h1-border-color: #839496;
+        sample-bg: #1e434a;
+        tryit-fg: #eee;
+        tryit-bg: #BD8E00;
+        tryit-bg-hover: #826200;
+    }
+}
+
+.help-colors(@mode)
+{
+    .help-content
+    {
+        @colors: #help.colors(@mode);
+
+        h1
+        {
+            color: @colors[h1-fg];
+            border-color: @colors[h1-border-color];
+        }
+
+        h2
+        {
+            color: @colors[h1-fg];
+        }
+
+        code
+        {
+            color: #terminal.colors(@mode)[fg];
+            background-color: @colors[sample-bg];
+
+            span.value
+            {
+                color: #terminal.colors(@mode)[output-fg];
+            }
+
+            .help-try-it
+            {
+                color: @colors[tryit-fg];
+                background-color: @colors[tryit-bg];
+
+                &:hover
+                {
+                    background-color: @colors[tryit-bg-hover];
+                }
+            }
+        }
+    }
+}
+
+body.dark
+{
+    .help-colors(dark);
+}
+
+.help-colors(light);
 
 body
 {
@@ -22,7 +85,6 @@ body
         margin-top: @navbar-thickness-mobile;
     }
 }
-
 
 .help-container
 {
@@ -66,8 +128,8 @@ body
 
     h1
     {
-        color: @help-h1-fg;
-        border-bottom: 1px solid @help-h1-border-color;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
         padding-bottom: 5px;
         margin-bottom: 20px;
         margin-top: -30px;
@@ -75,7 +137,6 @@ body
 
     h2
     {
-        color: @help-h1-fg;
         font-size: 24px;
         margin-top: -35px;
     }
@@ -96,9 +157,6 @@ code
     @terminal-font();
     font-size: 16px;
     line-height: 24px;
-
-    color: @help-sample-fg;
-    background-color: @help-sample-bg;
 
     display: block;
     margin-top: 0px;
@@ -129,12 +187,11 @@ code
     {
         margin-left: 24px;
         margin-bottom: 4px;
-        color: @terminal-output-fg;
     }
 
     .help-try-it
     {
-        display: inline-block;
+        display: block;
         float: right;
 
         border-top-left-radius: 0px;
@@ -150,16 +207,11 @@ code
         margin-top: -4px;
 
         font-size: 14px;
-
-        color: @help-tryit-fg;
-        background-color: @help-tryit-bg;
-
         outline: none;
 
         &:hover
         {
             text-decoration: none;
-            background-color: @help-tryit-bg-hover;
             outline: none;
         }
 

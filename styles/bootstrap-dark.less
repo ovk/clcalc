@@ -1,0 +1,165 @@
+// Override default Bootstrap colors for dark theme
+// Colors are mostly based on Solar color theme
+body.dark
+{
+    color: #839496;
+    background-color: #002b36;
+
+    .navbar-default
+    {
+        background-color: #073642;
+        border-color: #002B36;
+    }
+
+    .navbar-brand, .navbar-nav a
+    {
+        color: #7f7f7f;
+
+        &:hover, &:focus
+        {
+            color: #bfbfbf;
+        }
+    }
+
+    .modal-content
+    {
+        background-color: #073642;
+        border: 1px solid #002b36;
+    }
+
+    .modal-header
+    {
+        border-bottom: 1px solid #002b36;
+    }
+
+    .modal-footer
+    {
+        border-top: 1px solid #002b36;
+    }
+
+    .close
+    {
+        color: #839496;
+        text-shadow: none;
+        opacity: 0.5;
+    }
+
+    .btn-default
+    {
+        color: #eee;
+        border-color: #839496;
+        background-color: #839495;
+        outline: none;
+
+        &:hover
+        {
+            border-color: #697b7d;
+            background-color: #6f8183;
+        }
+
+        &:active
+        {
+            color: #eee;
+            border-color: #647476;
+            background-color: #697b7d;
+        }
+
+        &:focus
+        {
+            border-color: #697b7d;
+            background-color: #6f8183;
+            box-shadow: 0 0 0 0.2rem rgba(150, 164, 166, 0.5);
+        }
+    }
+
+    .btn-primary
+    {
+        color: #eee;
+        border-color: #b58900;
+        background-color: #BD8E00;
+        outline: none;
+
+        &:hover
+        {
+            border-color: #826200;
+            background-color: #8f6c00;
+        }
+
+        &:active
+        {
+            color: #eee;
+            border-color: #755900;
+            background-color: #826200;
+        }
+
+        &:focus
+        {
+            border-color: #826200;
+            background-color: #8f6c00;
+            box-shadow: 0 0 0 0.2rem rgba(192, 155, 38, 0.5);
+        }
+    }
+
+    .form-control
+    {
+        color: #495057;
+        background-color: #A9BDBD;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+
+        &:focus
+        {
+            border-color: #1394b5;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(7, 54, 66, 0.25);
+        }
+    }
+
+    .popover
+    {
+        background-color: #073642;
+        border: 1px solid #002b36;
+
+        &.right > .arrow::after
+        {
+            border-right-color: #073642;
+        }
+
+        &.left > .arrow::after
+        {
+            border-left-color: #073642;
+        }
+
+        &.bottom > .arrow::after
+        {
+            border-bottom-color: #073642;
+        }
+    }
+
+    .popover-title
+    {
+        background-color: #073642;
+        border-bottom: 1px solid #05232b;
+    }
+
+    pre
+    {
+        color: #839496;
+        background-color: #183f48;
+        border-color: #073642;
+    }
+
+    a:hover, a:focus
+    {
+        color: #337ab7;
+    }
+
+    .table-striped tbody tr:nth-of-type(2n+1)
+    {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .table th, .table td
+    {
+        border-color: #073642;
+    }
+}

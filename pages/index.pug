@@ -38,13 +38,19 @@ block content
                         div.form-group
                             label.col-sm-6.control-label Thousands Separator:
                             div.col-sm-6
-                                select.form-control
+                                select.form-control.thousands-separator
                                     option(value = 'enabled') Enabled
                                     option(value = 'disabled') Disabled
                         div.form-group
                             label.col-sm-6.control-label Precision (Significant Digits):
                             div.col-sm-6
-                                input.form-control(type = 'text')
+                                input.form-control.precision(type = 'text')
+                        div.form-group
+                            label.col-sm-6.control-label Color Theme:
+                            div.col-sm-6
+                                select.form-control.color-theme
+                                    option(value = 'light') Light (Default)
+                                    option(value = 'dark') Dark
                 div.modal-footer
                     button.btn.btn-default(type = 'button', data-dismiss = 'modal') Close
                     button.btn.btn-primary(type = 'button') Apply

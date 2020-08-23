@@ -12,15 +12,17 @@
         {
             'showSettingsDialogButton': $('#show-settings-dialog-button'),
             'settingsDialog':           $('#settings-dialog'),
-            'thousandsSeparatorSelect': $('#settings-dialog form select'),
-            'precisionInput':           $('#settings-dialog form input'),
+            'thousandsSeparatorSelect': $('#settings-dialog .thousands-separator'),
+            'precisionInput':           $('#settings-dialog .precision'),
+            'colorThemeSelect':         $('#settings-dialog .color-theme'),
             'applySettingsButton':      $('#settings-dialog button.btn-primary')
         };
 
         // Default settings
         this._settings = {
             'precision': 64,
-            'thousandsSeparatorEnabled': false
+            'thousandsSeparatorEnabled': false,
+            'colorTheme': 'light'
         };
 
         this._loadSettings();
@@ -45,15 +47,17 @@
         if (typeof window.localStorage !== 'undefined')
         {
             var thousandsSeparatorEnabled = localStorage.getItem('settingsThousandsSeparatorEnabled'),
-                precision = localStorage.getItem('precision');
+                precision = localStorage.getItem('precision'),
+                colorTheme = localStorage.getItem('colorTheme');
 
-            thousandsSeparatorEnabled = (thousandsSeparatorEnabled === null) ?
-                this._settings.thousandsSeparatorEnabled : (thousandsSeparatorEnabled === 'true');
+            if (thousandsSeparatorEnabled !== null)
+                this._settings.thousandsSeparatorEnabled = (thousandsSeparatorEnabled === 'true');
 
-            precision = (precision === null) ? this._settings.precision : parseInt(precision, 10);
+            if (precision !== null)
+                this._settings.precision = parseInt(precision, 10);
 
-            this._settings.thousandsSeparatorEnabled = thousandsSeparatorEnabled;
-            this._settings.precision = precision;
+            if (colorTheme !== null)
+                this._settings.colorTheme = colorTheme;
         }
     };
 
@@ -66,6 +70,7 @@
         {
             localStorage.setItem('settingsThousandsSeparatorEnabled', this._settings.thousandsSeparatorEnabled);
             localStorage.setItem('precision', this._settings.precision);
+            localStorage.setItem('colorTheme', this._settings.colorTheme);
         }
     };
 
@@ -113,6 +118,7 @@
         // Set current settings into dialog
         this._elements.thousandsSeparatorSelect.val(this._settings.thousandsSeparatorEnabled ? 'enabled': 'disabled');
         this._elements.precisionInput.val(this._settings.precision);
+        this._elements.colorThemeSelect.val(this._settings.colorTheme);
 
         // Show dialog
         this._elements.settingsDialog.modal('show');
@@ -148,6 +154,7 @@
         }
 
         this._settings.precision = clc.clamp(precision, 8, 4096);
+        this._settings.colorTheme = this._elements.colorThemeSelect.val();
 
         // Save settings to browser local storage
         this._saveSettings();

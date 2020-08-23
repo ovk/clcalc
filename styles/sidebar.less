@@ -2,14 +2,79 @@
 @sidebar-button-size: 34px;
 
 // Colors
-@sidebar-bg: #e7e7e7;
-@sidebar-border-color: #d7d7d7;
-@sidebar-fg: #777777;
-@sidebar-fg-disabled: #afafaf;
-@sidebar-button-bg: #d8d8d8;
-@sidebar-button-bg-hover: #c7c7c7;
-@sidebar-button-bg-active: #c7c7c7;
-@sidebar-button-bg-disabled: #e2e2e2;
+#sidebar
+{
+    .colors(light)
+    {
+        bg: #e7e7e7;
+        fg: #777777;
+        fg-disabled: #afafaf;
+        border-color: #d7d7d7;
+
+        button-bg: #d8d8d8;
+        button-bg-hover: #c7c7c7;
+        button-bg-active: #c7c7c7;
+        button-bg-disabled: #e2e2e2;
+    }
+
+    .colors(dark)
+    {
+        bg: #002b36;
+        fg: #839496;
+        fg-disabled: #0A4C5C;
+        border-color: #073642;
+
+        button-bg: #073642;
+        button-bg-hover: #08404E;
+        button-bg-active: #0A4C5C;
+        button-bg-disabled: #06313C;
+    }
+}
+
+.sidebar-colors(@mode)
+{
+    .sidebar
+    {
+        @colors: #sidebar.colors(@mode);
+
+        background-color: @colors[bg];
+        border-color: @colors[border-color];
+
+        a
+        {
+            color: @colors[fg];
+
+            &.active>.round-button
+            {
+                background-color: @colors[button-bg-active];
+            }
+
+            &.disabled>.round-button
+            {
+                cursor: not-allowed;
+                color: @colors[fg-disabled];
+                background-color: @colors[button-bg-disabled];
+            }
+        }
+
+        .round-button
+        {
+            background-color: @colors[button-bg];
+
+            &:hover
+            {
+                background-color: @colors[button-bg-hover];
+            }
+        }
+    }
+}
+
+body.dark
+{
+    .sidebar-colors(dark);
+}
+
+.sidebar-colors(light);
 
 .sidebar
 {
@@ -18,7 +83,8 @@
     bottom: 0px;
     left: 0px;
     width: @sidebar-thickness;
-    border-right: 1px solid @sidebar-border-color;
+    border-right-width: 1px;
+    border-right-style: solid;
 
     @media (max-width: @max-mobile-width)
     {
@@ -28,14 +94,12 @@
         width: auto;
         height: @sidebar-thickness-mobile;
         border-right: none;
-        border-bottom: 1px solid @sidebar-border-color;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
     }
-
-    background-color: @sidebar-bg;
 
     &>a
     {
-        color: @sidebar-fg;
         font-size: 16px;
         line-height: 20px;
         text-decoration: none;
@@ -62,12 +126,6 @@
             }
 
             transition: background-color 0.2s ease 0s;
-            background-color: @sidebar-button-bg;
-
-            &:hover
-            {
-                background-color: @sidebar-button-bg-hover;
-            }
 
             span
             {
@@ -84,16 +142,9 @@
             }
         }
 
-        &.active>.round-button
-        {
-            background-color: @sidebar-button-bg-active;
-        }
-
         &.disabled>.round-button
         {
             cursor: not-allowed;
-            color: @sidebar-fg-disabled;
-            background-color: @sidebar-button-bg-disabled;
         }
     }
 }
