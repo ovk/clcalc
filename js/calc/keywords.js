@@ -2,7 +2,7 @@
 {
     /**
      * MathJS built-in constants.
-     * As per MathJS 7.0.2.
+     * As per MathJS 7.2.0.
      * http://mathjs.org/docs/reference/constants.html
      */
     clc.MATH_JS_CONSTANTS =
@@ -19,7 +19,7 @@
 
     /**
      * MathJS built-in functions.
-     * As per MathJS 7.0.2.
+     * As per MathJS 7.2.0.
      * http://mathjs.org/docs/reference/functions.html
      */
     clc.MATH_JS_FUNCTIONS =
@@ -54,7 +54,7 @@
         'and', 'not', 'or', 'xor',
 
         // Matrix Functions
-        'column', 'concat', 'cross', 'ctranspose', 'det', 'diag', 'dot', 'eigs', 'expm', 'filter', 'flatten', 'forEach', 'getMatrixDataType',
+        'column', 'concat', 'cross', 'ctranspose', 'det', 'diag', 'diff', 'dot', 'eigs', 'expm', 'filter', 'flatten', 'forEach', 'getMatrixDataType',
         'identity', 'inv', 'kron', 'map', 'ones', 'partitionSelect', 'range', 'reshape', 'resize', 'row', 'size', 'sort', 'sqrtm',
         'squeeze', 'subset', 'trace', 'transpose', 'zeros',
 
