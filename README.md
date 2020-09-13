@@ -23,6 +23,13 @@ Documentation is available [here](https://clcalc.net/help.html).
 
 If you are completely new to Cl Calc you may want to check this small [Quick Start](https://clcalc.net/help.html#quickstart) guide.
 
+# Screenshots
+Light theme:
+![light](https://user-images.githubusercontent.com/693072/93025838-4b627300-f5cf-11ea-9616-cd37c4518fd0.png)
+
+Dark theme:
+![dark](https://user-images.githubusercontent.com/693072/93025837-4ac9dc80-f5cf-11ea-9819-76c270e8f66b.png)
+
 # Build
 Get the sources from the GitHub:
 
