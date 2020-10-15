@@ -17,9 +17,13 @@ function taskAssets()
 {
     return gulp.src([
         './images/favicon.ico',
-        './images/brand.png',
         './images/github.png',
-        './images/checkerboard.png'
+        './images/checkerboard.png',
+        './images/clcalc-16.png',
+        './images/clcalc-32.png',
+        './images/clcalc-150.png',
+        './images/clcalc-192.png',
+        './browserconfig.xml'
     ]).pipe(gulp.dest(OUTPUT_DIR));
 };
 
