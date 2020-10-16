@@ -1,0 +1,8 @@
+<browserconfig>
+    <msapplication>
+        <tile>
+            <square150x150logo src="/clcalc-150.png"/>
+            <TileColor>#FFFFFF</TileColor>
+        </tile>
+    </msapplication>
+</browserconfig>
