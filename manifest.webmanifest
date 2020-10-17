@@ -1,0 +1,36 @@
+{
+    "name": "Cl Calc: command line calculator",
+    "short_name": "Cl Calc",
+    "description": "Advanced arbitrary precision calculator",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "background_color": "#606060",
+    "theme_color": "#606060",
+    "icons": [
+        {
+            "src": "clcalc-32.png",
+            "sizes": "32x32",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "clcalc-150.png",
+            "sizes": "150x150",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "clcalc-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "clcalc-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}

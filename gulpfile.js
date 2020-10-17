@@ -1,4 +1,5 @@
-var gulp            = require('gulp'),
+var fs              = require('fs'),
+    gulp            = require('gulp'),
     eslint          = require('gulp-eslint'),
     less            = require('gulp-less'),
     uglify          = require('gulp-uglify'),
@@ -9,22 +10,27 @@ var gulp            = require('gulp'),
     autoprefixer    = require('gulp-autoprefixer'),
     cleancss        = require('gulp-clean-css'),
     sourcemaps      = require('gulp-sourcemaps'),
+    replace         = require('gulp-replace'),
     dev             = false,
     OUTPUT_DIR      = './dist';
+
+var staticAssets = [
+    './images/favicon.ico',
+    './images/github.png',
+    './images/checkerboard.png',
+    './images/clcalc-16.png',
+    './images/clcalc-32.png',
+    './images/clcalc-150.png',
+    './images/clcalc-192.png',
+    './images/clcalc-512.png',
+    './browserconfig.xml',
+    './manifest.webmanifest'
+];
 
 // Copy static assets to the output folder.
 function taskAssets()
 {
-    return gulp.src([
-        './images/favicon.ico',
-        './images/github.png',
-        './images/checkerboard.png',
-        './images/clcalc-16.png',
-        './images/clcalc-32.png',
-        './images/clcalc-150.png',
-        './images/clcalc-192.png',
-        './browserconfig.xml'
-    ]).pipe(gulp.dest(OUTPUT_DIR));
+    return gulp.src(staticAssets).pipe(gulp.dest(OUTPUT_DIR));
 };
 
 // Generate CSS bundle from the LESS source files.
@@ -53,15 +59,48 @@ function taskHtml()
 };
 
 // Generate JavaScript bundle from source files.
-function taskJs()
+function taskJsSrc()
 {
-    return gulp.src([ './js/**/*.js' ])
+    return gulp.src([ './js/**/*.js', '!./js/sw.js' ])
                .pipe(gulpif(dev, sourcemaps.init()))
                .pipe(concat('calc.js'))
                .pipe(uglify())
                .pipe(gulpif(dev, sourcemaps.write('./')))
                .pipe(gulp.dest(OUTPUT_DIR));
 };
+
+// Generate Service Worker script file
+function taskJsServiceWorker()
+{
+    var version = JSON.parse(fs.readFileSync('./package.json')).version;
+    var configPug = fs.readFileSync('./pages/config.pug').toString();
+    var depsJson = JSON.parse(configPug.replace(/^-$/m, "").replace("var lib =", "").replace(/'/g, '"'));
+    var depsList = [];
+
+    for (var idx in depsJson)
+    {
+        var dep = depsJson[idx];
+        for (var key of [ 'js', 'css', 'font' ])
+        {
+            if (dep[key])
+                depsList = depsList.concat(dep[key].url);
+        }
+    }
+
+    var cachedFiles = [ '/', './main.css', './calc.js' ]
+        .concat(depsList)
+        .concat(staticAssets.map(f => f.replace("images/", "")));
+
+    return gulp.src([ './js/sw.js' ])
+               .pipe(replace('VERSION', version))
+               .pipe(replace('CACHED_FILES', JSON.stringify(cachedFiles)))
+               .pipe(gulpif(dev, sourcemaps.init()))
+               .pipe(uglify())
+               .pipe(gulpif(dev, sourcemaps.write('./')))
+               .pipe(gulp.dest(OUTPUT_DIR));
+};
+
+var taskJs = gulp.parallel(taskJsSrc, taskJsServiceWorker);
 
 // Start development web server.
 // gulp.task('webserver', function()

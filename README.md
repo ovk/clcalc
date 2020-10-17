@@ -5,6 +5,8 @@
 # Summary
 Cl Calc is an open-source, lightweight, command-line style web-based calculator. It is built as a fully static website and hosted through GitHub Pages. As the result of being completely static, Cl Calc performs all calculations on the client side.
 
+Cl Calc can be installed as a progressive web application (PWA) and can work fully offline.
+
 Cl Calc uses [MathJS](http://mathjs.org) library for expression parsing and evaluation and thus all MathJS features are available in Cl Calc.
 
 # Features

@@ -1,5 +1,8 @@
 $(document).ready(function()
 {
+    // Don't appent query parameter to avoid caching
+    $.ajaxSetup({ cache: true });
+
     // Initialize Bootstrap tooltips
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -268,3 +271,12 @@ $(document).ready(function()
             terminal.exec(expressions[i].replace(re, ' '));
     }
 });
+
+// Register service worker for PWA support
+if ('serviceWorker' in navigator)
+{
+    navigator.serviceWorker.register('./sw.js').catch(function (error)
+    {
+        console.log('Failed to register service worker', error);
+    });
+}

@@ -9,6 +9,7 @@ html(lang = 'en')
         meta(http-equiv = 'X-UA-Compatible', content = 'IE=edge')
         meta(name = 'viewport', content = 'width=device-width, initial-scale=1')
         meta(name = 'description', content = 'Advanced command-line style web-based (online) arbitrary precision calculator with mathematical, scientific, programming, utility functions and more')
+        meta(name = 'theme-color', content = '#606060')
 
         title Cl Calc: #{title}
 
@@ -17,8 +18,9 @@ html(lang = 'en')
         link(rel = 'icon', type = 'image/png', href = 'clcalc-192.png', sizes = '192x192')
         link(rel = 'shortcut icon', type = 'image/png', href = 'clcalc-192.png', sizes = '192x192')
         link(rel = 'apple-touch-icon', type = 'image/png', href = 'clcalc-192.png', sizes = '192x192')
+        link(rel = 'manifest', href = 'manifest.webmanifest')
         link(href = lib.bootstrap.css.url, integrity = lib.bootstrap.css.integrity, rel = 'stylesheet', type = 'text/css', crossorigin = 'anonymous')
-        link(href = 'https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700', rel = 'stylesheet', type = 'text/css')
+        link(href = lib.robotofont.css.url, rel = 'stylesheet', type = 'text/css')
         script(src = lib.jquery.js.url, integrity = lib.jquery.js.integrity, crossorigin = 'anonymous')
         script(src = lib.bootstrap.js.url, integrity = lib.bootstrap.js.integrity, crossorigin = 'anonymous')
 
