@@ -2,7 +2,7 @@
 {
     /**
      * MathJS built-in constants.
-     * As per MathJS 7.2.0.
+     * As per MathJS 9.3.2.
      * http://mathjs.org/docs/reference/constants.html
      */
     clc.MATH_JS_CONSTANTS =
@@ -19,7 +19,7 @@
 
     /**
      * MathJS built-in functions.
-     * As per MathJS 7.2.0.
+     * As per MathJS 9.3.2.
      * http://mathjs.org/docs/reference/functions.html
      */
     clc.MATH_JS_FUNCTIONS =
@@ -31,7 +31,7 @@
         'compile', 'evaluate', 'help', 'parse', 'parser',
 
         // Algebra Functions
-        'derivative', 'lsolve', 'lup', 'lusolve', 'qr', 'simplify', 'slu', 'usolve', 'rationalize',
+        'derivative', 'lsolve', 'lsolveAll', 'lup', 'lusolve', 'qr', 'simplify', 'slu', 'usolve', 'usolveAll', 'rationalize',
 
         // Arithmetic Functions
         'abs', 'add', 'cbrt', 'ceil', 'cube', 'divide', 'dotDivide', 'dotMultiply', 'dotPow', 'exp', 'expm1', 'fix', 'floor', 'gcd', 'hypot',
@@ -54,8 +54,8 @@
         'and', 'not', 'or', 'xor',
 
         // Matrix Functions
-        'column', 'concat', 'cross', 'ctranspose', 'det', 'diag', 'diff', 'dot', 'eigs', 'expm', 'filter', 'flatten', 'forEach', 'getMatrixDataType',
-        'identity', 'inv', 'kron', 'map', 'ones', 'partitionSelect', 'range', 'reshape', 'resize', 'row', 'size', 'sort', 'sqrtm',
+        'column', 'concat', 'count', 'cross', 'ctranspose', 'det', 'diag', 'diff', 'dot', 'eigs', 'expm', 'filter', 'flatten', 'forEach', 'getMatrixDataType',
+        'identity', 'inv', 'kron', 'map', 'ones', 'partitionSelect', 'range', 'reshape', 'resize', 'rotate', 'rotationMatrix', 'row', 'size', 'sort', 'sqrtm',
         'squeeze', 'subset', 'trace', 'transpose', 'zeros',
 
         // Probability Functions
@@ -75,7 +75,7 @@
         'mad', 'max', 'mean', 'median', 'min', 'mode', 'prod', 'quantileSeq', 'std', 'sum', 'variance',
 
         // String Functions
-        'format', 'print',
+        'bin', 'format', 'hex', 'oct', 'print',
 
         // Trigonometry Functions
         'acos', 'acosh', 'acot', 'acoth', 'acsc', 'acsch', 'asec', 'asech', 'asin', 'asinh', 'atan', 'atan2', 'atanh',
@@ -110,9 +110,6 @@
 
         // Plot
         'plot2d',
-
-        // Radix
-        'hex', 'bin'
     ];
 
     /**

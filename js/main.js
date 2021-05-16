@@ -52,7 +52,6 @@ $(document).ready(function()
     // Create Calculator instance and register all extensions
     clcalc = new clc.Calculator(math, settingsHandler.getSettings(), helpMessage);
 
-    clcalc.installExtension(new clc.HexBinLiteralsExtension());
     clcalc.installExtension(new clc.UnicodeEncodingExtension());
     clcalc.installExtension(new clc.Base64EncodingExtension());
     clcalc.installExtension(new clc.HashesExtension());

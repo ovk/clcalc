@@ -11,7 +11,6 @@ function createCalculatorInstance(extensions)
     var calc = new clc.Calculator(math, settings, testHelpMessage),
         ext = extensions || {};
 
-    calc.installExtension(new clc.HexBinLiteralsExtension());
     calc.installExtension(new clc.UnicodeEncodingExtension());
     calc.installExtension(new clc.Base64EncodingExtension());
     calc.installExtension(new clc.HashesExtension());

@@ -64,7 +64,7 @@ block content
                         li
                             a(href = '#lerp') Linear Interpolation
                         li
-                            a(href = '#radix') Hex/Bin Numbers
+                            a(href = '#radix') Hex/Bin/Oct Numbers
                         li
                             a(href = '#unicode') Unicode
                         li
@@ -95,7 +95,7 @@ block content
                     li Variety of built-in mathematical, scientific, programming and utility functions. This includes algebra, arithmetic, combinatorics, probability, matrix, statistics, trigonometry, logical, encoding functions and more.
                     li User defined variables and functions.
                     li Many built-in datatypes, including complex numbers, fractions, vectors, matrices and colors.
-                    li Base64 Encoding, Unicode, hexadecimal and binary numbers support.
+                    li Base64 Encoding, Unicode, hexadecimal, octal and binary numbers support.
                     li Persistent links to store or share your calculations.
                     li Pretty-printing expressions with TeX.
                     li Simple 2d functions plotting.
@@ -520,27 +520,39 @@ block content
 
                 p Please note that ARGB representation is used for colors interpolation. If this is not desirable, you can define your own color interpolation based on HSV or HSL color representation. Please refer to Colors section for more information.
 
-                // Hex/Bin Numbers
-                h1(id = 'radix') Hex/Bin Numbers
+                // Hex/Bin/Oct Numbers
+                h1(id = 'radix') Hex/Bin/Oct Numbers
 
-                p Cl Calc supports hexadecimal and binary numeric literals and provides functions to convert numbers to hexadecimal or binary representation.
+                p Cl Calc supports hexadecimal, octal and binary numeric literals and provides functions to convert numbers to/from these representations.
 
-                p Hexadecimal literals are prefixed with '0x' or '0X' and binary literals are prefixed with '0b' or '0B'. Both can include decimal point. On evaluation hex and binary literals are automatically converted to decimal numbers. For example:
-                +multisample('eyJjIjpbIjB4RkYiLCIweGFiLmNkIiwiMGIxMTAxLjExIl0sInYiOiIxIn0=',
-                    { 'expression': '0xFF', 'value': '255' },
+                p Hexadecimal literals are prefixed with '0x', octal literal are prefixed with '0o' and binary literals are prefixed with '0b'. The literals can include decimal point. On evaluation hex and binary literals are automatically converted to decimal numbers. For example:
+                +multisample('eyJjIjpbIjB4ZmYiLCIweGFiLmNkIiwiMG82NDQiLCIwYjExMC4xMSJdLCJ2IjoiMSJ9',
+                    { 'expression': '0xff', 'value': '255' },
                     { 'expression': '0xab.cd', 'value': '171.80078125' },
+                    { 'expression': '0o644', 'value': '420' },
                     { 'expression': '0b1101.11', 'value': '13.75' })
 
-                p To convert numbers to hexadecimal or binary representation you can use hex(...) and bin(...) functions respectively. These functions accept either individual numbers or lists and matrices:
-                +multisample('eyJjIjpbImhleCgyNTUpIiwiYmluKDEzLjc1KSIsImhleChbMTYswqAyMDAswqAxMjhdKSJdLCJ2IjoiMSJ9',
+                p To convert numbers to hexadecimal, octal or binary representation use hex(...), oct(...) and bin(...) functions respectively.
+                +multisample('eyJjIjpbImhleCgyNTUpIiwiYmluKDEzLjc1KSIsIm9jdCgwbzY0NCkiXSwidiI6IjEifQ==',
                     { 'expression': 'hex(255)', 'value': '"0xff"' },
                     { 'expression': 'bin(13.75)', 'value': '"0b1101.11"' },
-                    { 'expression': 'hex([16, 200, 128])', 'value': '["0x10", "0xc8", "0x80"]' })
+                    { 'expression': 'oct(420)', 'value': '0o644' })
 
-                p Hexadecimal and binary numbers maintain the same precision as regular numbers (i.e. they are BigNumbers as well):
+                p By default, hexadecimal, octal and binary numbers maintain the same precision as regular numbers (i.e. they are BigNumbers as well):
                 +multisample('eyJjIjpbImhleCg0MiHCoCvCoDAuNSkiLCJiaW4ocGkpIl0sInYiOiIxIn0=',
                     { 'expression': 'hex(42! + 0.5)', 'value': '"0x3c1581d491b28f523c23abdf35b689c908000000000.8"' },
                     { 'expression': 'bin(pi)', 'value': '"0b11.00100100001111110110101010001000100001011010001100001000110101"' })
+
+                p To restrict hexadecimal, octal or binary literal to a specific signed (2's complement) integer and a specific word size append i suffix and a desired word size in bits.
+                +multisample('eyJjIjpbIjB4ZmZpOCIsIjB4YWJjZGVmMTJpMzIiLCIwYjExMDAwMTFpOCJdLCJ2IjoiMSJ9',
+                    { 'expression': '0xffi8', 'value': '-1' },
+                    { 'expression': '0xabcdef12i32', 'value': '-1412567278' },
+                    { 'expression': '0b1100011i8', 'value': '99' })
+                
+                p To covert a decimal number to hexadecimal, octal or binary representation as a signed integer with a given word size use a second parameter with the desired word size (in bits) to hex, oct and bin functions.
+                +multisample('eyJjIjpbImhleCgtMSzCoG51bWJlcig4KSkiLCJiaW4oLTQyLMKgbnVtYmVyKDgpKSJdLCJ2IjoiMSJ9',
+                    { 'expression': 'hex(-1, number(8))', 'value': '0xffi8' },
+                    { 'expression': 'bin(-42, number(8))', 'value': '0b11010110i8' })
 
                 // Unicode
                 h1(id = 'unicode') Unicode
@@ -741,7 +753,7 @@ block content
                 p Third party libraries:
                 ul
                     li
-                        a(href = 'http://mathjs.org') MathJS 7.2.0
+                        a(href = 'http://mathjs.org') MathJS 9.3.2
                     li
                         a(href = 'https://github.com/jcubic/jquery.terminal') jquery.terminal 2.17.6
                     li

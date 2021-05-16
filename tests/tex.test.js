@@ -37,7 +37,7 @@ describe ('TeX', function ()
         expect(calc.evaluate('[[1,2],[3,4]]*2').result.tex).toEqual('\\begin{bmatrix}2&4\\\\6&8\\\\\\end{bmatrix}');
         expect(calc.evaluate('#abcdef').result.tex).toEqual('\\mathtt{\\#FFABCDEF}');
         expect(calc.evaluate('simplify("a+2a")').result.tex).toEqual('3\\cdot a');
-        expect(calc.evaluate('hex(123)').result.tex).toEqual('\\mathtt{"123"}');
+        expect(calc.evaluate('hex(123)').result.tex).toEqual('\\mathtt{"0x7b"}');
         expect(calc.evaluate('md5([ 1, 2, 3])').result.tex).toEqual('\\mathtt{"5289df737df57326fcdd22597afb1fac"}');
     });
 });
