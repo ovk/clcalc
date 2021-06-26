@@ -117,7 +117,7 @@
      */
     clc.ALIASES =
     [
-        'nCr', 'nPr'
+        'nCr', 'nPr', 'ln'
     ];
 
     /**

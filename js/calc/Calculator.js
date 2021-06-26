@@ -58,6 +58,9 @@
                 };
             }
         }, { 'override': true });
+
+        // Initialize help (extends help to handle aliases)
+        this._initializeHelp(functionAliases);
     };
 
     /**
@@ -250,10 +253,7 @@
     clc.Calculator.prototype._registerAliases = function ()
     {
         var self = this;
-        var aliases = {
-            'nCr': 'combinations',
-            'nPr': 'permutations'
-        };
+        var aliases = {};
 
         // nCr(n, k) -> combinations(n, k)
         if (!this._mathJs.nCr)
@@ -267,6 +267,17 @@
 
             this._mathJs.import({ 'nCr': nCr });
         }
+
+        aliases.nCr = {
+            'name': 'combinations',
+            'help': new self._mathJs.Help({
+                'name': 'nCr',
+                'category': 'Aliases',
+                'description': '\'nCr\' is an alias for \'combinations\', see \'help(combinations)\' for more information',
+                'syntax': [ 'nCr(n, k)' ],
+                'seealso': [ 'combinations' ]
+            })
+        };
 
         // nPr(n) -> permutations(n)
         // nPr(n, k) -> permutations(n, k)
@@ -286,6 +297,41 @@
             this._mathJs.import({ 'nPr': nPr });
         }
 
+        aliases.nPr = {
+            'name': 'permutations',
+            'help': new self._mathJs.Help({
+                'name': 'nPr',
+                'category': 'Aliases',
+                'description': '\'nPr\' is an alias for \'permutations\', see \'help(permutations)\' for more information',
+                'syntax': [ 'nPr(n)', 'nPr(n, k)' ],
+                'seealso': [ 'permutations' ]
+            })
+        };
+
+        // ln(x) -> log(x)
+        if (!this._mathJs.ln)
+        {
+            var ln = this._mathJs.typed('ln', {
+                'BigNumber': function (x)
+                {
+                    return self._mathJs.log(x);
+                },
+            });
+
+            this._mathJs.import({ 'ln': ln });
+        }
+
+        aliases.ln = {
+            'name': 'log',
+            'help': new self._mathJs.Help({
+                'name': 'ln',
+                'category': 'Aliases',
+                'description': '\'ln\' is an alias for \'log\' with \'e\' as the base (natural logarithm), see \'help(log)\' for more information',
+                'syntax': [ 'ln(x)' ],
+                'seealso': [ 'log' ]
+            })
+        };
+
         return aliases;
     };
 
@@ -301,7 +347,7 @@
         {
             if (node.type === 'FunctionNode' && node.name && node.name in functionAliases)
             {
-                var alias = new self._mathJs.FunctionNode(functionAliases[node.name], node.args);
+                var alias = new self._mathJs.FunctionNode(functionAliases[node.name].name, node.args);
                 return alias.toTex(options);
             }
             else if (node.name === '$')
@@ -349,13 +395,28 @@
         // Special case to print help message on 'help' command
         if (root.type === 'SymbolNode' && root.name === 'help')
         {
-            return new math.FunctionNode('_printHelp', []);
+            return new self._mathJs.FunctionNode('_printHelp', []);
         }
 
         // Transform the $ node into the constant referencing previous expression result
         return root.transform(function (node)
         {
-            return (node.isSymbolNode && node.name === '$') ? new math.ConstantNode(self._lastExpressionResult) : node;
+            return (node.isSymbolNode && node.name === '$') ? new self._mathJs.ConstantNode(self._lastExpressionResult) : node;
         });
+    };
+
+    clc.Calculator.prototype._initializeHelp = function (aliases)
+    {
+        var origHelp = this._mathJs.help;
+
+        this._mathJs.help = function (search)
+        {
+            var name = typeof search === 'function' ? search.name : search;
+
+            if (name && aliases[name])
+                return aliases[name].help;
+
+            return origHelp(search);
+        };
     };
 }(window.clc = window.clc || {}));

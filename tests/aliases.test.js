@@ -27,4 +27,16 @@ describe ('Aliases', function ()
         expect(function () { calc.evaluate('nPr(1, 2)'); }).toThrowError(TypeError);
         expect(function () { calc.evaluate('nPr()'); }).toThrowError(TypeError);
     });
+
+    it ('Should process ln exactly the same as log(x)', function ()
+    {
+        var calc = createCalculatorInstance();
+
+        expect(calc.evaluate('ln(1)').result).toEqual(createResult('0'));
+        expect(calc.evaluate('ln(e)').result).toEqual(createResult('1'));
+        expect(calc.evaluate('ln(e^2)').result).toEqual(createResult('2'));
+        expect(calc.evaluate('ln(e)').tex).toEqual('\\ln\\left( e\\right)');
+        expect(function () { calc.evaluate('ln(1, 2)'); }).toThrowError(TypeError);
+        expect(function () { calc.evaluate('ln()'); }).toThrowError(TypeError);
+    });
 });
