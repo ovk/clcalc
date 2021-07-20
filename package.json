@@ -29,7 +29,7 @@
         "karma-coverage": "^2.0.3",
         "karma-firefox-launcher": "^2.1.1",
         "karma-jasmine": "^4.0.1",
-        "glob-parent": ">=5.1.2"
+        "glob-parent": ">=6.0.1"
     },
     "browserslist": [
         "defaults"
