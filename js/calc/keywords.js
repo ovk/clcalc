@@ -2,7 +2,7 @@
 {
     /**
      * MathJS built-in constants.
-     * As per MathJS 9.3.2.
+     * As per MathJS 10.1.0.
      * http://mathjs.org/docs/reference/constants.html
      */
     clc.MATH_JS_CONSTANTS =
@@ -19,7 +19,7 @@
 
     /**
      * MathJS built-in functions.
-     * As per MathJS 9.3.2.
+     * As per MathJS 10.1.0.
      * http://mathjs.org/docs/reference/functions.html
      */
     clc.MATH_JS_FUNCTIONS =
@@ -34,7 +34,7 @@
         'derivative', 'lsolve', 'lsolveAll', 'lup', 'lusolve', 'qr', 'simplify', 'slu', 'usolve', 'usolveAll', 'rationalize',
 
         // Arithmetic Functions
-        'abs', 'add', 'cbrt', 'ceil', 'cube', 'divide', 'dotDivide', 'dotMultiply', 'dotPow', 'exp', 'expm1', 'fix', 'floor', 'gcd', 'hypot',
+        'abs', 'add', 'cbrt', 'ceil', 'cube', 'divide', 'dotDivide', 'dotMultiply', 'dotPow', 'exp', 'expm1', 'fix', 'floor', 'gcd', 'hypot', 'invmod',
         'lcm', 'log', 'log10', 'log1p', 'log2', 'mod', 'multiply', 'norm', 'nthRoot', 'nthRoots', 'pow', 'round', 'sign', 'sqrt', 'square', 'subtract',
         'unaryMinus', 'unaryPlus', 'xgcd',
 
@@ -55,8 +55,8 @@
 
         // Matrix Functions
         'column', 'concat', 'count', 'cross', 'ctranspose', 'det', 'diag', 'diff', 'dot', 'eigs', 'expm', 'filter', 'flatten', 'forEach', 'getMatrixDataType',
-        'identity', 'inv', 'kron', 'map', 'ones', 'partitionSelect', 'range', 'reshape', 'resize', 'rotate', 'rotationMatrix', 'row', 'size', 'sort', 'sqrtm',
-        'squeeze', 'subset', 'trace', 'transpose', 'zeros',
+        'identity', 'inv', 'kron', 'map', 'matrixFromColumns', 'matrixFromFunction', 'matrixFromRows', 'ones', 'partitionSelect', 'range', 'reshape', 'resize',
+        'rotate', 'rotationMatrix', 'row', 'size', 'sort', 'sqrtm', 'squeeze', 'subset', 'trace', 'transpose', 'zeros',
 
         // Probability Functions
         'combinations', 'combinationsWithRep', 'factorial', 'gamma', 'kldivergence', 'multinomial', 'permutations', 'pickRandom', 'random', 'randomInt',

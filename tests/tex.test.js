@@ -13,8 +13,8 @@ describe ('TeX', function ()
         expect(calc.evaluate('"hello"').tex).toEqual('\\mathtt{"hello"}');
         expect(calc.evaluate('2+3i').tex).toEqual('2+3~ i');
         expect(calc.evaluate('0xff').tex).toEqual('255');
-        expect(calc.evaluate('[1, 2, 3]').tex).toEqual('\\begin{bmatrix}1\\\\2\\\\3\\\\\\end{bmatrix}');
-        expect(calc.evaluate('[[1,2],[3,4]]').tex).toEqual('\\begin{bmatrix}1&2\\\\3&4\\\\\\end{bmatrix}');
+        expect(calc.evaluate('[1, 2, 3]').tex).toEqual('\\begin{bmatrix}1\\\\2\\\\3\\end{bmatrix}');
+        expect(calc.evaluate('[[1,2],[3,4]]').tex).toEqual('\\begin{bmatrix}1&2\\\\3&4\\end{bmatrix}');
         expect(calc.evaluate('#abcdef').tex).toEqual('\\mathtt{\\#FFABCDEF}');
         expect(calc.evaluate('sin(pi)+cos(tau)').tex).toEqual('\\sin\\left(\\pi\\right)+\\cos\\left(\\tau\\right)');
         expect(calc.evaluate('simplify("a+2a")').tex).toEqual('\\mathrm{simplify}\\left(\\mathtt{"a+2a"}\\right)');
@@ -33,8 +33,8 @@ describe ('TeX', function ()
         expect(calc.evaluate('"hello"').result.tex).toEqual('\\mathtt{"hello"}');
         expect(calc.evaluate('2+3i').result.tex).toEqual('2+3~ i');
         expect(calc.evaluate('0xff').result.tex).toEqual('255');
-        expect(calc.evaluate('[1, 2, 3] * 2').result.tex).toEqual('\\begin{bmatrix}2\\\\4\\\\6\\\\\\end{bmatrix}');
-        expect(calc.evaluate('[[1,2],[3,4]]*2').result.tex).toEqual('\\begin{bmatrix}2&4\\\\6&8\\\\\\end{bmatrix}');
+        expect(calc.evaluate('[1, 2, 3] * 2').result.tex).toEqual('\\begin{bmatrix}2\\\\4\\\\6\\end{bmatrix}');
+        expect(calc.evaluate('[[1,2],[3,4]]*2').result.tex).toEqual('\\begin{bmatrix}2&4\\\\6&8\\end{bmatrix}');
         expect(calc.evaluate('#abcdef').result.tex).toEqual('\\mathtt{\\#FFABCDEF}');
         expect(calc.evaluate('simplify("a+2a")').result.tex).toEqual('3\\cdot a');
         expect(calc.evaluate('hex(123)').result.tex).toEqual('\\mathtt{"0x7b"}');

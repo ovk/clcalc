@@ -460,7 +460,7 @@
         for (var x = domain[0]; x <= domain[1]; x += step)
         {
             // Inject current argument variable into the scope
-            this._function.scope[this._function.variable] = this._mathJs.bignumber(x);
+            this._function.scope.set(this._function.variable, this._mathJs.bignumber(x));
 
             // Evaluate expression value at given point
             y = this._function.expression.evaluate(this._function.scope);
