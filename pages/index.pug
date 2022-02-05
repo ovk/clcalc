@@ -36,6 +36,17 @@ block content
                 div.modal-body
                     form.form-horizontal
                         div.form-group
+                            label.col-sm-6.control-label Output Number Format:
+                            div.col-sm-6
+                                select.form-control.output-number-format
+                                    option(value = 'fixed') Decimal: Fixed (Default)
+                                    option(value = 'exponential') Decimal: Exponential
+                                    option(value = 'engineering') Decimal: Engineering
+                                    option(value = 'auto') Decimal: Auto
+                                    option(value = 'hex') Hexadecimal: Fixed
+                                    option(value = 'oct') Octal: Fixed
+                                    option(value = 'bin') Binary: Fixed
+                        div.form-group
                             label.col-sm-6.control-label Thousands Separator:
                             div.col-sm-6
                                 select.form-control.thousands-separator

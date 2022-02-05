@@ -218,9 +218,19 @@ block content
 
                 h2(id = 'ui-settings') Settings
 
-                p Cl Calc settings are configured through the settings dialog which can be accessed by pressing (#[span.glyphicon.glyphicon-wrench ]) button. Settings are saved in the browser local storage. The available settings are: thousands separator, precision and color theme.
+                p Cl Calc settings are configured through the settings dialog which can be accessed by pressing (#[span.glyphicon.glyphicon-wrench ]) button. Settings are saved in the browser local storage. The available settings are: output number format, thousands separator, precision and color theme.
 
-                p Enabling thousands separator will group digits in thousands (i.e. by three digits) and use empty space as a delimiter. Selection and copying behavior is unchanged, so the delimiters won't be copied into the clipboard.
+                p The output number format setting sets the base and the format for all numbers in the result of a calculation:
+                ul
+                    li "Decimal: Fixed": decimal base, fixed number format. Example: 123.4. This is the default value.
+                    li "Decimal: Exponential": decimal base, exponential number format. Example: 1.234e+2.
+                    li "Decimal: Engineering": decimal base, engineering number format - always have exponential notation, and select the exponent to be a multiple of 3. Example: 123.4e+6.
+                    li "Decimal: Auto": decimal base, auto number format - switch between fixed and exponential notation automatically, based on the value.
+                    li "Hexadecimal: Fixed": hexadecimal base, fixed number format. Example: 0x123.A.
+                    li "Octal: Fixed": octal base, fixed number format. Example: 0o123.4.
+                    li "Binary: Fixed": binary base, fixed number format. Example: 0b101.1.
+
+                p Enabling thousands separator will group digits in thousands (i.e. by three digits) and use empty space as a delimiter. Selection and copying behavior is unchanged, so the delimiters won't be copied into the clipboard. Thousands separator only supported for default "Decimal: Fixed" number format.
 
                 p Precision setting allows to configure maximum number of significant digits for calculations using big numbers. It can be set in a range of 8 - 4096. Be careful with using high precision as it may decrease responsiveness of Cl Calc. See #[a(href = '#precision') Precision] for more information about precision.
 

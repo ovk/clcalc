@@ -17,6 +17,7 @@
         this._extensions = [];
         this._settings = {
             'precision': settings.precision,
+            'outputNumberFormat': settings.outputNumberFormat,
             'enableThousandsSeparator': settings.thousandsSeparatorEnabled
         };
 
@@ -26,9 +27,17 @@
 
         this._numberFormatter = function (number)
         {
-            var n = number.isBigNumber ?
-                clc.dropTrailingZeroes(number.toFixed(self._settings.precision)) : number.toString();
-            return self._settings.enableThousandsSeparator ? self._formatNumberAddDigitGrouping(n) : n;
+            if (self._settings.outputNumberFormat === 'fixed')
+            {
+                var n = number.isBigNumber ?
+                    clc.dropTrailingZeroes(number.toFixed(self._settings.precision)) : number.toString();
+
+                return self._settings.enableThousandsSeparator ? self._formatNumberAddDigitGrouping(n) : n;
+            }
+            else
+            {
+                return self._mathJs.format(number, {notation: self._settings.outputNumberFormat });
+            }
         };
 
         // Register some function aliases
@@ -69,6 +78,7 @@
      */
     clc.Calculator.prototype.setSettings = function (settings)
     {
+        this._settings.outputNumberFormat = settings.outputNumberFormat;
         this._settings.precision = settings.precision;
         this._settings.enableThousandsSeparator = settings.thousandsSeparatorEnabled;
 

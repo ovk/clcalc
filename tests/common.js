@@ -1,5 +1,6 @@
 var settings =
 {
+    'outputNumberFormat': 'fixed',
     'precision': 64,
     'thousandsSeparatorEnabled': false
 };

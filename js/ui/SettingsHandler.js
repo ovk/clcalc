@@ -12,6 +12,7 @@
         {
             'showSettingsDialogButton': $('#show-settings-dialog-button'),
             'settingsDialog':           $('#settings-dialog'),
+            'outputNumberFormatSelect': $('#settings-dialog .output-number-format'),
             'thousandsSeparatorSelect': $('#settings-dialog .thousands-separator'),
             'precisionInput':           $('#settings-dialog .precision'),
             'colorThemeSelect':         $('#settings-dialog .color-theme'),
@@ -21,6 +22,7 @@
         // Default settings
         this._settings = {
             'precision': 64,
+            'outputNumberFormat': 'fixed',
             'thousandsSeparatorEnabled': false,
             'colorTheme': 'light'
         };
@@ -46,9 +48,13 @@
     {
         if (typeof window.localStorage !== 'undefined')
         {
-            var thousandsSeparatorEnabled = localStorage.getItem('settingsThousandsSeparatorEnabled'),
+            var outputNumberFormat = localStorage.getItem('outputNumberFormat'),
+                thousandsSeparatorEnabled = localStorage.getItem('settingsThousandsSeparatorEnabled'),
                 precision = localStorage.getItem('precision'),
                 colorTheme = localStorage.getItem('colorTheme');
+
+            if (outputNumberFormat !== null)
+                this._settings.outputNumberFormat = outputNumberFormat;
 
             if (thousandsSeparatorEnabled !== null)
                 this._settings.thousandsSeparatorEnabled = (thousandsSeparatorEnabled === 'true');
@@ -68,6 +74,7 @@
     {
         if (typeof window.localStorage !== 'undefined')
         {
+            localStorage.setItem('outputNumberFormat', this._settings.outputNumberFormat);
             localStorage.setItem('settingsThousandsSeparatorEnabled', this._settings.thousandsSeparatorEnabled);
             localStorage.setItem('precision', this._settings.precision);
             localStorage.setItem('colorTheme', this._settings.colorTheme);
@@ -116,6 +123,7 @@
     clc.SettingsHandler.prototype._showDialog = function ()
     {
         // Set current settings into dialog
+        this._elements.outputNumberFormatSelect.val(this._settings.outputNumberFormat);
         this._elements.thousandsSeparatorSelect.val(this._settings.thousandsSeparatorEnabled ? 'enabled': 'disabled');
         this._elements.precisionInput.val(this._settings.precision);
         this._elements.colorThemeSelect.val(this._settings.colorTheme);
@@ -138,6 +146,8 @@
     clc.SettingsHandler.prototype._applySettings = function ()
     {
         // Set current settings
+        this._settings.outputNumberFormat = this._elements.outputNumberFormatSelect.val();
+
         this._settings.thousandsSeparatorEnabled = (this._elements.thousandsSeparatorSelect.val() === 'enabled' ? true : false);
 
         var precision;
