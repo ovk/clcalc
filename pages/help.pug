@@ -110,7 +110,7 @@ block content
                 h1(id = 'quickstart') Quick Start
 
                 p Simply type an expression and hit enter to calculate the result:
-                +sample('(2 + 3) * 5', '17', 'eyJjIjpbIigywqArwqAzKcKgKsKgNcKgLcKgMl4zIl0sInYiOiIxIn0=')
+                +sample('(2 + 3) * 5', '25', 'eyJjIjpbIigywqArwqAzKcKgKsKgNSJdLCJ2IjoiMSJ9')
 
                 p You can use some of the built-in constants:
                 +sample('e^(i*pi)', '-1 + 1.2246467991473532e-16i', 'eyJjIjpbImVeKGkqcGkpIl0sInYiOiIxIn0=')
@@ -562,7 +562,7 @@ block content
                     { 'expression': '0xffi8', 'value': '-1' },
                     { 'expression': '0xabcdef12i32', 'value': '-1412567278' },
                     { 'expression': '0b1100011i8', 'value': '99' })
-                
+
                 p To covert a decimal number to hexadecimal, octal or binary representation as a signed integer with a given word size use a second parameter with the desired word size (in bits) to hex, oct and bin functions.
                 +multisample('eyJjIjpbImhleCgtMSzCoG51bWJlcig4KSkiLCJiaW4oLTQyLMKgbnVtYmVyKDgpKSJdLCJ2IjoiMSJ9',
                     { 'expression': 'hex(-1, number(8))', 'value': '0xffi8' },
