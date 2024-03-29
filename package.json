@@ -11,7 +11,7 @@
         "test": "./node_modules/karma/bin/karma start karma.conf.js"
     },
     "dependencies": {
-        "gulp": "^4.0.2",
+        "gulp": "^5.0.0",
         "gulp-autoprefixer": "^8.0.0",
         "gulp-clean-css": "^4.3.0",
         "gulp-concat": "^2.6.1",
